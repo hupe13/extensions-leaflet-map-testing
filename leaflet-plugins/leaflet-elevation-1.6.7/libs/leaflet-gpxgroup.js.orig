@@ -152,7 +152,6 @@ L.GpxGroup = L.Class.extend({
     this._markers = L.featureGroup();
     this._elevation = L.control.elevation(this.options.elevation_options);
     this._legend = L.control.layersLegend(null, null, this.options.legend_options);
-	//console.log(this.options.legend_options);
 
     var icon = L.icon(this.options.points_options.icon);
     this.options.points.forEach(function(poi) {
@@ -205,8 +204,7 @@ L.GpxGroup = L.Class.extend({
     var route = new L.GPX(data, {
       async: this.options.async,
       marker_options: this.options.marker_options,
-      polyline_options: line_style,
-      gpx_options: this.options.gpx_options,
+      polyline_options: line_style
     });
 
     route.originalStyle = line_style;
@@ -226,7 +224,7 @@ L.GpxGroup = L.Class.extend({
     polyline.on('mouseover', L.bind(this._onRouteMouseOver, this, route, polyline));
     polyline.on('mouseout', L.bind(this._onRouteMouseOut, this, route, polyline));
     polyline.on('click', L.bind(this._onRouteClick, this, route, polyline));
-	//console.log(route);
+
     polyline.bindTooltip(route.get_name(), {
       direction: 'auto',
       sticky: true,
@@ -305,7 +303,6 @@ L.GpxGroup = L.Class.extend({
 
   _onSelectionChanged: function(e) {
     var elevation = this._elevation;
-
     var eleDiv = elevation.getContainer();
     var route = this.getSelection();
 
