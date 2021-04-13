@@ -1,0 +1,9 @@
+/build
+/examples
+/test
+.jshintrc
+.gitattributes
+.babelrc
+_config.yml
+src/*.min.js
+src/*.min.css
