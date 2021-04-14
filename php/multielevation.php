@@ -1,8 +1,8 @@
 <?php
-//Shortcode: [elevation-tracks gpx="...url..."]
-// For use with only one map on a webpage
-
+//Shortcode:
 //[elevation-track file="'.$file.'" lat="'.$startlat.'" lon="'.$startlon.'" name="'.basename($file).'"]
+//[elevation-tracks]
+
 function testleafext_elevation_track( $atts ){
 	// echo '<pre>';
 	//var_dump($atts);
@@ -11,30 +11,21 @@ function testleafext_elevation_track( $atts ){
 	if (!is_array($all_files)) $all_files = array();
 	$all_files[]=$atts['file'];
 	//
-	global $all_tracks;
-	if (!is_array($all_tracks)) $all_tracks = array();
+	global $all_points;
+	if (!is_array($all_points)) $all_points = array();
 	$point = array(
 		'latlng' => array($atts['lat'],$atts['lon']),
 		'name' => $atts['name'],
 	);
-	$all_tracks[]=$point;
+	$all_points[]=$point;
 	//var_dump($all_files);
 }
 add_shortcode('elevation-track', 'testleafext_elevation_track' );
 
 //[elevation-tracks]
 function testleafext_elevation_tracks( $atts ){
-//	wp_enqueue_script( 'leaflet_ui',"https://unpkg.com/leaflet-ui@0.4.7/dist/leaflet-ui.js",
-//		array('wp_leaflet_map'),null);
-
-//wp_enqueue_script('fm-script3', "https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js", array('jquery'), '3.1.0', true);
-
-	// wp_enqueue_script( 'geometryutil_js',
-	// 	plugins_url('../js/leaflet.geometryutil.js',__FILE__),
-	// 	array('wp_leaflet_map'),null);
 	wp_enqueue_script( 'elevation_js',
 		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/js/leaflet-elevation.min.js',LEAFEXT_PLUGIN_FILE),
-//		array('geometryutil_js'),null);
 	array('wp_leaflet_map'),null);
 	wp_enqueue_style( 'elevation_css',
 		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/css/leaflet-elevation.min.css',LEAFEXT_PLUGIN_FILE),
@@ -60,9 +51,12 @@ function testleafext_elevation_tracks( $atts ){
 	//var_dump($atts);
 	// echo '</pre>';
 	global $all_files;
-	global $all_tracks;
+	global $all_points;
 	//var_dump($all_files);
 	//wp_die();
+	wp_enqueue_style( 'my_elevation_css',
+		plugins_url('css/multielevation.css',dirname(__FILE__)),
+		array('elevation_css'), null);
 	// custom js
 	wp_enqueue_script('multielevation',
 		plugins_url('js/multielevation.js',dirname(__FILE__)),
@@ -70,10 +64,11 @@ function testleafext_elevation_tracks( $atts ){
 
 	// Uebergabe der php Variablen an Javascript
 	wp_localize_script( 'multielevation', 'params', array(
-//		'points' => $params['points'],
 		'tracks' => $all_files,
-		'points' => $all_tracks,
+		'points' => $all_points,
 		'pluginsUrl' => plugin_dir_url(__DIR__),
 	));
+	$text = '<div id="elevation-div" class="leaflet-control elevation"><p class="chart-placeholder">move mouse over a track...</p></div>';
+	return $text;
 }
 add_shortcode('elevation-tracks', 'testleafext_elevation_tracks' );
