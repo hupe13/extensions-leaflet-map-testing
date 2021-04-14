@@ -4,6 +4,7 @@ window.WPLeafletMapPlugin.push(function () {
 
 	var points = params.points;
 	var tracks = params.tracks;
+	var theme =  params.theme;
 	console.log(points);
 	//console.log(tracks);
 
@@ -15,7 +16,7 @@ window.WPLeafletMapPlugin.push(function () {
 			},
 		},
 		elevation: {
-			theme: "lime-theme",
+			theme: theme,
 			detachedView: true,
 			elevationDiv: '#elevation-div',
 			followPositionMarker: true,

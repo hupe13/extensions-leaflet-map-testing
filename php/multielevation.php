@@ -61,12 +61,22 @@ function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_script('multielevation',
 		plugins_url('js/multielevation.js',dirname(__FILE__)),
 		array('elevation_js'), null);
+		
+	$options = get_option('leafext_values');
+	if (!is_array($options )) {
+		$theme = "lime-theme";
+	} else if ($options['theme'] == "other") {
+		$theme=$options['othertheme'];
+	} else {
+		$theme=$options['theme'].'-theme';
+	}
 
 	// Uebergabe der php Variablen an Javascript
 	wp_localize_script( 'multielevation', 'params', array(
 		'tracks' => $all_files,
 		'points' => $all_points,
 		'pluginsUrl' => plugin_dir_url(__DIR__),
+		'theme' => $theme,
 	));
 	$text = '<div id="elevation-div" class="leaflet-control elevation"><p class="chart-placeholder">move mouse over a track...</p></div>';
 	return $text;
