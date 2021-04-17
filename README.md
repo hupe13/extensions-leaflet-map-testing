@@ -17,5 +17,10 @@ Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet M
 [testelevation gpx="url_to_file2" summary=1]
 ```
 
+<h2>Testing ... </h2>
+ 
++ https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html
++ Geojson Popup on mouseover
+
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
