@@ -36,6 +36,7 @@ window.WPLeafletMapPlugin.push(function () {
 					layer.openPopup();
 				});
 			});
+			//Wenn ein Popup ein Link ist, kann man den nicht anklicken.
 			geojson.layer.on('mousemove', function (e) {
 				e.target.eachLayer(function(layer) {
 					layer.getPopup().setLatLng(e.latlng);
