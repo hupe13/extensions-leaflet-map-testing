@@ -21,6 +21,7 @@ if (! is_admin()) {
 	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
 		require_once( __DIR__ . '/php/multielevation.php');
 		require_once( __DIR__ . '/php/elevation.php');
+		require_once( __DIR__ . '/php/hovergeojson.php');
 	}
 } else {
 	require_once( __DIR__ . '/admin.php');
