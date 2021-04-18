@@ -5,14 +5,16 @@ window.WPLeafletMapPlugin.push(function () {
 	var map = window.WPLeafletMapPlugin.getCurrentMap();
 	//console.log(map);
 	//console.log(window.WPLeafletMapPlugin);
-	map.eachLayer(function (layer) {
+	//map.eachLayer(function (layer) {
 		//console.log(layer);
 		//console.log(layer.getPopup());
-	});
+	//});
 	if ( WPLeafletMapPlugin.geojsons.length > 0 ) {
 		var geojsons = window.WPLeafletMapPlugin.geojsons;
 		var geocount = geojsons.length
-
+		var isClicked = false;
+		console.log('begin');
+		console.log(isClicked);
 		for (var j = 0, len = geocount; j < len; j++) {
 			var geojson = geojsons[j];
 			//console.log(geojson);
@@ -36,20 +38,36 @@ window.WPLeafletMapPlugin.push(function () {
 					layer.openPopup();
 				});
 			});
-			//Wenn ein Popup ein Link ist, kann man den nicht anklicken.
-			geojson.layer.on('mousemove', function (e) {
+			geojson.layer.on('click', function (e) {
+				console.log('click');
 				e.target.eachLayer(function(layer) {
-					layer.getPopup().setLatLng(e.latlng);
+					//console.log(layer);
+					isClicked = true;
+				});
+				console.log(isClicked);
+			});
+			//Wenn ein Popup ein Link ist, kann man den nicht anklicken.
+			//Fixed mit isClicked (?)
+			//Klappt noch nicht, da mouseover popup = geojson mouseout
+			geojson.layer.on('mousemove', function (e) {
+				console.log('move');
+				console.log(isClicked);
+				e.target.eachLayer(function(layer) {
+					//console.log(layer);
+					if(!isClicked)
+						layer.getPopup().setLatLng(e.latlng);
 				});
             });
-			//Klappt irgendwie nicht, arbeitet nicht sauber
-			// geojson.layer.on('mouseout', function (e) {
-				// //console.log(e);
-				// e.target.eachLayer(function(layer) {
-					// //console.log(layer.isPopupOpen());
-					// layer.closePopup();
-				// });
-			// });
+			geojson.layer.on('mouseout', function (e) {
+				//console.log(e);
+				console.log('mouseout');
+				e.target.eachLayer(function(layer) {
+					//Klappt irgendwie nicht, arbeitet nicht sauber
+					//layer.closePopup();
+					isClicked = false;
+				});
+				console.log(isClicked);
+			});
 		}
 	}
 });
