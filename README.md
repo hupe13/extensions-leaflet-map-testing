@@ -27,7 +27,7 @@ Use it like <code>[hover]</code>
 
 <h2>Markercluster</h2>
 
-You can define radius (maxClusterRadius) and zoom (disableClusteringAtZoom) in settings page or pro page.
+You can define radius (maxClusterRadius) and zoom (disableClusteringAtZoom) in settings page or pro map.
 ```
 [testcluster radius="..." zoom="..."]
 ```
