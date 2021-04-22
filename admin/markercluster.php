@@ -9,8 +9,8 @@ function leafext_cluster_init(){
 add_action('admin_init', 'leafext_cluster_init' );
 
 //get Options
-function leafext_form_cluster_get_options() {
-	$options = get_option('leafext_cluster');
+function leafext_form_cluster_get_options($reset=false) {
+	if ( ! $reset) $options = get_option('leafext_cluster');
 	if ( ! $options ) $options = array();
 	//var_dump($options);
 	if (!array_key_exists('zoom', $options)) $options['zoom'] = "17";
@@ -46,7 +46,7 @@ function leafext_validate_cluster($input) {
 			$input['radius'] = intval($input['radius']);
 		} else {
 			$input = array();
-			$input = leafext_form_cluster_get_options();
+			$input = leafext_form_cluster_get_options(1);
 		}
 	}
 	return $input;
