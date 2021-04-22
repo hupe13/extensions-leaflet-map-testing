@@ -22,6 +22,7 @@ if (! is_admin()) {
 		require_once( __DIR__ . '/php/multielevation.php');
 		require_once( __DIR__ . '/php/elevation.php');
 		require_once( __DIR__ . '/php/hovergeojson.php');
+		require_once( __DIR__ . '/php/markercluster.php');
 	}
 } else {
 	require_once( __DIR__ . '/admin.php');

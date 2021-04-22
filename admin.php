@@ -1,7 +1,7 @@
 <?php
 // Admin Menu
 
-include "admin/generic-options.php";
+include "admin/markercluster.php";
 
 add_action('admin_init', 'testleafext_init' );
 add_action('admin_menu', 'testleafext_add_page', 99);
@@ -29,16 +29,11 @@ function testleafext_do_page() {
 	$leafext_plugin_name = basename(dirname(  __FILE__  ));
 	echo '<div class="wrap">
 	<h2>Extensions for Leaflet Map Options</h2>';
-
 	echo '<form method="post" action="options.php">';
 			settings_fields('leafext_settings_cluster');
 			do_settings_sections( 'leafext_settings_cluster' );
+			submit_button();
 			
-	echo '<p class="submit">';
-	echo '<input type="submit" class="button-primary" value="';
-	_e('Save Changes');
-	echo '" />';
-	echo '</p>';
 	echo '</form>';
 ?>
 	</div>
