@@ -19,6 +19,8 @@ Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet M
 
 <h2>Geojson Popup on mouseover</h2>
 
+Use it like <code>[hover]</code>
+
 ```
 [testhover]
 ```
