@@ -25,9 +25,24 @@ Use it like <code>[hover]</code>
 [testhover]
 ```
 
+<h2>Markercluster</h2>
+
+You can define radius (maxClusterRadius) and zoom (disableClusteringAtZoom) in settings page or pro page.
+```
+[testcluster radius="..." zoom="..."]
+```
+
 <h2>Testing ... </h2>
  
 + https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html
 
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
+
+## Changelog
+
+### 0.0.15
+New functions:
+* testhover: Popup on Hover Geojsons
+* markercluster: Now you can define disableClusteringAtZoom and maxClusterRadius
+
