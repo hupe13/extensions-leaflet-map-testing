@@ -37,7 +37,7 @@ Use it like <code>[hover]</code>
 
 <h2>Markercluster</h2>
 
-You can define radius (maxClusterRadius) and zoom (disableClusteringAtZoom) in settings page or pro map.
+You can define radius (maxClusterRadius) and zoom (disableClusteringAtZoom) in Settings -> Leaflet Map -> Extensions Tests or per map.
 ```
 [testcluster radius="..." zoom="..."]
 ```
