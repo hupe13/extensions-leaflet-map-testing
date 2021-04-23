@@ -1,5 +1,9 @@
 # Extensions for Leaflet Map Testing
 
+Tested up to: 5.7  
+License: GPLv2 or later  
+Contributors: hupe13
+
 ## Description
 
 Tests for including Leaflet Plugins in the Wordpress Plugin leaflet-map
