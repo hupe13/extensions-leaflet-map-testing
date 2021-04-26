@@ -34,6 +34,7 @@ Use it like <code>[hover]</code>
 ```
 [testhover]
 ```
+(not yet perfect)
 
 <h2>Markercluster</h2>
 
