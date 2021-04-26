@@ -42,6 +42,16 @@ You can define radius (maxClusterRadius) and zoom (disableClusteringAtZoom) in S
 [testcluster radius="..." zoom="..."]
 ```
 
+<h2>Zoomhome</h2>
+
+You can define wether zoomhomemap should zoom to all objects when calling the map.
+
+```
+[leaflet-map lat=... lng=... zoom=... !fitbounds !zoomcontrol]
+[leaflet-marker ....]
+[testzoomhomemap !fit]
+```
+
 <h2>Testing ... </h2>
 
 + https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html
