@@ -22,9 +22,9 @@ function leafext_help_text () {
 <h2>Zoomhome</h2>
 You can define wether zoomhomemap should zoom to all objects when calling the map.
 <pre>
-[leaflet-map lat=... lng=... zoom=... !fitbounds !zoomcontrol]
+<code>[leaflet-map lat=... lng=... zoom=... !fitbounds !zoomcontrol]
 [leaflet-marker ....]
-[testzoomhomemap !fit]
+[testzoomhomemap !fit]</code>
 </pre>'
 ."</p>";
 	return $text;
