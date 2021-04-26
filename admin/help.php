@@ -18,6 +18,13 @@ function leafext_help_text () {
     <p>You can define radius (maxClusterRadius) and zoom (disableClusteringAtZoom) in Settings -&gt; Leaflet Map -&gt; Extensions Tests or per map.</p>
 <pre>
 <code>[testcluster radius="..." zoom="..."]</code>
+</pre>
+<h2>Zoomhome</h2>
+You can define wether zoomhomemap should zoom to all objects when calling the map.
+<pre>
+[leaflet-map lat=... lng=... zoom=... !fitbounds !zoomcontrol]
+[leaflet-marker ....]
+[testzoomhomemap !fit]
 </pre>'
 ."</p>";
 	return $text;
