@@ -55,5 +55,7 @@ function leafext_validate_cluster($input) {
 // Erklaerung
 function leafext_cluster_text() {
     echo '<p>'.__('I found it useful to change these values for my website. If you want to change <a href="https://github.com/Leaflet/Leaflet.markercluster#options">other options</a>, please tell me','extensions-leaflet-map').'.</p>';
-		echo '<p>'.__('To reset all values to their defaults, simply clear the values','extensions-leaflet-map').'.</p>';
+	echo '<p>'.__('To reset all values to their defaults, simply clear the values','extensions-leaflet-map').'.</p>';
+	echo '<p>'.__('You can change it for each map:','extensions-leaflet-map').'.</p>';
+	echo '<pre>[cluster zoom=... radius=... ]</pre>';
 }
