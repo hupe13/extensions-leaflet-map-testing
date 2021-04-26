@@ -1,6 +1,6 @@
 <?php
 // init settings fuer cluster
-function testleafext_cluster_init(){
+function leafext_cluster_init(){
 	add_settings_section( 'cluster_settings', 'Marker Cluster', 'leafext_cluster_text', 'leafext_settings_cluster' );
 	add_settings_field( 'leafext_cluster_disableClusteringAtZoom', 'disableClusteringAtZoom', 'leafext_form_cluster_disableClusteringAtZoom', 'leafext_settings_cluster', 'cluster_settings' );
 	add_settings_field( 'leafext_cluster_maxClusterRadius', 'maxClusterRadius', 'leafext_form_cluster_maxClusterRadius', 'leafext_settings_cluster', 'cluster_settings' );
@@ -9,7 +9,7 @@ function testleafext_cluster_init(){
 add_action('admin_init', 'leafext_cluster_init' );
 
 //get Options
-function testleafext_form_cluster_get_options($reset=false) {
+function leafext_form_cluster_get_options($reset=false) {
 	if ( ! $reset) $options = get_option('leafext_cluster');
 	if ( ! $options ) $options = array();
 	//var_dump($options);
