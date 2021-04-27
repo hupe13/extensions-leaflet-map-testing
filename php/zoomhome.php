@@ -40,25 +40,28 @@ function testleafext_plugin_zoomhome_function($atts){
 
   console_log($atts);
 
-  foreach ($atts as $attribute => $value) {
-    var_dump($attribute,$value);
-    if (is_int($attribute)) {
-       $atts[strtolower($value)] = true;
-       unset($atts[$attribute]);
-    }
-  }
+	if (is_array($atts)) {
 
-  $fit=true;
-  if ( array_key_exists('!fit', $atts) ) {
-    $fit = false;
-  } else if ( array_key_exists('fit', $atts) ) {
-    if ( $atts['fit'] != "" ) {
-      $fit = (bool)$atts['fit'];
-      console_log($atts['fit'],(bool)$atts['fit']);
-    } else {
-      $fit = true;
-    }
-  }
+ 		foreach ($atts as $attribute => $value) {
+								
+			if (is_int($attribute)) {
+				$atts[strtolower($value)] = true;
+				unset($atts[$attribute]);
+			}
+		}
+
+	$fit=true;
+	if ( array_key_exists('!fit', $atts) ) {
+		$fit = false;
+	} else if ( array_key_exists('fit', $atts) ) {
+		if ( $atts['fit'] != "" ) {
+			$fit = (bool)$atts['fit'];
+												   
+		} else {
+			$fit = true;
+		}
+	}
+	} else {
   console_log($atts);
   //var_dump($atts,$fit); wp_die();
   console_log($fit); //wp_die();
