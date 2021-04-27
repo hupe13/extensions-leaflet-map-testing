@@ -1,7 +1,7 @@
 <?php
 // Admin Menu
 
-include "admin/markercluster.php";
+//include "admin/markercluster.php";
 include "admin/help.php";
 
 add_action('admin_init', 'testleafext_init' );
