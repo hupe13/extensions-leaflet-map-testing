@@ -62,6 +62,8 @@ function testleafext_plugin_zoomhome_function($atts){
 		}
 	}
 	} else {
+		$fit=true;
+	}
   console_log($atts);
   //var_dump($atts,$fit); wp_die();
   console_log($fit); //wp_die();
