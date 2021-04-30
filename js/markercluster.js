@@ -1,8 +1,7 @@
 // For use with only one map on a webpage
-console.log(cluster);
-console.log("cluster.Zoom"+cluster.zoom);
-console.log("cluster.radius"+cluster.radius);
-console.log("cluster.spiderfy"+cluster.spiderfy);
+console.log("cluster.Zoom "+cluster.zoom);
+console.log("cluster.radius "+cluster.radius);
+console.log("cluster.spiderfy "+cluster.spiderfy);
 
 window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
 window.WPLeafletMapPlugin.push(function () {
@@ -11,7 +10,7 @@ window.WPLeafletMapPlugin.push(function () {
 		map.options.maxZoom = 19;
 		var myzoom = cluster.zoom;
 		if ( cluster.zoom == "0" ) myzoom = false;
-		console.log("myzoom"+myzoom);
+		console.log("myzoom "+myzoom);
 		clmarkers = L.markerClusterGroup({
 			maxClusterRadius: function(radius)
 			//	{ return 60; },
