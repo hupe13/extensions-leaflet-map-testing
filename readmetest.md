@@ -1,6 +1,6 @@
 <h3 id="shortcodes">Shortcodes</h3><h4 id="display-a-track-with-elevation-profile">Anzeige eines Tracks mit Höhenprofil</h4>
 
-<p>Gehe zu <a href="https://phw-web.de/c/wp-admin/admin.php?page=extensions-leaflet-map&amp;tab=elevation">Einstellungen</a> und wähle ein Farbthema aus.</p>
+<p>Gehe zu Einstellungen -> Leaflet Map -> Leaflet Map Extensions und wähle ein Farbthema aus.</p>
 <pre><code>[leaflet-map ....]
 // at least one marker if you use it with zoomehomemap
 [leaflet-marker lat=... lng=... ...]Start[/leaflet-marker]
@@ -9,11 +9,11 @@
 [elevation gpx="url_gpx_file" summary=1]
 </code></pre><h4 id="switching-tile-layers">Umschalten von Tilelayers</h4>
 <p>
-</p><p>Gehe zuerst zu <a href="https://phw-web.de/c/wp-admin/admin.php?page=extensions-leaflet-map&amp;tab=tilelayers">Einstellungen</a> und konfiguriere die Tileserver.</p>
+</p><p>Gehe zuerst zu Einstellungen -> Leaflet Map -> Leaflet Map Extensions und konfiguriere die Tileserver.</p>
 <pre><code>[leaflet-map mapid="..." ...]
 [layerswitch]
 </code></pre><h4 id="leaflet.markercluster">Leaflet.markercluster</h4>
-<p>Viele Marker auf einer Karte werden unübersichtlich. Deshalb werden sie geclustert.</p>Du kannst den Radius (maxClusterRadius) und den Zoom (disableClusteringAtZoom) in den <a href="https://phw-web.de/c/wp-admin/admin.php?page=extensions-leaflet-map&amp;tab=cluster">Einstellungen</a> oder pro Karte festlegen.<pre><code>[leaflet-map ....]
+<p>Viele Marker auf einer Karte werden unübersichtlich. Deshalb werden sie geclustert.</p>Du kannst den Radius (maxClusterRadius) und den Zoom (disableClusteringAtZoom) in den Einstellungen -> Leaflet Map -> Leaflet Map Extensions oder pro Karte festlegen.<pre><code>[leaflet-map ....]
 // many markers
 [leaflet-marker lat=... lng=... ...]poi1[/leaflet-marker]
 [leaflet-marker lat=... lng=... ...]poi2[/leaflet-marker]
