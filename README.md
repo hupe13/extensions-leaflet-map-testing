@@ -44,6 +44,10 @@ Former tested functions see <a href="https://github.com/hupe13/extensions-leafle
 
 ## Changelog
 
+### 0.0.17
+
+clean up
+
 ### 0.0.16
 
 Parameter zomehomemap and markercluster
