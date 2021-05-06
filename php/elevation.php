@@ -2,6 +2,7 @@
 //Shortcode: [elevation gpx="...url..."]
 
 function testleafext_elevation_script($gpx,$summary,$slope,$theme){
+	include_once TESTLEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
 	$text = '
 	<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
@@ -29,7 +30,8 @@ function testleafext_elevation_script($gpx,$summary,$slope,$theme){
 		window.addEventListener("load", main);
 	});
 	</script>';
-	return $text;
+	$text = \JShrink\Minifier::minify($text);
+	return "\n".$text."\n";
 }
 
 function testleafext_elevation_function( $atts ){
