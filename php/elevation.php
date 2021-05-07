@@ -2,7 +2,7 @@
 //Shortcode: [elevation gpx="...url..."]
 
 function testleafext_elevation_script($gpx,$summary,$slope,$theme){
-	include_once TESTLEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
+	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
 	$text = '
 	<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
@@ -80,4 +80,3 @@ add_filter('pre_do_shortcode_tag',  function ( $output, $shortcode ) {
     }
 	return $output;
 }, 10, 2);
-
