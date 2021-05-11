@@ -19,6 +19,8 @@ Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet M
 
 <h2>Multiple Maps with elevation profile on one page</h2>
 
+It is already in https://github.com/hupe13/extensions-leaflet-map.
+
 ```
 [leaflet-map]
 [testelevation gpx="url_to_file1" summary=0]
