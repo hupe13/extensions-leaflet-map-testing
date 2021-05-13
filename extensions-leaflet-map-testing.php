@@ -3,7 +3,7 @@
  * Plugin Name: extensions-leaflet-map-testing
  * Description: Tests for leaflet-map
  * Maybe candidates for https://wordpress.org/plugins/extensions-leaflet-map/
- * Version: 0.0.17
+ * Version: 1.3
  * Author: hupe13
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-testing
  * Primary Branch: main
@@ -20,7 +20,6 @@ if (! is_admin()) {
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
 		require_once( __DIR__ . '/php/multielevation.php');
-		require_once( __DIR__ . '/php/elevation.php');
 		require_once( __DIR__ . '/php/hovergeojson.php');
 	}
 } else {

@@ -17,16 +17,6 @@ Download the zip file, unzip it. Upload the files to the plugin directory.
 Activate the plugin through the 'Plugins' screen in WordPress.
 Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>.
 
-<h2>Multiple Maps with elevation profile on one page</h2>
-
-It is already in https://github.com/hupe13/extensions-leaflet-map.
-
-```
-[leaflet-map]
-[testelevation gpx="url_to_file1" summary=0]
-[leaflet-map]
-[testelevation gpx="url_to_file2" summary=1]
-```
 
 <h2>Geojson Popup on mouseover</h2>
 
@@ -45,6 +35,10 @@ Use it like <code>[hover]</code>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
 
 ## Changelog
+
+### 1.3
+
+Clean up after release v1.3 
 
 ### 0.0.17
 
