@@ -1,8 +1,6 @@
 <?php
 // Admin Menu
 
-include "admin/help.php";
-
 add_action('admin_init', 'testleafext_init' );
 add_action('admin_menu', 'testleafext_add_page', 99);
 
@@ -31,9 +29,6 @@ function testleafext_do_page() {
 
 	echo '<h3 class="nav-tab-wrapper">';
 
-	echo '<a href="?page='.$leafext_plugin_name.'&tab=cluster" class="nav-tab';
-	echo $active_tab == 'cluster' ? ' nav-tab-active' : '';
-	echo '">Markercluster</a>';
 	echo '<a href="?page='.$leafext_plugin_name.'&tab=help" class="nav-tab';
 	echo $active_tab == 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
@@ -42,17 +37,9 @@ function testleafext_do_page() {
 
 	echo '<div class="wrap">
 	<h2>Extensions for Leaflet Map Options</h2>';
-	if( $active_tab != 'help' ) {
-	echo '<form method="post" action="options.php">';
-	if( $active_tab == 'cluster' ) {
-			settings_fields('leafext_settings_cluster');
-			do_settings_sections( 'leafext_settings_cluster' );
-	}
-	submit_button();
-	echo '</form>';
-}
+
 	if( $active_tab == 'help' ) {
-		echo leafext_help_text();
+		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
 	}
 ?>
 	</div>

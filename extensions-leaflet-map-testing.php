@@ -14,22 +14,31 @@ defined( 'ABSPATH' ) or die();
 
 define('TESTLEAFEXT_PLUGIN_FILE', __FILE__);
 define('TESTLEAFEXT_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('TESTLEAFEXT_PLUGIN_SETTINGS', dirname( plugin_basename( __FILE__ ) ) );
+
+if ( ! function_exists( 'is_plugin_active' ) )
+    require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
+if ( ! is_plugin_active( 'extensions-leaflet-map/extensions-leaflet-map.php' ) ) {
+  function testleafext_require_leafext_plugin(){?>
+    <div class="notice notice-error" >
+      <p> Please install and activate <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map Plugin</a> before using Extensions for Leaflet Map.</p>
+    </div><?php
+  }
+  add_action('admin_notices','testleafext_require_leafext_plugin');
+  register_activation_hook(__FILE__, 'testleafext_require_leafext_plugin');
+}
 
 if (! is_admin()) {
-	if ( ! function_exists( 'is_plugin_active' ) )
-		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
-		require_once( __DIR__ . '/php/multielevation.php');
-		require_once( __DIR__ . '/php/hovergeojson.php');
-	}
+	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/multielevation.php';
+	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/hovergeojson.php';
 } else {
-	require_once( __DIR__ . '/admin.php');
+	include_once TESTLEAFEXT_PLUGIN_DIR . '/admin.php';
 }
 
 // Add settings to plugin page
 function testleafext_add_action_links ( $actions ) {
-	$setting_page = dirname( plugin_basename( __FILE__ ) );
-	$actions[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page='.$setting_page ) ) .'">'. esc_html__( "Settings").'</a>';
+	$actions[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page='.TESTLEAFEXT_PLUGIN_SETTINGS) ) .'">'. esc_html__( "Settings").'</a>';
   return $actions;
 }
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'testleafext_add_action_links' );
