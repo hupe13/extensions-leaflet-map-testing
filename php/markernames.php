@@ -15,21 +15,20 @@ function leafext_testmarkers_function(){
 					//console.log(layer);
 					var markers = L.markerClusterGroup();
 					var rest = L.layerGroup();
-					layer.options.onEachFeature = function (feature, pointlayer) {
+					layer.options.onEachFeature = function (feature, geolayer) {
+						if ( feature.properties && feature.properties.name ) {
+							feature.properties.popupContent = feature.properties.name;
+							geolayer.bindPopup(feature.properties.popupContent);
+						}
 						if ( feature.geometry.type == "Point" ) {
-							if ( feature.properties && feature.properties.name ) {
-								feature.properties.popupContent = feature.properties.name;
-								pointlayer.bindPopup(feature.properties.popupContent);
-							}
-							markers.addLayer(pointlayer);
-							
+							markers.addLayer(geolayer);
 						} else {
-							rest.addLayer(pointlayer);
+							rest.addLayer(geolayer);
 						}
 						map.removeLayer(layer);
-						map.addLayer(markers);
-						map.addLayer(rest);
 					}
+					map.addLayer(markers);
+					map.addLayer(rest);
 				}
 			}); //map.eachLayer
 			window.addEventListener("load", main);
