@@ -2,8 +2,8 @@
 // Direktzugriff auf diese Datei verhindern:
 defined( 'ABSPATH' ) or die();
 
-//Shortcode: [hidemarkers]
-function leafext_testmarkers_function(){
+//Shortcode: [showmarkers]
+function leafext_showmarkers_function(){
 	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
 	$text = '
 	<script>
@@ -52,6 +52,6 @@ function leafext_testmarkers_function(){
 	$text = \JShrink\Minifier::minify($text);
 	return $text;
 }
-add_shortcode('testmarkers', 'leafext_testmarkers_function' );
+add_shortcode('showmarkers', 'leafext_showmarkers_function' );
 
 ?>

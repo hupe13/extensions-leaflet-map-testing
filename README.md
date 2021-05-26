@@ -27,6 +27,16 @@ Use it like <code>[hover]</code>
 ```
 (not yet perfect)
 
+<h2>leaflet-gpx Marker Popup</h2>
+
+The opposite of <a href="https://wordpress.org/plugins/extensions-leaflet-map/#hide%20markers"><code>[hidemarkers]</code></a> - show Markers with Popup:
+
+```
+[leaflet-map ...]
+[leaflet-gpx src="//url/to/file.gpx" ... ]
+[showmarkers]
+```
+
 <h2>Testing ... </h2>
 
 + https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html
@@ -38,7 +48,7 @@ Former tested functions see <a href="https://github.com/hupe13/extensions-leafle
 
 ### 1.3
 
-Clean up after release v1.3 
+Clean up after release v1.3
 
 ### 0.0.17
 
