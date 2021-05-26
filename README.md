@@ -29,7 +29,7 @@ Use it like <code>[hover]</code>
 
 <h2>leaflet-gpx popup geojson elements</h2>
 
-The opposite of <a href="https://wordpress.org/plugins/extensions-leaflet-map/#hide%20markers"><code>[hidemarkers]</code></a> - show markers and other elements with popup:
+The opposite of <a href="https://wordpress.org/plugins/extensions-leaflet-map/#hide%20markers"><code>[hidemarkers]</code></a> - show popup of markers and other elements:
 
 ```
 [leaflet-map ...]
