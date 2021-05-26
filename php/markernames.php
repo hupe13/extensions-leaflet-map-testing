@@ -22,14 +22,28 @@ function leafext_testmarkers_function(){
 						}
 						if ( feature.geometry.type == "Point" ) {
 							markers.addLayer(geolayer);
+							geolayer.bindTooltip(feature.properties.popupContent);
 						} else {
 							rest.addLayer(geolayer);
+							if ( feature.properties && feature.properties.name ) {
+								geolayer.on("mouseover", function (e) {
+	 								var popup = e.target.getPopup();
+	 								popup.setLatLng(e.latlng).openOn(map);
+ 								});
+ 								geolayer.on("mouseout", function(e) {
+									e.target.closePopup();
+ 								});
+ 								// update popup location
+ 								//geolayer.on("mousemove", function (e) {
+	 								//popup.setLatLng(e.latlng).openOn(map);
+ 								//});
+							}
 						}
 						map.removeLayer(layer);
-					}
+					} //
 					map.addLayer(markers);
 					map.addLayer(rest);
-				}
+				} //if layer.options.type
 			}); //map.eachLayer
 			window.addEventListener("load", main);
 		});
