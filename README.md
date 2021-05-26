@@ -18,7 +18,7 @@ Activate the plugin through the 'Plugins' screen in WordPress.
 Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>.
 
 
-<h2>Geojson Popup on mouseover</h2>
+<h2>geojson popup on mouseover</h2>
 
 Use it like <code>[hover]</code>
 
@@ -27,13 +27,15 @@ Use it like <code>[hover]</code>
 ```
 (not yet perfect)
 
-<h2>leaflet-gpx Marker Popup</h2>
+<h2>leaflet-gpx popup geojson elements</h2>
 
-The opposite of <a href="https://wordpress.org/plugins/extensions-leaflet-map/#hide%20markers"><code>[hidemarkers]</code></a> - show Markers with Popup:
+The opposite of <a href="https://wordpress.org/plugins/extensions-leaflet-map/#hide%20markers"><code>[hidemarkers]</code></a> - show markers and other elements with popup:
 
 ```
 [leaflet-map ...]
 [leaflet-gpx src="//url/to/file.gpx" ... ]
+[cluster]  //only for testing to load the js and css for clustering markers
+[hover]    //optional
 [showmarkers]
 ```
 
