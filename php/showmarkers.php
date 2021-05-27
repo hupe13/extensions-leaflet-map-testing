@@ -59,6 +59,13 @@ function leafext_gpx_markers_function($atts){
 									e.target.getTooltip().setOpacity(1.0);
 								}
 							});
+							geolayer.on("click", function(e) {
+								if ( e.target.getPopup().isOpen()) {
+							 		e.target.getTooltip().setOpacity(0.0);
+								} else {
+									e.target.getTooltip().setOpacity(1.0);
+								}
+							});
 							';
 							}
 						$text=$text.'
