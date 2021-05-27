@@ -9,16 +9,13 @@ window.WPLeafletMapPlugin.push(function () {
 
 		for (var j = 0, len = geocount; j < len; j++) {
 			var geojson = geojsons[j];
-      
+
 			geojson.layer.on('mouseover', function () {
 				//console.log("over");
 				//console.log(this);
 				this.eachLayer(function(layer) {
 					if ( !layer.getPopup().isOpen()) {
 						map.closePopup();
-						var content = layer.getPopup().getContent();
-						//console.log(content);
-						layer.bindTooltip(content);
 					}
 				});
 				this.setStyle({
@@ -56,7 +53,7 @@ window.WPLeafletMapPlugin.push(function () {
 						layer.openTooltip(e.latlng);
 					}
 			 	});
-      });
+      		});
 
 		}
 	}
