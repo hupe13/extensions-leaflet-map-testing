@@ -306,7 +306,13 @@ L.GPX = L.FeatureGroup.extend({
 
     var name = xml.getElementsByTagName('name');
     if (name.length > 0) {
-      this._info.name = name[0].textContent;
+      for (var i = 0; i < name.length; i++) {
+        if (name[i].parentElement.nodeName == "trk") {
+          var trkname=name[i].textContent;
+        }
+      }
+      //this._info.name = name[0].textContent;
+      this._info.name = trkname;
     }
     var desc = xml.getElementsByTagName('desc');
     if (desc.length > 0) {

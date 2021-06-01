@@ -37,16 +37,6 @@ function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_script('leaflet.gpxgroup',
 		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/libs/leaflet-gpxgroup.js',TESTLEAFEXT_PLUGIN_FILE),
 		array('leaflet.gpx'),null);
-	// language
-	$lang = get_locale();
-	if ( strlen( $lang ) > 0 ) {
-		$lang = explode( '_', $lang )[0];
-	}
-	if( file_exists( LEAFEXT_PLUGIN_DIR . 'locale/elevation_'.$lang.'.js') ) {
-		wp_enqueue_script('elevation_lang',
-			plugins_url('locale/elevation_'.$lang.'.js',LEAFEXT_PLUGIN_FILE),
-			array('elevation_js'), null);
-	}
 	// echo '<pre>';
 	//var_dump($atts);
 	// echo '</pre>';
@@ -61,7 +51,7 @@ function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_script('multielevation',
 		plugins_url('js/multielevation.js',dirname(__FILE__)),
 		array('elevation_js'), null);
-		
+
 	$options = get_option('leafext_values');
 	if (!is_array($options )) {
 		$theme = "lime-theme";
@@ -78,7 +68,12 @@ function testleafext_elevation_tracks( $atts ){
 		'pluginsUrl' => plugin_dir_url(__DIR__),
 		'theme' => $theme,
 	));
-	$text = '<div id="elevation-div" class="leaflet-control elevation"><p class="chart-placeholder">move mouse over a track...</p></div>';
+	$text = '<style>.leaflet-control-layers-list {
+      max-width: 250px;
+      max-height: 25vh;
+      overflow: auto;
+    }</style>
+	<div id="elevation-div" class="leaflet-control elevation"><p class="chart-placeholder">move mouse over a track...</p></div>';
 	return $text;
 }
 add_shortcode('elevation-tracks', 'testleafext_elevation_tracks' );

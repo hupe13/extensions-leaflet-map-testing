@@ -37,7 +37,10 @@ window.WPLeafletMapPlugin.push(function () {
 		gpx_options: {
 			//parseElements: ['track'],
 			parseElements: ['track','route'],
-		}
+		},
+		legend_options:{
+			collapsed: true,
+		},
 	};
 
     var routes;
@@ -50,6 +53,7 @@ window.WPLeafletMapPlugin.push(function () {
 		legend: true,
 		distanceMarkers: false,
 		gpx_options: opts.gpx_options,
+		legend_options: opts.legend_options,
     });
 
 	map.on('eledata_added eledata_clear', function(e) {
