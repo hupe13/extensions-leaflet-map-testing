@@ -10,51 +10,75 @@ window.WPLeafletMapPlugin.push(function () {
 		for (var j = 0, len = geocount; j < len; j++) {
 			var geojson = geojsons[j];
 
-			geojson.layer.on('mouseover', function () {
-				//console.log("over");
-				//console.log(this);
-				this.eachLayer(function(layer) {
-					if ( !layer.getPopup().isOpen()) {
-						map.closePopup();
-					}
-				});
-				this.setStyle({
-					fillOpacity: 0.4,
-					weight: 5
-				});
-				this.bringToFront();
+			geojson.layer.on('mouseover', function (e) {
+				let i = 0;
+				e.target.eachLayer(function(){ i += 1; });
+				//console.log('mouseover has', i, 'layers.');
+				if (i > 1) {
+					e.sourceTarget.setStyle({
+						fillOpacity: 0.4,
+						weight: 5
+					});
+					e.sourceTarget.bringToFront();
+				} else {
+					e.target.eachLayer(function(layer) {
+						layer.setStyle({
+							fillOpacity: 0.4,
+							weight: 5
+						});
+						layer.bringToFront();
+					});
+				}
 			});
 
-			geojson.layer.on('mouseout', function () {
-				//console.log("out");
-				this.setStyle({
-					fillOpacity: 0.2,
-					weight: 3
-				});
+			geojson.layer.on('mouseout', function (e) {
+				let i = 0;
+				e.target.eachLayer(function(){ i += 1; });
+				//console.log('mouseout has', i, 'layers.');
+				if (i > 1) {
+					geojson.resetStyle();
+				} else {
+					//resetStyle is only working with a geoJSON Group.
+					e.target.eachLayer(function(layer) {
+						//console.log(layer);
+						layer.setStyle({
+							fillOpacity: 0.2,
+							weight: 3
+						});
+					});
+				}
 			});
 
 			geojson.layer.on('click', function (e) {
 				//console.log('click');
 				e.target.eachLayer(function(layer) {
-					//console.log(layer);
-					layer.unbindTooltip();
+					if (layer.getPopup().isOpen())
+						layer.unbindTooltip();
 				});
 			});
 
 			geojson.layer.on('mousemove', function (e) {
-			 	//console.log('move');
-			 	e.target.eachLayer(function(layer) {
-			// 		//console.log(layer);
-
-					if ( !layer.getPopup().isOpen()) {
-						var content = layer.getPopup().getContent();
-						//console.log(content);
-						layer.bindTooltip(content);
-						layer.openTooltip(e.latlng);
+			 	let i = 0;
+				e.target.eachLayer(function(){ i += 1; });
+				//console.log('mousemove has', i, 'layers.');
+				if (i > 1) {
+					if ( !e.sourceTarget.getPopup().isOpen()) {
+						map.closePopup();
+						var content = e.sourceTarget.getPopup().getContent();
+						e.sourceTarget.bindTooltip(content);
+						e.sourceTarget.openTooltip(e.latlng);
 					}
-			 	});
-      		});
-
+				} else {
+					e.target.eachLayer(function(layer) {
+						if ( !layer.getPopup().isOpen()) {
+							map.closePopup();
+							var content = layer.getPopup().getContent();
+							layer.bindTooltip(content);
+							layer.openTooltip(e.latlng);
+						}
+					});
+				}
+			});
 		}
 	}
 });
