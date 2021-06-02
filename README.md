@@ -12,7 +12,7 @@ This code is changed from time to time and may (or may not) be published in the 
 
 <h2>Installation</h2>
 
-Download the zip file and <a href="https://wordpress.org/support/article/managing-plugins/#installing-plugins">upload it via WordPress Admin</a>.
+Download the zip file and <a href="https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin">upload it via WordPress Admin</a>.
 Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>.
 If it does not work, use the <a href="https://github.com/hupe13/extensions-leaflet-map">Github version</a>.
 
