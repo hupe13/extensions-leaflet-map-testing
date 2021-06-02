@@ -25,10 +25,10 @@ add_shortcode('elevation-track', 'testleafext_elevation_track' );
 //[elevation-tracks]
 function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_script( 'elevation_js',
-		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/js/leaflet-elevation.min.js',LEAFEXT_PLUGIN_FILE),
+		plugins_url('leaflet-plugins/leaflet-elevation-1.6.8/js/leaflet-elevation.min.js',LEAFEXT_PLUGIN_FILE),
 	array('wp_leaflet_map'),null);
 	wp_enqueue_style( 'elevation_css',
-		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/css/leaflet-elevation.min.css',LEAFEXT_PLUGIN_FILE),
+		plugins_url('leaflet-plugins/leaflet-elevation-1.6.8/css/leaflet-elevation.min.css',LEAFEXT_PLUGIN_FILE),
 		array('leaflet_stylesheet'),null);
 	wp_enqueue_script('leaflet.gpx',
 		plugins_url('leaflet-plugins/leaflet-gpx-1.5.2/gpx.js',
@@ -37,6 +37,14 @@ function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_script('leaflet.gpxgroup',
 		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/libs/leaflet-gpxgroup.js',TESTLEAFEXT_PLUGIN_FILE),
 		array('leaflet.gpx'),null);
+
+		wp_enqueue_script('zoomhome',
+			plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.min.js',LEAFEXT_PLUGIN_FILE),
+				array('wp_leaflet_map'), null);
+		wp_enqueue_style('zoomhome',
+			plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.css',LEAFEXT_PLUGIN_FILE),
+				array('leaflet_stylesheet'), null);
+
 	// echo '<pre>';
 	//var_dump($atts);
 	// echo '</pre>';
@@ -68,12 +76,7 @@ function testleafext_elevation_tracks( $atts ){
 		'pluginsUrl' => plugin_dir_url(__DIR__),
 		'theme' => $theme,
 	));
-	$text = '<style>.leaflet-control-layers-list {
-      max-width: 250px;
-      max-height: 25vh;
-      overflow: auto;
-    }</style>
-	<div id="elevation-div" class="leaflet-control elevation"><p class="chart-placeholder">move mouse over a track...</p></div>';
+	$text = '<div id="elevation-div" class="leaflet-control elevation"><p class="chart-placeholder">move mouse over a track...</p></div>';
 	return $text;
 }
 add_shortcode('elevation-tracks', 'testleafext_elevation_tracks' );

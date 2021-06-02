@@ -31,3 +31,9 @@
 	opacity: 0.5;
 	font-size: 0.9rem;
 }
+
+.leaflet-control-layers-list {
+	max-width: 250px;
+	max-height: 25vh;
+	overflow: auto;
+}
