@@ -25,14 +25,13 @@ window.WPLeafletMapPlugin.push(function () {
 			followMarker: false,
 			downloadLink:false,
 			polyline: { weight: 3,},
+			summary: "inline",
+			slope: "summary",
 		},
 		markers: {
 			startIconUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-icon-start.png',
 			endIconUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-icon-end.png',
 			shadowUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-shadow.png',
-//      	wptIconUrls : {
-//      	  '': params.pluginsUrl + '/images/unsichtbar.png',
-//     		},
 		},
 		gpx_options: {
 			//parseElements: ['track'],
@@ -64,4 +63,27 @@ window.WPLeafletMapPlugin.push(function () {
 	});
 
     routes.addTo(map);
+});
+
+window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
+window.WPLeafletMapPlugin.push(function () {
+  var map = window.WPLeafletMapPlugin.getCurrentMap();
+	map.options.maxZoom = 19;
+	var bounds = [];
+	bounds = new L.latLngBounds();
+	var zoomHome = [];
+	zoomHome = L.Control.zoomHome();
+	var zoomhomemap=false;
+	map.on("zoomend", function(e) {
+		//console.log("zoomend");
+		//console.log( zoomhomemap );
+		if ( ! zoomhomemap ) {
+			//console.log(map.getBounds());
+			zoomhomemap=true;
+			zoomHome.addTo(map);
+			zoomHome.setHomeBounds(map.getBounds());
+		}
+  });
+
+  window.addEventListener("load", main);
 });
