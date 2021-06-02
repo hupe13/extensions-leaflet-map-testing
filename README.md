@@ -16,7 +16,7 @@ Download the zip file, unzip it. Upload the files to the plugin directory.
 
 Activate the plugin through the 'Plugins' screen in WordPress.
 Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>.
-
+If it doesn't work, use the <a href="https://github.com/hupe13/extensions-leaflet-map">Github version</a>.
 
 <h2>geojson popup on mouseover</h2>
 
@@ -25,7 +25,6 @@ Use it like <code>[hover]</code>
 ```
 [testhover]
 ```
-(not yet perfect)
 
 It works on leaflet-geojson, leaflet-gpx. Not tested yet: leaflet-kml.
 
@@ -33,8 +32,14 @@ It works on leaflet-geojson, leaflet-gpx. Not tested yet: leaflet-kml.
 
 Like this: https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html
 
-This is a very special application. It only works in this way. You have a directory with gpx-files in a region.
-
+```
+[leaflet-map fitbounds ...]
+[elevation-track file="..." lat="..." lon="..." name="..."]
+//many of this
+[elevation-track file="..." lat="..." lon="..." name="..."]
+[elevation-tracks]
+```
+This example is a very special application. You have a directory with gpx-files with tracks in a region.
 ```
 <?php
 echo '[leaflet-map height=400px width=100% fitbounds ]';
