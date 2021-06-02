@@ -1,8 +1,106 @@
 <?php
+// Direktzugriff auf diese Datei verhindern:
+defined( 'ABSPATH' ) or die();
+
 //Shortcode: [hover]
-function testleafext_hover_function(){
-	// custom js
-	wp_enqueue_script('hovergeojson_custom', plugins_url('js/hovergeojson.js',TESTLEAFEXT_PLUGIN_FILE), array('wp_leaflet_map'), null);
+function leafext_geojsonhover_script(){
+	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
+	$text = '<script>
+	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
+	window.WPLeafletMapPlugin.push(function () {
+		var map = window.WPLeafletMapPlugin.getCurrentMap();
+		if ( WPLeafletMapPlugin.geojsons.length > 0 ) {
+			var geojsons = window.WPLeafletMapPlugin.geojsons;
+			var geocount = geojsons.length;
+
+			for (var j = 0, len = geocount; j < len; j++) {
+				var geojson = geojsons[j];
+				geojson.layer.on("mouseover", function (e) {
+					let i = 0;
+					e.target.eachLayer(function(){ i += 1; });
+					//console.log("mouseover has", i, "layers.");
+					if (i > 1) {
+						if (typeof e.sourceTarget.options.style != "undefined") {
+							//console.log("defined");
+							e.sourceTarget.setStyle({
+								fillOpacity: 0.4,
+								weight: 5
+							});
+							e.sourceTarget.bringToFront();
+						// } else {
+							// console.log("nostyle");
+							// console.log(e.sourceTarget);
+						}
+					} else {
+						e.target.eachLayer(function(layer) {
+							layer.setStyle({
+								fillOpacity: 0.4,
+								weight: 5
+							});
+							layer.bringToFront();
+						});
+					}
+				});
+
+				geojson.layer.on("mouseout", function (e) {
+					let i = 0;
+					e.target.eachLayer(function(){ i += 1; });
+					//console.log("mouseout has", i, "layers.");
+					if (i > 1) {
+						geojson.resetStyle();
+					} else {
+						//resetStyle is only working with a geoJSON Group.
+						e.target.eachLayer(function(layer) {
+							//console.log(layer);
+							layer.setStyle({
+								fillOpacity: 0.2,
+								weight: 3
+							});
+						});
+					}
+				});
+
+				geojson.layer.on("click", function (e) {
+					//console.log("click");
+					e.target.eachLayer(function(layer) {
+						if (layer.getPopup().isOpen())
+							layer.unbindTooltip();
+					});
+				});
+
+				geojson.layer.on("mousemove", function (e) {
+				 	let i = 0;
+					e.target.eachLayer(function(){ i += 1; });
+					//console.log("mousemove has", i, "layers.");
+					if (i > 1) {
+						if ( !e.sourceTarget.getPopup().isOpen()) {
+							map.closePopup();
+							var content = e.sourceTarget.getPopup().getContent();
+							e.sourceTarget.bindTooltip(content);
+							e.sourceTarget.openTooltip(e.latlng);
+						}
+					} else {
+						e.target.eachLayer(function(layer) {
+							if ( !layer.getPopup().isOpen()) {
+								map.closePopup();
+								var content = layer.getPopup().getContent();
+								layer.bindTooltip(content);
+								layer.openTooltip(e.latlng);
+							}
+						});
+					}
+				});
+
+			}
+		}
+	});
+	</script>';
+	//$text = \JShrink\Minifier::minify($text);
+	return "\n".$text."\n";
 }
-add_shortcode('testhover', 'testleafext_hover_function' );
+
+function leafext_geojsonhover_function(){
+	return leafext_geojsonhover_script();
+}
+add_shortcode('testhover', 'leafext_geojsonhover_function' );
 ?>
