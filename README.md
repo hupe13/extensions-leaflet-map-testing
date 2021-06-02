@@ -27,21 +27,28 @@ Use it like <code>[hover]</code>
 ```
 (not yet perfect)
 
-<h2>leaflet-gpx popup geojson elements</h2>
+It works on leaflet-geojson, leaflet-gpx. Not tested yet: leaflet-kml.
 
-Show popup of markers and other elements on hover:
+<h2>Multiple hoverable tracks</h2>
+
+Like this: https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html
+
+This is a very special application. It only works in this way. You have a directory with gpx-files in a region.
 
 ```
-[leaflet-map ...]
-[leaflet-gpx src="//url/to/file.gpx" ... ]
-[cluster]  //only for testing to load the js and css for clustering markers
-[hover]    //optional
-[showmarkers]
+<?php
+echo '[leaflet-map height=400px width=100% fitbounds ]';
+$pfad="path/to/directory/with/gpx-files";
+foreach (glob($pfad."/*.gpx") as $file)
+{
+	$gpx = simplexml_load_file($file);
+	$trackname= $gpx->trk->name;
+	$startlat = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lat;
+	$startlon = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lon;
+	echo '[elevation-track file="../'.$file.'" lat="'.$startlat.'" lon="'.$startlon.'" name="'.basename($file).'"]';
+}
+echo '[elevation-tracks]';
 ```
-
-<h2>Testing ... </h2>
-
-+ https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html
 
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
