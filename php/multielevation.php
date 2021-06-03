@@ -75,8 +75,21 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 			},
 		};
 
-	    var routes;
-	    routes = new L.gpxGroup(tracks, {
+		var mylocale = {
+			"Altitude"				: "'.__("Altitude", "extensions-leaflet-map").'",
+			"Total Length: "	: "'.__("Total Length", "extensions-leaflet-map").': ",
+			"Max Elevation: "	: "'.__("Max Elevation", "extensions-leaflet-map").': ",
+			"Min Elevation: "	: "'.__("Min Elevation", "extensions-leaflet-map").': ",
+			"Total Ascent: "	: "'.__("Total Ascent", "extensions-leaflet-map").': ",
+			"Total Descent: "	: "'.__("Total Descent", "extensions-leaflet-map").': ",
+			"Min Slope: "			: "'.__("Min Slope", "extensions-leaflet-map").': ",
+			"Max Slope: "			: "'.__("Max Slope", "extensions-leaflet-map").': ",
+		};
+		L.registerLocale("wp", mylocale);
+		L.setLocale("wp");
+
+	  var routes;
+	  routes = new L.gpxGroup(tracks, {
 			points: points,
 			points_options: opts.points,
 			elevation: true,
@@ -86,7 +99,7 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 			distanceMarkers: false,
 			gpx_options: opts.gpx_options,
 			legend_options: opts.legend_options,
-	    });
+	  });
 
 		map.on("eledata_added eledata_clear", function(e) {
 			var p = document.querySelector(".chart-placeholder");
@@ -95,7 +108,7 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 			}
 		});
 
-	    routes.addTo(map);
+	  routes.addTo(map);
 	});
 
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
