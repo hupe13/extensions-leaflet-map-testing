@@ -32,6 +32,7 @@ window.WPLeafletMapPlugin.push(function () {
 			startIconUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-icon-start.png',
 			endIconUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-icon-end.png',
 			shadowUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-shadow.png',
+			wptIconUrls: null,
 		},
 		gpx_options: {
 			//parseElements: ['track'],

@@ -25,10 +25,12 @@ add_shortcode('elevation-track', 'testleafext_elevation_track' );
 //[elevation-tracks]
 function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_script( 'elevation_js',
-		plugins_url('leaflet-plugins/leaflet-elevation-1.6.8/js/leaflet-elevation.min.js',LEAFEXT_PLUGIN_FILE),
+		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/js/leaflet-elevation.min.js',
+		LEAFEXT_PLUGIN_FILE),
 	array('wp_leaflet_map'),null);
 	wp_enqueue_style( 'elevation_css',
-		plugins_url('leaflet-plugins/leaflet-elevation-1.6.8/css/leaflet-elevation.min.css',LEAFEXT_PLUGIN_FILE),
+		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/css/leaflet-elevation.min.css',
+		LEAFEXT_PLUGIN_FILE),
 		array('leaflet_stylesheet'),null);
 	wp_enqueue_script('leaflet.gpx',
 		plugins_url('leaflet-plugins/leaflet-gpx-1.5.2/gpx.js',
