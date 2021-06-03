@@ -32,7 +32,10 @@ window.WPLeafletMapPlugin.push(function () {
 			startIconUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-icon-start.png',
 			endIconUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-icon-end.png',
 			shadowUrl: null, // 'http://mpetazzoni.github.io/leaflet-gpx/pin-shadow.png',
-			wptIconUrls: null,
+			// wptIcon and wptIconUrls seems to be a bug, if configured, elevation chart doesn't appear
+			// console.log in gpx.js is commented out. Nervt.
+			wptIcon: null,
+			wptIconUrls: null, // params.pluginsUrl + '/leaflet-plugins/leaflet-gpx-1.5.2/pin-icon-wpt.png',
 		},
 		gpx_options: {
 			//parseElements: ['track'],
