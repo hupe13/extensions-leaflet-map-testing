@@ -36,7 +36,7 @@ Like this: https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation
 [elevation-track file="..." lat="..." lng="..." name="..."]
 [elevation-tracks summary=1]  // like in [elevation]
 ```
-This example is a very special application. You have a directory with gpx-files with tracks in a region.
+This example is a very special application. gpx-files with tracks in a region are in a directory.
 ```
 <?php
 echo '[leaflet-map height=400px width=100% fitbounds ]';
@@ -47,7 +47,7 @@ foreach (glob($pfad."/*.gpx") as $file)
 	$trackname= $gpx->trk->name;
 	$startlat = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lat;
 	$startlon = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lon;
-	echo '[elevation-track file="../'.$file.'" lat="'.$startlat.'" lng="'.$startlon.'" name="'.basename($file).'"]';
+	echo '[elevation-track file="..url/please/adjust/..'.$file.'" lat="'.$startlat.'" lng="'.$startlon.'" name="'.basename($file).'"]';
 }
 echo '[elevation-tracks summary=1]';
 ```
