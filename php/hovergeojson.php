@@ -93,6 +93,23 @@ function leafext_geojsonhover_script(){
 
 			}
 		}
+		var markers = window.WPLeafletMapPlugin.markers;
+		if (markers.length > 0) {
+			console.log("markers "+markers.length);
+			for (var i = 0; i < WPLeafletMapPlugin.markers.length; i++) {
+				 var a = WPLeafletMapPlugin.markers[i];
+				 a.on("mouseover", function (e) {
+					 console.log(e);
+					 var content = e.sourceTarget.getPopup().getContent();
+					 e.sourceTarget.bindTooltip(content);
+					 e.sourceTarget.openTooltip(e.latlng);
+				 });
+				 a.on("click", function (e) {
+					 //console.log("click");
+					 e.sourceTarget.unbindTooltip();
+				 });
+			 }
+		 }
 	});
 	</script>';
 	//$text = \JShrink\Minifier::minify($text);
