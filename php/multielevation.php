@@ -72,7 +72,7 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 		};
 
 		var mylocale = {
-			"Altitude"			: "'.__("Altitude", "extensions-leaflet-map").'",
+			"Altitude"		: "'.__("Altitude", "extensions-leaflet-map").'",
 			"Total Length: "	: "'.__("Total Length", "extensions-leaflet-map").': ",
 			"Max Elevation: "	: "'.__("Max Elevation", "extensions-leaflet-map").': ",
 			"Min Elevation: "	: "'.__("Min Elevation", "extensions-leaflet-map").': ",
@@ -95,7 +95,7 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 			distanceMarkers: false,
 			gpx_options: opts.gpx_options,
 			legend_options: opts.legend_options,
-	    });
+	    	});
 
 		map.on("eledata_added eledata_clear", function(e) {
 			var p = document.querySelector(".chart-placeholder");
