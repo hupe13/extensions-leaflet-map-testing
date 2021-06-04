@@ -4,9 +4,6 @@
 //[elevation-tracks summary=1]
 
 function testleafext_elevation_track( $atts ){
-	// echo '<pre>';
-	//var_dump($atts);
-	// echo '</pre>';
 	global $all_files;
 	if (!is_array($all_files)) $all_files = array();
 	$all_files[]=$atts['file'];
@@ -18,7 +15,6 @@ function testleafext_elevation_track( $atts ){
 		'name' => $atts['name'],
 	);
 	$all_points[]=$point;
-	//var_dump($all_files);
 }
 add_shortcode('elevation-track', 'testleafext_elevation_track' );
 
@@ -76,20 +72,20 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 		};
 
 		var mylocale = {
-			"Altitude"				: "'.__("Altitude", "extensions-leaflet-map").'",
+			"Altitude"			: "'.__("Altitude", "extensions-leaflet-map").'",
 			"Total Length: "	: "'.__("Total Length", "extensions-leaflet-map").': ",
 			"Max Elevation: "	: "'.__("Max Elevation", "extensions-leaflet-map").': ",
 			"Min Elevation: "	: "'.__("Min Elevation", "extensions-leaflet-map").': ",
 			"Total Ascent: "	: "'.__("Total Ascent", "extensions-leaflet-map").': ",
 			"Total Descent: "	: "'.__("Total Descent", "extensions-leaflet-map").': ",
-			"Min Slope: "			: "'.__("Min Slope", "extensions-leaflet-map").': ",
-			"Max Slope: "			: "'.__("Max Slope", "extensions-leaflet-map").': ",
+			"Min Slope: "		: "'.__("Min Slope", "extensions-leaflet-map").': ",
+			"Max Slope: "		: "'.__("Max Slope", "extensions-leaflet-map").': ",
 		};
 		L.registerLocale("wp", mylocale);
 		L.setLocale("wp");
 
-	  var routes;
-	  routes = new L.gpxGroup(tracks, {
+		var routes;
+		routes = new L.gpxGroup(tracks, {
 			points: points,
 			points_options: opts.points,
 			elevation: true,
@@ -99,7 +95,7 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 			distanceMarkers: false,
 			gpx_options: opts.gpx_options,
 			legend_options: opts.legend_options,
-	  });
+	    });
 
 		map.on("eledata_added eledata_clear", function(e) {
 			var p = document.querySelector(".chart-placeholder");
@@ -108,7 +104,7 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 			}
 		});
 
-	  routes.addTo(map);
+	    routes.addTo(map);
 	});
 
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
@@ -129,12 +125,12 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 				zoomHome.addTo(map);
 				zoomHome.setHomeBounds(map.getBounds());
 			}
-	  });
+		});
 
-	  window.addEventListener("load", main);
+		window.addEventListener("load", main);
 	});
-	</script>';
-//$text = \JShrink\Minifier::minify($text);
+</script>';
+$text = \JShrink\Minifier::minify($text);
 return "\n".$text."\n";
 }
 
@@ -155,32 +151,41 @@ function testleafext_elevation_tracks( $atts ){
 		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/libs/leaflet-gpxgroup.js',TESTLEAFEXT_PLUGIN_FILE),
 		array('leaflet.gpx'),null);
 
-		wp_enqueue_script('zoomhome',
-			plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.min.js',LEAFEXT_PLUGIN_FILE),
-				array('wp_leaflet_map'), null);
-		wp_enqueue_style('zoomhome',
-			plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.css',LEAFEXT_PLUGIN_FILE),
-				array('leaflet_stylesheet'), null);
+	wp_enqueue_script('zoomhome',
+		plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.min.js',LEAFEXT_PLUGIN_FILE),
+			array('wp_leaflet_map'), null);
+	wp_enqueue_style('zoomhome',
+		plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.css',LEAFEXT_PLUGIN_FILE),
+			array('leaflet_stylesheet'), null);
 
-	// echo '<pre>';
-	//var_dump($atts);
-	// echo '</pre>';
 	global $all_files;
 	global $all_points;
 
 	wp_enqueue_style( 'my_elevation_css',
 		plugins_url('css/multielevation.css',dirname(__FILE__)),
 		array('elevation_css'), null);
-
-	$options = get_option('leafext_values');
-	if (!is_array($options )) {
-		$theme = "lime-theme";
-	} else if ($options['theme'] == "other") {
+		
+	$defaults = array(
+		"theme" => "lime",
+		"othertheme" => "" );
+	$options = shortcode_atts($defaults, get_option('leafext_values') );
+	if ($options['theme'] == "other") {
 		$theme=$options['othertheme'];
 	} else {
 		$theme=$options['theme'].'-theme';
 	}
 
+	if (is_array($atts)) {
+		for ($i = 0; $i < count($atts); $i++) {
+			if (isset($atts[$i])) {
+				if ( strpos($atts[$i],"!") === false ) {
+					$atts[$atts[$i]] = 1;
+				} else {
+					$atts[substr($atts[$i],1)] = 0;
+				}
+			}
+		}
+	}
 	$chart_options = shortcode_atts( array('summary' => false), $atts);
 
 	//Parameters see the sources from https://github.com/Raruto/leaflet-elevation
