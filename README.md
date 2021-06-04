@@ -23,7 +23,7 @@ Use it like <code>[hover]</code>
 [testhover]
 ```
 
-It works on leaflet-geojson, leaflet-gpx, leaflet-kml.
+It works on leaflet-geojson, leaflet-gpx, leaflet-kml and leaflet-marker.
 
 <h2>Multiple hoverable tracks</h2>
 
