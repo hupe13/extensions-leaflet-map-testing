@@ -19,6 +19,16 @@ function leafext_geojsonhover_script(){
 					let i = 0;
 					e.target.eachLayer(function(){ i += 1; });
 					//console.log("mouseover has", i, "layers.");
+					var marker_popup_open = false;
+					e.target._map.eachLayer(function(layer){
+						if (typeof layer.options.icon != "undefined") {
+							//console.log("icon defined");
+							if (layer.getPopup().isOpen()) {
+								//console.log("mouseover popup is open");
+								marker_popup_open = true;
+							}
+						}
+					});
 					if (i > 1) {
 						if (typeof e.sourceTarget.options.style != "undefined") {
 							//console.log("defined");
@@ -38,6 +48,10 @@ function leafext_geojsonhover_script(){
 								weight: 5
 							});
 							layer.bringToFront();
+							if ( marker_popup_open ) {
+								//console.log("mouseover handle marker popup");
+								layer.unbindTooltip();
+							}
 						});
 					}
 				});
@@ -72,7 +86,21 @@ function leafext_geojsonhover_script(){
 				 	let i = 0;
 					e.target.eachLayer(function(){ i += 1; });
 					//console.log("mousemove has", i, "layers.");
+					var marker_popup_open = false;
+					e.target._map.eachLayer(function(layer){
+						if (typeof layer.options.icon != "undefined") {
+							//console.log("icon defined");
+							//console.log(layer.getPopup().isOpen());
+							if (typeof layer.getPopup() != "undefined" ) {
+								if (layer.getPopup().isOpen()) {
+									//console.log("mousemove popup is open");
+									marker_popup_open = true;
+								}
+							}
+						}
+					});
 					if (i > 1) {
+						//marker as geojson
 						if ( !e.sourceTarget.getPopup().isOpen()) {
 							map.closePopup();
 							var content = e.sourceTarget.getPopup().getContent();
@@ -81,7 +109,7 @@ function leafext_geojsonhover_script(){
 						}
 					} else {
 						e.target.eachLayer(function(layer) {
-							if ( !layer.getPopup().isOpen()) {
+							if ( !layer.getPopup().isOpen() && !marker_popup_open) {
 								map.closePopup();
 								var content = layer.getPopup().getContent();
 								layer.bindTooltip(content);
@@ -95,24 +123,29 @@ function leafext_geojsonhover_script(){
 		}
 		var markers = window.WPLeafletMapPlugin.markers;
 		if (markers.length > 0) {
-			console.log("markers "+markers.length);
+			//console.log("hover markers "+markers.length);
 			for (var i = 0; i < WPLeafletMapPlugin.markers.length; i++) {
-				 var a = WPLeafletMapPlugin.markers[i];
-				 a.on("mouseover", function (e) {
-					 console.log(e);
-					 var content = e.sourceTarget.getPopup().getContent();
-					 e.sourceTarget.bindTooltip(content);
-					 e.sourceTarget.openTooltip(e.latlng);
-				 });
-				 a.on("click", function (e) {
-					 //console.log("click");
-					 e.sourceTarget.unbindTooltip();
-				 });
-			 }
-		 }
+				var a = WPLeafletMapPlugin.markers[i];
+				a.on("mouseover", function (e) {
+					//console.log(e);
+					if ( ! e.sourceTarget.getPopup().isOpen()) {
+						map.closePopup();
+						var content = e.sourceTarget.getPopup().getContent();
+						e.sourceTarget.bindTooltip(content);
+						e.sourceTarget.openTooltip(e.latlng);
+					// } else {
+					//
+					}
+				});
+				a.on("click", function (e) {
+					//console.log("click");
+					e.sourceTarget.unbindTooltip();
+				});
+			}
+		}
 	});
 	</script>';
-	//$text = \JShrink\Minifier::minify($text);
+	$text = \JShrink\Minifier::minify($text);
 	return "\n".$text."\n";
 }
 
