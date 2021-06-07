@@ -23,9 +23,11 @@ function leafext_geojsonhover_script(){
 					e.target._map.eachLayer(function(layer){
 						if (typeof layer.options.icon != "undefined") {
 							//console.log("icon defined");
-							if (layer.getPopup().isOpen()) {
-								//console.log("mouseover popup is open");
-								marker_popup_open = true;
+							if (typeof layer.getPopup() != "undefined") {
+								if (layer.getPopup().isOpen()) {
+									//console.log("mouseover popup is open");
+									marker_popup_open = true;
+								}
 							}
 						}
 					});
@@ -132,7 +134,7 @@ function leafext_geojsonhover_script(){
 						map.closePopup();
 						var content = e.sourceTarget.getPopup().getContent();
 						e.sourceTarget.bindTooltip(content);
-						e.sourceTarget.openTooltip(e.latlng);
+						//e.sourceTarget.openTooltip(e.latlng);
 					// } else {
 					//
 					}
