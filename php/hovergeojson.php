@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) or die();
 
 //Shortcode: [hover]
-function leafext_geojsonhover_script(){
+function leafext_geojsonhover_script($url){
 	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
 	$text = '<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
@@ -15,6 +15,8 @@ function leafext_geojsonhover_script(){
 
 			for (var j = 0, len = geocount; j < len; j++) {
 				var geojson = geojsons[j];
+
+				//mouseover
 				geojson.layer.on("mouseover", function (e) {
 					let i = 0;
 					e.target.eachLayer(function(){ i += 1; });
@@ -25,7 +27,6 @@ function leafext_geojsonhover_script(){
 							//console.log("icon defined");
 							if (typeof layer.getPopup() != "undefined") {
 								if (layer.getPopup().isOpen()) {
-									//console.log("mouseover popup is open");
 									marker_popup_open = true;
 								}
 							}
@@ -33,7 +34,7 @@ function leafext_geojsonhover_script(){
 					});
 					if (i > 1) {
 						if (typeof e.sourceTarget.options.style != "undefined") {
-							//console.log("defined");
+							//console.log("style1 defined");
 							e.sourceTarget.setStyle({
 								fillOpacity: 0.4,
 								weight: 5
@@ -41,23 +42,32 @@ function leafext_geojsonhover_script(){
 							e.sourceTarget.bringToFront();
 						// } else {
 							// console.log("nostyle");
-							// console.log(e.sourceTarget);
 						}
 					} else {
+						//console.log("style2");
 						e.target.eachLayer(function(layer) {
-							layer.setStyle({
-								fillOpacity: 0.4,
-								weight: 5
-							});
-							layer.bringToFront();
 							if ( marker_popup_open ) {
 								//console.log("mouseover handle marker popup");
 								layer.unbindTooltip();
 							}
 						});
+
+						//console.log(geojson._url);
+						if ( !geojson._url.match (/'.$url.'/)) {
+							//console.log("url not matches");
+							e.target.eachLayer(function(layer) {
+								layer.setStyle({
+									fillOpacity: 0.4,
+									weight: 5
+								});
+								layer.bringToFront();
+							});
+						}
 					}
 				});
+				//mouseover end
 
+				//mouseout
 				geojson.layer.on("mouseout", function (e) {
 					let i = 0;
 					e.target.eachLayer(function(){ i += 1; });
@@ -75,6 +85,7 @@ function leafext_geojsonhover_script(){
 						});
 					}
 				});
+				//mouseout end
 
 				geojson.layer.on("click", function (e) {
 					//console.log("click");
@@ -84,15 +95,15 @@ function leafext_geojsonhover_script(){
 					});
 				});
 
+				//mousemove
 				geojson.layer.on("mousemove", function (e) {
 				 	let i = 0;
 					e.target.eachLayer(function(){ i += 1; });
 					//console.log("mousemove has", i, "layers.");
-					var marker_popup_open = false;
+					marker_popup_open = false;
 					e.target._map.eachLayer(function(layer){
 						if (typeof layer.options.icon != "undefined") {
 							//console.log("icon defined");
-							//console.log(layer.getPopup().isOpen());
 							if (typeof layer.getPopup() != "undefined" ) {
 								if (layer.getPopup().isOpen()) {
 									//console.log("mousemove popup is open");
@@ -120,21 +131,23 @@ function leafext_geojsonhover_script(){
 						});
 					}
 				});
-
+				//mousemove end
 			}
 		}
+		//geojson end
+
 		var markers = window.WPLeafletMapPlugin.markers;
 		if (markers.length > 0) {
 			//console.log("hover markers "+markers.length);
 			for (var i = 0; i < WPLeafletMapPlugin.markers.length; i++) {
 				var a = WPLeafletMapPlugin.markers[i];
 				a.on("mouseover", function (e) {
-					//console.log(e);
+					//console.log("marker mouseover");
 					if ( ! e.sourceTarget.getPopup().isOpen()) {
 						map.closePopup();
 						var content = e.sourceTarget.getPopup().getContent();
 						e.sourceTarget.bindTooltip(content);
-						//e.sourceTarget.openTooltip(e.latlng);
+						e.sourceTarget.openTooltip(e.latlng);
 					// } else {
 					//
 					}
@@ -151,8 +164,11 @@ function leafext_geojsonhover_script(){
 	return "\n".$text."\n";
 }
 
-function leafext_geojsonhover_function(){
-	return leafext_geojsonhover_script();
+function leafext_geojsonhover_function($atts){
+
+	$exclude = shortcode_atts( array('exclude' => "***"), $atts);
+	$text=$text.leafext_geojsonhover_script($exclude['exclude']);
+	return $text;
 }
 add_shortcode('testhover', 'leafext_geojsonhover_function' );
 ?>
