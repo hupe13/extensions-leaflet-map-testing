@@ -62,10 +62,6 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 				wptIcon: null,
 				wptIconUrls: null, // params.pluginsUrl + "/leaflet-plugins/leaflet-gpx-1.5.2/pin-icon-wpt.png",
 			},
-			gpx_options: {
-				//parseElements: ["track"],
-				parseElements: ["track","route"],
-			},
 			legend_options:{
 				collapsed: true,
 			},
@@ -93,7 +89,6 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 			marker_options: opts.markers,
 			legend: true,
 			distanceMarkers: false,
-			gpx_options: opts.gpx_options,
 			legend_options: opts.legend_options,
 	    	});
 
@@ -148,7 +143,7 @@ function testleafext_elevation_tracks( $atts ){
 		TESTLEAFEXT_PLUGIN_FILE),
 		array('elevation_js'),null);
 	wp_enqueue_script('leaflet.gpxgroup',
-		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/libs/leaflet-gpxgroup.js',TESTLEAFEXT_PLUGIN_FILE),
+		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/libs/leaflet-gpxgroup.min.js',TESTLEAFEXT_PLUGIN_FILE),
 		array('leaflet.gpx'),null);
 
 	wp_enqueue_script('zoomhome',
@@ -164,7 +159,7 @@ function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_style( 'my_elevation_css',
 		plugins_url('css/multielevation.css',dirname(__FILE__)),
 		array('elevation_css'), null);
-		
+
 	$defaults = array(
 		"theme" => "lime",
 		"othertheme" => "" );
