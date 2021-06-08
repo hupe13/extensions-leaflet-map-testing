@@ -176,6 +176,7 @@ $text=$text.'
 function leafext_geojsonhover_function($atts){
 
 	$exclude = shortcode_atts( array('exclude' => false), $atts);
+	$exclude['exclude']= str_replace ( '/' , '\/' , $exclude['exclude'] );
 	$text=leafext_geojsonhover_script($exclude['exclude']);
 	return $text;
 }
