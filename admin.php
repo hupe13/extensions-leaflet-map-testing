@@ -33,13 +33,24 @@ function testleafext_do_page() {
 	echo $active_tab == 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
 
+	echo '<a href="?page='.$leafext_plugin_name.'&tab=hover" class="nav-tab';
+	echo $active_tab == 'hover' ? ' nav-tab-active' : '';
+	echo '">Hovering</a>';
+	echo '<a href="?page='.$leafext_plugin_name.'&tab=multielevation" class="nav-tab';
+	echo $active_tab == 'multielevation' ? ' nav-tab-active' : '';
+	echo '">Multi Elevation</a>';
+
 	echo '</h3>';
 
 	echo '<div class="wrap">
-	<h2>Extensions for Leaflet Map Options</h2>';
+	<h2>Extensions for Leaflet Map Options (Testing)</h2>';
 
 	if( $active_tab == 'help' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
+	} else if( $active_tab == 'hover' ) {
+		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help/hovergeojson.php';
+	} else if( $active_tab == 'multielevation' ) {
+		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help/multielevation.php';
 	}
 ?>
 	</div>
