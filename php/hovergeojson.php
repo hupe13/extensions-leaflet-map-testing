@@ -51,10 +51,14 @@ function leafext_geojsonhover_script($url){
 								layer.unbindTooltip();
 							}
 						});
-
+';
+if ( $url )
+	$text=$text.'
 						//console.log(geojson._url);
 						if ( !geojson._url.match (/'.$url.'/)) {
 							//console.log("url not matches");
+';
+$text=$text.'
 							e.target.eachLayer(function(layer) {
 								layer.setStyle({
 									fillOpacity: 0.4,
@@ -62,7 +66,12 @@ function leafext_geojsonhover_script($url){
 								});
 								layer.bringToFront();
 							});
+							';
+							if ( $url )
+								$text=$text.'
 						}
+						';
+						$text=$text.'
 					}
 				});
 				//mouseover end
@@ -166,8 +175,8 @@ function leafext_geojsonhover_script($url){
 
 function leafext_geojsonhover_function($atts){
 
-	$exclude = shortcode_atts( array('exclude' => "***"), $atts);
-	$text=$text.leafext_geojsonhover_script($exclude['exclude']);
+	$exclude = shortcode_atts( array('exclude' => false), $atts);
+	$text=leafext_geojsonhover_script($exclude['exclude']);
 	return $text;
 }
 add_shortcode('testhover', 'leafext_geojsonhover_function' );
