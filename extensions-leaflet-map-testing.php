@@ -32,7 +32,6 @@ if ( ! is_plugin_active( 'extensions-leaflet-map/extensions-leaflet-map.php' ) )
 if (! is_admin()) {
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/multielevation.php';
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/hovergeojson.php';
-	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/showmarkers.php';
 } else {
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/admin.php';
 }
