@@ -19,16 +19,6 @@ define('TESTLEAFEXT_PLUGIN_SETTINGS', dirname( plugin_basename( __FILE__ ) ) );
 if ( ! function_exists( 'is_plugin_active' ) )
     require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
-if ( ! is_plugin_active( 'extensions-leaflet-map/extensions-leaflet-map.php' ) ) {
-  function testleafext_require_leafext_plugin(){?>
-    <div class="notice notice-error" >
-      <p> Please install and activate <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map Plugin</a> before using Extensions for Leaflet Map.</p>
-    </div><?php
-  }
-  add_action('admin_notices','testleafext_require_leafext_plugin');
-  register_activation_hook(__FILE__, 'testleafext_require_leafext_plugin');
-}
-
 if (! is_admin()) {
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/multielevation.php';
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/hovergeojson.php';
