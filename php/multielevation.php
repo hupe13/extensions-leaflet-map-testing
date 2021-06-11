@@ -121,8 +121,6 @@ function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $
 				zoomHome.setHomeBounds(map.getBounds());
 			}
 		});
-
-		window.addEventListener("load", main);
 	});
 </script>';
 $text = \JShrink\Minifier::minify($text);

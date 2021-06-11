@@ -133,8 +133,11 @@ $text=$text.'
 						e.target.eachLayer(function(layer) {
 							if ( !layer.getPopup().isOpen() && !marker_popup_open) {
 								map.closePopup();
-								var content = layer.getPopup().getContent();
-								layer.bindTooltip(content);
+								if ( typeof layer.getTooltip() == "undefined") {
+									var content = layer.getPopup().getContent();
+									console.log(content);
+									layer.bindTooltip(content);
+								}
 								layer.openTooltip(e.latlng);
 							}
 						});
