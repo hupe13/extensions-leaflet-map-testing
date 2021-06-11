@@ -31,12 +31,11 @@ if ( count ( $leafext_active ) == 0 ) {
   register_activation_hook(__FILE__, 'leafext_require_leafext_plugin');
 }
 $leafextdir = explode('/',reset($leafext_active));
-define('LEAFEXT_PLUGIN_DIR', TESTLEAFEXT_PLUGIN_DIR . '/../' . $leafextdir[0] );
+define('LEAFEXT_PLUGIN_DIR', TESTLEAFEXT_PLUGIN_DIR . '/../' . $leafextdir[0] . '/');
 
 if (! is_admin()) {
-	if (! function_exists('leafext_plugin_stylesheet_installed'))
-		include_once LEAFEXT_PLUGIN_DIR . '/php/enqueue.php';
-	include_once LEAFEXT_PLUGIN_DIR . '/php/enqueue.php';
+	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
+	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue.php';
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/multielevation.php';
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/hovergeojson.php';
 } else {
