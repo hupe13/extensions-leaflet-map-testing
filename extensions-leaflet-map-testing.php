@@ -23,15 +23,20 @@ $leafext_active = preg_grep('/extensions-leaflet-map.php/', get_option('active_p
 if ( count ( $leafext_active ) == 0 ) {
   function leafext_require_leafext_plugin(){?>
     <div class="notice notice-error" >
-      <p> Please install and activate <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a> 
+      <p> Please install and activate <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>
         before using Extensions for Leaflet Map Testing.</p>
     </div><?php
   }
   add_action('admin_notices','leafext_require_leafext_plugin');
   register_activation_hook(__FILE__, 'leafext_require_leafext_plugin');
 }
+$leafextdir = explode('/',reset($leafext_active));
+define('LEAFEXT_PLUGIN_DIR', TESTLEAFEXT_PLUGIN_DIR . '/../' . $leafextdir[0] );
 
 if (! is_admin()) {
+	if (! function_exists('leafext_plugin_stylesheet_installed'))
+		include_once LEAFEXT_PLUGIN_DIR . '/php/enqueue.php';
+	include_once LEAFEXT_PLUGIN_DIR . '/php/enqueue.php';
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/multielevation.php';
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/hovergeojson.php';
 } else {

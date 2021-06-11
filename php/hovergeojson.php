@@ -4,7 +4,6 @@ defined( 'ABSPATH' ) or die();
 
 //Shortcode: [hover]
 function leafext_geojsonhover_script($url){
-	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
 	$text = '<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
 	window.WPLeafletMapPlugin.push(function () {

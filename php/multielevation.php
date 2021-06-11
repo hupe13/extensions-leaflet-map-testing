@@ -128,14 +128,9 @@ return "\n".$text."\n";
 }
 
 function testleafext_elevation_tracks( $atts ){
-	wp_enqueue_script( 'elevation_js',
-		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/js/leaflet-elevation.min.js',
-		LEAFEXT_PLUGIN_FILE),
-	array('wp_leaflet_map'),null);
-	wp_enqueue_style( 'elevation_css',
-		plugins_url('leaflet-plugins/leaflet-elevation-1.6.7/css/leaflet-elevation.min.css',
-		LEAFEXT_PLUGIN_FILE),
-		array('leaflet_stylesheet'),null);
+	leafext_enqueue_elevation ();
+	leafext_enqueue_zoomhome();
+
 	wp_enqueue_script('leaflet.gpx',
 		plugins_url('leaflet-plugins/leaflet-gpx-1.5.2/gpx-leafext.js',
 		TESTLEAFEXT_PLUGIN_FILE),
@@ -143,42 +138,16 @@ function testleafext_elevation_tracks( $atts ){
 	wp_enqueue_script('leaflet.gpxgroup',
 		plugins_url('leaflet-plugins/leaflet-elevation-1.6.8/libs/leaflet-gpxgroup.min.js',TESTLEAFEXT_PLUGIN_FILE),
 		array('leaflet.gpx'),null);
-
-	wp_enqueue_script('zoomhome',
-		plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.min.js',LEAFEXT_PLUGIN_FILE),
-			array('wp_leaflet_map'), null);
-	wp_enqueue_style('zoomhome',
-		plugins_url('leaflet-plugins/leaflet.zoomhome/leaflet.zoomhome.css',LEAFEXT_PLUGIN_FILE),
-			array('leaflet_stylesheet'), null);
+	wp_enqueue_style( 'my_elevation_css',
+	 	plugins_url('css/multielevation.css',dirname(__FILE__)),
+	 	array('elevation_css'), null);
 
 	global $all_files;
 	global $all_points;
 
-	wp_enqueue_style( 'my_elevation_css',
-		plugins_url('css/multielevation.css',dirname(__FILE__)),
-		array('elevation_css'), null);
-
-	$defaults = array(
-		"theme" => "lime",
-		"othertheme" => "" );
-	$options = shortcode_atts($defaults, get_option('leafext_values') );
-	if ($options['theme'] == "other") {
-		$theme=$options['othertheme'];
-	} else {
-		$theme=$options['theme'].'-theme';
-	}
-
-	if (is_array($atts)) {
-		for ($i = 0; $i < count($atts); $i++) {
-			if (isset($atts[$i])) {
-				if ( strpos($atts[$i],"!") === false ) {
-					$atts[$atts[$i]] = 1;
-				} else {
-					$atts[substr($atts[$i],1)] = 0;
-				}
-			}
-		}
-	}
+	$theme = leafext_elevation_theme();
+	$atts = leafext_clear_params($atts);
+	
 	$chart_options = shortcode_atts( array('summary' => false), $atts);
 
 	//Parameters see the sources from https://github.com/Raruto/leaflet-elevation
