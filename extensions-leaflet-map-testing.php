@@ -30,8 +30,6 @@ if ( count ( $leafext_active ) == 0 ) {
   add_action('admin_notices','leafext_require_leafext_plugin');
   register_activation_hook(__FILE__, 'leafext_require_leafext_plugin');
 }
-$leafextdir = explode('/',reset($leafext_active));
-define('LEAFEXT_PLUGIN_DIR', TESTLEAFEXT_PLUGIN_DIR . '/../' . $leafextdir[0] . '/');
 
 if (! is_admin()) {
 	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
