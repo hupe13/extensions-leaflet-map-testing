@@ -21,10 +21,7 @@ __('It works on leaflet-geojson, leaflet-gpx, leaflet-kml and leaflet-marker.','
 [testhover exclude="url-substring"]
 </code></pre>'.
 
-__('The parameter <code>exclude</code> is a very special case for my website. I would like to exclude
-some leaflet-geojson with a specific string in the src url from changing its style
-on hovering. If the url to the geojson file is e.g. "//url/to/special.geojson"
-url-substring should be "special".','extensions-leaflet-map').'
+__('The parameter <code>exclude</code> is a very special case for my website. I would like to exclude some leaflet-geojson with a specific string in the src url from changing its style on hovering. If the url to the geojson file is e.g. "//url/to/special.geojson" url-substring should be "special".','extensions-leaflet-map').'
 ';
 
 echo $text;

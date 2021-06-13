@@ -3,9 +3,9 @@
 defined( 'ABSPATH' ) or die();
 
 $text='
-<h2>Multiple hoverable tracks</h2>
+<h2>'.__('Multiple hoverable tracks','extensions-leaflet-map').'</h2>
 
-Like this: <a href="https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html">https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html</a>
+'.__('Like this:','extensions-leaflet-map').' <a href="https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html">https://raruto.github.io/leaflet-elevation/examples/leaflet-elevation_hoverable-tracks.html</a>
 
 <h2>Shortcode</h2>
 <pre>
@@ -16,10 +16,21 @@ Like this: <a href="https://raruto.github.io/leaflet-elevation/examples/leaflet-
 [elevation-<span style="color: #d63638">tracks</span> summary=1]  // like in [elevation]
 </code></pre>
 
-The <strong>elevation theme</strong> is the same as <a href="?page='.LEAFEXT_PLUGIN_SETTINGS.'&tab=elevation">here</a>.
+'.__('The <strong>elevation theme</strong> is the same as','extensions-leaflet-map').' <a href="?page='.LEAFEXT_PLUGIN_SETTINGS.'&tab=elevation">'.__('here','extensions-leaflet-map').'</a>.
 
-<h2>Example</h2>
-This example is a very special application. gpx-files with tracks in a region are in a directory.
+'.__('The filter should be:','extensions-leaflet-map').
+"<pre>
+add_filter('pre_do_shortcode_tag', function ( &#36;output, &#36;shortcode ) {
+	if ( 'elevation' == &#36;shortcode ||
+		'elevation-tracks' == &#36;shortcode ) {
+		custom_elevation_function();
+	}
+	return &#36;output;
+}, 10, 2);
+</pre>".
+
+'<h2>'.__('Example','extensions-leaflet-map').'</h2>
+'.__('This example is a very special application. gpx-files with tracks in a region are in a directory.','extensions-leaflet-map').'
 <pre>
 <code>&lt;?php
 echo "[leaflet-map height=400px width=100% fitbounds ]";

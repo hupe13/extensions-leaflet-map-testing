@@ -1,0 +1,112 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: extensions-leaflet-map-testing\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-12 19:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.2; wp-5.7.2\n"
+"X-Domain: extensions-leaflet-map"
+
+#: php/multielevation.php:71
+msgid "Altitude"
+msgstr ""
+
+#: admin/help/multielevation.php:32
+msgid "Example"
+msgstr ""
+
+#. Name of the plugin
+msgid "extensions-leaflet-map-testing"
+msgstr ""
+
+#: admin/help/multielevation.php:19
+msgid "here"
+msgstr ""
+
+#. Author of the plugin
+msgid "hupe13"
+msgstr ""
+
+#: admin/help/hovergeojson.php:8
+msgid ""
+"It works on leaflet-geojson, leaflet-gpx, leaflet-kml and leaflet-marker."
+msgstr ""
+
+#: admin/help/multielevation.php:8
+msgid "Like this:"
+msgstr ""
+
+#: php/multielevation.php:73
+msgid "Max Elevation"
+msgstr ""
+
+#: php/multielevation.php:78
+msgid "Max Slope"
+msgstr ""
+
+#: php/multielevation.php:74
+msgid "Min Elevation"
+msgstr ""
+
+#: php/multielevation.php:77
+msgid "Min Slope"
+msgstr ""
+
+#: php/multielevation.php:164
+msgid "move mouse over a track ..."
+msgstr ""
+
+#: admin/help/multielevation.php:6
+msgid "Multiple hoverable tracks"
+msgstr ""
+
+#. Description of the plugin
+msgid "Tests for leaflet-map"
+msgstr ""
+
+#: admin/help/multielevation.php:19
+msgid "The <strong>elevation theme</strong> is the same as"
+msgstr ""
+
+#: admin/help/multielevation.php:21
+msgid "The filter should be:"
+msgstr ""
+
+#: admin/help/hovergeojson.php:24
+msgid ""
+"The parameter <code>exclude</code> is a very special case for my website. I "
+"would like to exclude some leaflet-geojson with a specific string in the src "
+"url from changing its style on hovering. If the url to the geojson file is e."
+"g. \"//url/to/special.geojson\" url-substring should be \"special\"."
+msgstr ""
+
+#: admin/help/multielevation.php:33
+msgid ""
+"This example is a very special application. gpx-files with tracks in a "
+"region are in a directory."
+msgstr ""
+
+#: php/multielevation.php:75
+msgid "Total Ascent"
+msgstr ""
+
+#: php/multielevation.php:76
+msgid "Total Descent"
+msgstr ""
+
+#: php/multielevation.php:72
+msgid "Total Length"
+msgstr ""
+
+#: admin/help/hovergeojson.php:7
+msgid "Use it to highlight a geojson or marker on mouse over."
+msgstr ""
