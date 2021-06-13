@@ -20,7 +20,6 @@ add_shortcode('elevation-track', 'testleafext_elevation_track' );
 
 //[elevation-tracks]
 function testleafext_elevation_tracks_script( $all_files, $all_points, $theme, $summary, $slope ){
-	include_once LEAFEXT_PLUGIN_DIR . '/pkg/JShrink/Minifier.php';
 	$text = '
 	<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
