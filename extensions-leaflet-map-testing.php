@@ -35,9 +35,7 @@ $leafextdir = explode('/',reset($leafext_active));
 
 if (! is_admin()) {
 	include_once TESTLEAFEXT_PLUGIN_DIR .'../'. $leafextdir[0] . '/pkg/JShrink/Minifier.php';
-	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/functions.php';
-	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/multielevation.php';
-	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/hovergeojson.php';
+	include_once TESTLEAFEXT_PLUGIN_DIR . '/php/testelevation.php';
 } else {
 	include_once TESTLEAFEXT_PLUGIN_DIR . '/admin.php';
 }
