@@ -6,13 +6,16 @@ include TESTLEAFEXT_PLUGIN_DIR . '/php/elevation_functions.php';
 
 //Shortcode: [elevation gpx="...url..."]
 
-function leafexttest_elevation_script($gpx,$settings){
+function leafexttest_elevation_script($gpx,$theme,$settings){
 	$text = '
 	<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
 	window.WPLeafletMapPlugin.push(function () {
 		var map = window.WPLeafletMapPlugin.getCurrentMap();
-		var elevation_options = { ';
+		var elevation_options = { 
+		//lime-theme (default), magenta-theme, steelblue-theme, purple-theme, yellow-theme, lightblue-theme
+			theme: '.json_encode($theme).',
+			polyline: { weight: 3, },';
     foreach ($settings as $k => $v) {
       $text = $text. "$k: ";
       $value = $v == "0" ? "false" : ($v == "1" ? "true" : '"'.$v.'"');
@@ -54,6 +57,7 @@ function leafexttest_elevation_function( $atts ) {
   if ( ! $options['gpx'] ) wp_die("No gpx track!");
   $track = $options['gpx'];
   unset($options['gpx']);
-  return leafexttest_elevation_script($track,$options);
+  $theme = leafext_elevation_theme();
+  return leafexttest_elevation_script($track,$theme,$options);
 }
 add_shortcode('testelevation', 'leafexttest_elevation_function' );
