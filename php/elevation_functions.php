@@ -100,9 +100,9 @@ function leafext_elevation_case ($array) {
 	foreach ($params as $param) {
 		if (strtolower($param) != $param) {
 			if (isset($array[strtolower($param)])) {
-	    	$array[$param] = $array[strtolower($param)];
-	    	unset($array[strtolower($param)]);
-	  	}
+				$array[$param] = $array[strtolower($param)];
+				unset($array[strtolower($param)]);
+			}
 		}
 	}
 	return $array;
