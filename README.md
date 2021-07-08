@@ -22,5 +22,7 @@ Testing all parameters, see WordPress admin page and <a href="https://github.com
 [testelevation ...]
 ```
 
+<a href="https://leafext.de/testing/">Examples</a>
+
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
