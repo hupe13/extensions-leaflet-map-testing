@@ -17,11 +17,12 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Elevation</h2>
 
-Testing all parameters, see WordPress admin page
+Testing all parameters, see WordPress admin page and <a href="https://github.com/hupe13/extensions-leaflet-map-testing/blob/main/php/elevation_functions.php">here</a>.
 ```
 [testelevation ...]
-```
+``
 
+....
 
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
