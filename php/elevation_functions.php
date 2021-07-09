@@ -5,7 +5,7 @@ function leafext_elevation_params() {
 
 		// Default chart colors: theme lime-theme, magenta-theme, ...
 		//theme: "lightblue-theme",
-		array('theme', __('Theme Colors',"extensions-leaflet-map"), "lightblue-theme",
+		array('theme', __('Theme Colors',"extensions-leaflet-map"), "lime-theme",
 			array("lime-theme","steelblue-theme","purple-theme","yellow-theme","red-theme","magenta-theme","lightblue-theme")),
 
 		// Chart container outside/inside map container
