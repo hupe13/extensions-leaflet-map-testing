@@ -12,13 +12,13 @@ function leafexttest_elevation_script($gpx,$theme,$settings){
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
 	window.WPLeafletMapPlugin.push(function () {
 		var map = window.WPLeafletMapPlugin.getCurrentMap();
-		var elevation_options = { 
+		var elevation_options = {
 		//lime-theme (default), magenta-theme, steelblue-theme, purple-theme, yellow-theme, lightblue-theme
 			theme: '.json_encode($theme).',
-			polyline: { weight: 3, },';
+		';
     foreach ($settings as $k => $v) {
       $text = $text. "$k: ";
-      $value = $v == "0" ? "false" : ($v == "1" ? "true" : '"'.$v.'"');
+      $value = $v == "0" ? "false" : ($v == "1" ? "true" : ( $k == "polyline" ? $v : '"'.$v.'"'));
       $text = $text.$value;
       $text = $text.",\n";
     }
@@ -57,7 +57,12 @@ function leafexttest_elevation_function( $atts ) {
   if ( ! $options['gpx'] ) wp_die("No gpx track!");
   $track = $options['gpx'];
   unset($options['gpx']);
-  $theme = leafext_elevation_theme();
+	if ( array_key_exists('theme', $atts) ) {
+		$theme = $atts['theme'];
+	} else {
+  	$theme = leafext_elevation_theme();
+	}
+	unset($options['theme']);
   return leafexttest_elevation_script($track,$theme,$options);
 }
 add_shortcode('testelevation', 'leafexttest_elevation_function' );

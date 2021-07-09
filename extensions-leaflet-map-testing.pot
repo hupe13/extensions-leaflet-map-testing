@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extensions-leaflet-map-testing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-12 19:32+0000\n"
+"POT-Creation-Date: 2021-07-09 05:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,97 +16,122 @@ msgstr ""
 "X-Loco-Version: 2.5.2; wp-5.7.2\n"
 "X-Domain: extensions-leaflet-map"
 
-#: php/multielevation.php:71
+#: php/elevation_functions.php:41
+msgid "[Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])"
+msgstr ""
+
+#: php/elevation_functions.php:45
+msgid "Acceleration chart profile"
+msgstr ""
+
+#: php/testelevation.php:27
 msgid "Altitude"
 msgstr ""
 
-#: admin/help/multielevation.php:32
-msgid "Example"
+#: php/elevation_functions.php:29
+msgid "Autoupdate map center on chart mouseover."
+msgstr ""
+
+#: php/elevation_functions.php:37
+msgid "Chart distance/elevation units."
+msgstr ""
+
+#: php/elevation_functions.php:65
+msgid "Display altitude info"
+msgstr ""
+
+#: php/elevation_functions.php:61
+msgid "Display distance info"
+msgstr ""
+
+#: php/elevation_functions.php:57
+msgid "Display time info"
+msgstr ""
+
+#: php/elevation_functions.php:73
+msgid "downloadLink"
 msgstr ""
 
 #. Name of the plugin
 msgid "extensions-leaflet-map-testing"
 msgstr ""
 
-#: admin/help/multielevation.php:19
-msgid "here"
+#: admin/elevation.php:65
+msgid "For boolean values"
 msgstr ""
 
 #. Author of the plugin
 msgid "hupe13"
 msgstr ""
 
-#: admin/help/hovergeojson.php:8
-msgid ""
-"It works on leaflet-geojson, leaflet-gpx, leaflet-kml and leaflet-marker."
-msgstr ""
-
-#: admin/help/multielevation.php:8
-msgid "Like this:"
-msgstr ""
-
-#: php/multielevation.php:73
+#: php/testelevation.php:29
 msgid "Max Elevation"
 msgstr ""
 
-#: php/multielevation.php:78
+#: php/testelevation.php:34
 msgid "Max Slope"
 msgstr ""
 
-#: php/multielevation.php:74
+#: php/testelevation.php:30
 msgid "Min Elevation"
 msgstr ""
 
-#: php/multielevation.php:77
+#: php/testelevation.php:33
 msgid "Min Slope"
 msgstr ""
 
-#: php/multielevation.php:164
-msgid "move mouse over a track ..."
+#: admin/elevation.php:33
+msgid "Plugins Default:"
 msgstr ""
 
-#: admin/help/multielevation.php:6
-msgid "Multiple hoverable tracks"
+#: php/elevation_functions.php:93
+msgid "Render chart profiles as Canvas or SVG Paths"
+msgstr ""
+
+#: php/elevation_functions.php:49
+msgid "Slope chart profile"
+msgstr ""
+
+#: php/elevation_functions.php:53
+msgid "Speed chart profile"
+msgstr ""
+
+#: php/elevation_functions.php:70
+msgid "Summary track info style:"
 msgstr ""
 
 #. Description of the plugin
 msgid "Tests for leaflet-map"
 msgstr ""
 
-#: admin/help/multielevation.php:19
-msgid "The <strong>elevation theme</strong> is the same as"
+#: php/elevation_functions.php:85
+msgid "Toggle \"leaflet-almostover\" integration"
 msgstr ""
 
-#: admin/help/multielevation.php:21
-msgid "The filter should be:"
+#: php/elevation_functions.php:89
+msgid "Toggle \"leaflet-distance-markers\" integration"
 msgstr ""
 
-#: admin/help/hovergeojson.php:24
-msgid ""
-"The parameter <code>exclude</code> is a very special case for my website. I "
-"would like to exclude some leaflet-geojson with a specific string in the src "
-"url from changing its style on hovering. If the url to the geojson file is e."
-"g. \"//url/to/special.geojson\" url-substring should be \"special\"."
+#: php/elevation_functions.php:81
+msgid "Toggle chart legend filter."
 msgstr ""
 
-#: admin/help/multielevation.php:33
-msgid ""
-"This example is a very special application. gpx-files with tracks in a "
-"region are in a directory."
+#: php/elevation_functions.php:77
+msgid "Toggle chart ruler filter."
 msgstr ""
 
-#: php/multielevation.php:75
+#: php/testelevation.php:31
 msgid "Total Ascent"
 msgstr ""
 
-#: php/multielevation.php:76
+#: php/testelevation.php:32
 msgid "Total Descent"
 msgstr ""
 
-#: php/multielevation.php:72
+#: php/testelevation.php:28
 msgid "Total Length"
 msgstr ""
 
-#: admin/help/hovergeojson.php:7
-msgid "Use it to highlight a geojson or marker on mouse over."
+#: admin/elevation.php:35
+msgid "You can change it for every map with"
 msgstr ""

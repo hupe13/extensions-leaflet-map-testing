@@ -5,6 +5,8 @@ function leafext_elevation_params() {
 
 		// Default chart colors: theme lime-theme, magenta-theme, ...
 		//theme: "lightblue-theme",
+		array('theme', __('Theme Colors',"extensions-leaflet-map"), "lightblue-theme",
+			array("lime-theme","steelblue-theme","purple-theme","yellow-theme","red-theme","magenta-theme","lightblue-theme")),
 
 		// Chart container outside/inside map container
 		//detached: true,
@@ -24,73 +26,77 @@ function leafext_elevation_params() {
 		// if (!detached) control position on one of map corners
 		//position: "topright",
 
+		//Default hupe13 polyline: { weight: 3, }, Default Raruto 5
+		array('polyline', __('Polyline weight',"extensions-leaflet-map"), "{ weight: 3, }", array("{ weight: 3, }","{ weight: 4, }","{ weight: 5, }")),
+
 		// Autoupdate map center on chart mouseover.
 		//followMarker: true,
-		array('followMarker', 'Autoupdate map center on chart mouseover.', true, 1),
+		array('followMarker', __('Autoupdate map center on chart mouseover.',"extensions-leaflet-map"), true, 1),
 
 		// Autoupdate map bounds on chart update.
 		//autofitBounds: true,
-		//array('autofitBounds', 'Autoupdate map bounds on chart update.', true, 1),
+		array('autofitBounds', __('Autoupdate map bounds on chart update.',"extensions-leaflet-map"), true, 1),
 
 		// Chart distance/elevation units.
 		//imperial: false,
-		array('imperial', 'Chart distance/elevation units.', false, 1),
+		array('imperial', __('Chart distance/elevation units.',"extensions-leaflet-map"), false, 1),
 
 		// [Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])
 		//reverseCoords: false,
-		array('reverseCoords', '[Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])', false, 1),
+		array('reverseCoords', __('[Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])',"extensions-leaflet-map"), false, 1),
 
 		// Acceleration chart profile: true || "summary" || "disabled" || false
 		//acceleration: false,
-		array('acceleration', 'Acceleration chart profile', false, array(true,"summary","disabled",false)),
+		array('acceleration', __('Acceleration chart profile',"extensions-leaflet-map"), false, array(true,"summary","disabled",false)),
 
 		// Slope chart profile: true || "summary" || "disabled" || false
 		//slope: false,
-		array('slope', 'Slope chart profile', false, array(true,"summary","disabled",false)),
+		array('slope', __('Slope chart profile',"extensions-leaflet-map"), false, array(true,"summary","disabled",false)),
 
 		// Speed chart profile: true || "summary" || "disabled" || false
 		//speed: false,
-		array('speed', 'Speed chart profile', false, array(true,"summary","disabled",false)),
+		array('speed', __('Speed chart profile',"extensions-leaflet-map"), false, array(true,"summary","disabled",false)),
 
 		// Display time info: true || "summary" || false
 		//time: false,
-		array('time', 'Display time info', false, array(true,"summary",false)),
+		array('time', __('Display time info',"extensions-leaflet-map"), false, array(true,"summary",false)),
 
 		// Display distance info: true || "summary"
 		//distance: true,
-		array('distance', 'Display distance info', true, array(true,"summary")),
+		array('distance', __('Display distance info',"extensions-leaflet-map"), true, array(true,"summary")),
 
 		// Display altitude info: true || "summary"
 		//altitude: true,
-		array('altitude', 'Display altitude info', true, array(true,"summary")),
+		array('altitude', __('Display altitude info',"extensions-leaflet-map"), true, array(true,"summary")),
 
 		// Summary track info style: "line" || "multiline" || false
 		//Is this an error: line/inline ?
 		//summary: 'multiline',
-		array('summary', 'Summary track info style:', 'multiline', array("inline","multiline",false)),
+		array('summary', __('Summary track info style:',"extensions-leaflet-map"), 'multiline', array("inline","multiline",false)),
 
 		//hupe13: Download Link
-		array('downloadLink', 'downloadLink', false, 1),
+		array('downloadLink', __('downloadLink',"extensions-leaflet-map"), false, 1),
 
 		// Toggle chart ruler filter.
 		//ruler: true,
-		array('ruler', 'Toggle chart ruler filter.', true, 1),
+		array('ruler', __('Toggle chart ruler filter.',"extensions-leaflet-map"), true, 1),
 
 		// Toggle chart legend filter.
 		//legend: true,
-		array('legend', 'Toggle chart legend filter.', true, 1),
+		array('legend', __('Toggle chart legend filter.',"extensions-leaflet-map"), true, 1),
 
 		// Toggle "leaflet-almostover" integration
 		//almostOver: true,
-		array('almostOver', 'Toggle "leaflet-almostover" integration', true, 1),
+		array('almostOver', __('Toggle "leaflet-almostover" integration',"extensions-leaflet-map"), true, 1),
 
 		// Toggle "leaflet-distance-markers" integration
 		//distanceMarkers: false,
-		array('distanceMarkers', 'Toggle "leaflet-distance-markers" integration', false, 1),
+		array('distanceMarkers', __('Toggle "leaflet-distance-markers" integration',"extensions-leaflet-map"), false, 1),
 
 		// Render chart profiles as Canvas or SVG Paths
 		//preferCanvas: true
-		array('preferCanvas', 'Render chart profiles as Canvas or SVG Paths', true, 1),
+		array('preferCanvas', __('Render chart profiles as Canvas or SVG Paths',"extensions-leaflet-map"), true, 1),
+
 	);
 	return $params;
 }

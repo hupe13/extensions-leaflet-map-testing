@@ -30,9 +30,9 @@ function leafext_form_elevation($field) {
 
 	if ($setting != $option[2] ) {
 		//var_dump($setting , $option[2]);
-		echo "Plugins Default: ".$option[2]. '<br>';
+		echo __("Plugins Default:", "extensions-leaflet-map").' '.$option[2]. '<br>';
 	}
-	echo "You can change it with ".$option[0]. '<br>';
+	echo __("You can change it for every map with", "extensions-leaflet-map").' <code>'.$option[0]. '</code></br>';
 	if (!is_array($option[3])) {
 
 		echo '<input type="radio" name="leafext_eleparams['.$option[0].']" value="1" ';
@@ -62,6 +62,7 @@ function leafext_validate_ele_options($options) {
 
 // Helptext
 function leafext_ele_help_text () {
-	echo 'For boolean values false is !parameter or parameter="0" or parameter=0,<br>';
-	echo 'true is parameter or parameter="1" or parameter=1.<br>';
+	echo __('For boolean values', "extensions-leaflet-map").':<br>';
+	echo '<code>false</code> = <code>!parameter</code> || <code>parameter="0"</code> || <code>parameter=0</code></br>';
+	echo '<code>true</code> = <code>parameter</code> || <code>parameter="1"</code> || <code>parameter=1</code>';
 }
