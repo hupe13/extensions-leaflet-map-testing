@@ -15,9 +15,9 @@ This code is changed from time to time and may (or may not) be published in the 
 Download the zip file and <a href="https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin">upload it via WordPress Admin</a>.
 Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>.
 
-<h2>Nothing</h2>
+<h2>Testing</h2>
 
-....
+See <a href="https://leafext.de/en/testing/">here</a>
 
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
