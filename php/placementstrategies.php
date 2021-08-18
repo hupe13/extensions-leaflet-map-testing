@@ -110,12 +110,16 @@ window.WPLeafletMapPlugin.push(function () {
 					';
 					if ($params['shapes'] == "circle") {
 						$text=$text.'
+						map.createPane("locationMarker");
+						map.getPane("locationMarker").style.zIndex = 610;
 						var circle = L.circleMarker(a.getLatLng(), {
 							fillOpacity: 0.7,
 							radius: 8,
 							fillColor: getRandomColor(),
 							color: "grey",
+							pane: "locationMarker",
 						});
+						console.log(circle);
 						circle.bindPopup(a.getPopup());
 						clmarkers.addLayer(circle);
 						//console.log(circle._popup);
