@@ -1,7 +1,6 @@
 <?php
 
-include TESTLEAFEXT_PLUGIN_DIR . '/php/elevation_functions.php';
-include TESTLEAFEXT_PLUGIN_DIR . '/admin/elevation.php';
+//include TESTLEAFEXT_PLUGIN_DIR . '/admin/elevation.php';
 
 // Admin Menu
 
@@ -37,10 +36,6 @@ function testleafext_do_page() {
 	echo $active_tab == 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
 
-	echo '<a href="?page='.$leafext_plugin_name.'&tab=elevationoptions" class="nav-tab';
-	echo $active_tab == 'elevationoptions' ? ' nav-tab-active' : '';
-	echo '">Elevation Options</a>';
-
 	echo '</h3>';
 
 	echo '<div class="wrap">
@@ -48,14 +43,7 @@ function testleafext_do_page() {
 
 	if( $active_tab == 'help' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
-	} else if( $active_tab == 'elevationoptions' ) {
-		echo '<form method="post" action="options.php">';
-		settings_fields('leafext_settings_eleparams');
-		do_settings_sections( 'leafext_settings_eleparams' );
-		submit_button();
-		submit_button( __( 'Reset', 'textdomain' ), 'delete', 'delete', false);
-		echo '</form>';
-	}
+	} 
 ?>
 	</div>
 	<?php
