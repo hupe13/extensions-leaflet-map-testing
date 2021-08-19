@@ -8,7 +8,7 @@ function leafext_placementstrategies_params() {
 
 		//elementsPlacementStrategy (default value 'clock-concentric') - defines the strategy for placing markers in cluster
 		array('elementsPlacementStrategy',
-			__('Placement Strategies - defines the strategy for placing markers in cluster: default - one-circle strategy (up to 8 elements*, else spiral strategy)',
+			__('Strategy for placing markers in cluster: default - one-circle strategy (up to 8 elements, else spiral strategy)',
 				"extensions-leaflet-map"),
 			"default",
 			array("default","spiral","one-circle","clock","clock-concentric","concentric","original-locations")),
@@ -20,19 +20,19 @@ function leafext_placementstrategies_params() {
 		//BEGIN Options that are valid for placement strategies 'concentric', 'clock' and 'clock-concentric'
 
     //firstCircleElements (default value 10) - the number of elements in the first circle
-		array('firstCircleElements', __('firstCircleElements (default value 10) - the number of elements in the first circle',"extensions-leaflet-map"), "10",
+		array('firstCircleElements', __('Number of elements in the first circle',"extensions-leaflet-map"), "10",
 			array("6","8","10","12")),
 
     //elementsMultiplier (default value 1.5) - the multiplicator of elements number for the next circle
-		array('elementsMultiplier', __('elementsMultiplier (default value 1.5) - the multiplicator of elements number for the next circle',"extensions-leaflet-map"), "1.5",
+		array('elementsMultiplier', __('Multiplicator of elements number for the next circle',"extensions-leaflet-map"), "1.5",
 			array("1.2","1.4","1.5","1.6","1.7","1.8","1.9","2")),
 
     //spiderfyDistanceSurplus (default value 30) - the value to be added to each new circle distance value
-		array('spiderfyDistanceSurplus', __('spiderfyDistanceSurplus (default value 30) - the value to be added to each new circle distance value',"extensions-leaflet-map"), "30",
+		array('spiderfyDistanceSurplus', __('Value to be added to each new circle distance value',"extensions-leaflet-map"), "30",
 			array("0","5","10","15","20","25","30","35")),
 
     //helpingCircles (default value true) - switch drawing helping circles on
-		array('helpingCircles', __('helpingCircles - switch drawing helping circles on',"extensions-leaflet-map"), true, 1),
+		array('helpingCircles', __('Switch drawing helping circles on',"extensions-leaflet-map"), true, 1),
 
     //helpingCircleOptions (default value { fillOpacity: 0, color: 'grey', weight: 0.6 } ) - the style object for helpingCircle element
 
@@ -42,15 +42,15 @@ function leafext_placementstrategies_params() {
 		// <p class="select-row">showCoverageOnHover:</p>
 
 		// <p class="select-row">spiderfyOnMaxZoom:</p>
-		array('spiderfyOnMaxZoom', __('spiderfyOnMaxZoom - When you click a cluster at the bottom zoom level we spiderfy it so you can see all of its markers.',"extensions-leaflet-map"), true, 1),
+		array('spiderfyOnMaxZoom', __('When you click a cluster at the bottom zoom level we spiderfy it so you can see all of its markers.',"extensions-leaflet-map"), true, 1),
 
 		// <p class="select-row">zoomToBoundsOnClick:</p>
 		// <p class="select-row">maxClusterRadius:</p>
-		array('maxClusterRadius', __('maxClusterRadius - The maximum radius that a cluster will cover from the central marker (in pixels). Decreasing will make more, smaller clusters.',"extensions-leaflet-map"), "80",
+		array('maxClusterRadius', __('The maximum radius that a cluster will cover from the central marker (in pixels). Decreasing will make more, smaller clusters.',"extensions-leaflet-map"), "80",
 			array("20","30","40","50","60","70","80","100","120","150")),
 
 		//Sonstiges
-		array('maxZoom', __('maxZoom - max zoom of the map',"extensions-leaflet-map"), "10",
+		array('maxZoom', __('Max zoom of the map',"extensions-leaflet-map"), "10",
 			array("18","17","16","15","14","13","12","11","10","9","8","7","6")),
 
 	);
@@ -119,7 +119,7 @@ window.WPLeafletMapPlugin.push(function () {
 							color: "grey",
 							pane: "locationMarker",
 						});
-						console.log(circle);
+						//console.log(circle);
 						circle.bindPopup(a.getPopup());
 						clmarkers.addLayer(circle);
 						//console.log(circle._popup);
@@ -162,8 +162,9 @@ function leafext_placementstrategies_settings() {
 		$defaults[$param[0]] = $param[2];
 	}
 
-	//$options = shortcode_atts($defaults, get_option('leafext_placementstrategies_params'));
-	$options = $defaults;
+	$options = shortcode_atts($defaults, get_option('leafext_placementparams'));
+
+	//$options = $defaults;
 	return $options;
 }
 

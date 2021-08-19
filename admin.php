@@ -1,6 +1,6 @@
 <?php
 
-//include TESTLEAFEXT_PLUGIN_DIR . '/admin/elevation.php';
+include TESTLEAFEXT_PLUGIN_DIR . '/admin/placementstrategies.php';
 
 // Admin Menu
 
@@ -36,6 +36,10 @@ function testleafext_do_page() {
 	echo $active_tab == 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
 
+	echo '<a href="?page='.$leafext_plugin_name.'&tab=placementstrategies" class="nav-tab';
+	echo $active_tab == 'placementstrategies' ? ' nav-tab-active' : '';
+	echo '">MarkerCluster.PlacementStrategies</a>';
+
 	echo '</h3>';
 
 	echo '<div class="wrap">
@@ -43,7 +47,9 @@ function testleafext_do_page() {
 
 	if( $active_tab == 'help' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
-	} 
+	} else if ( $active_tab == 'placementstrategies' ) {
+		leafext_admin_placementstrategies();
+	}
 ?>
 	</div>
 	<?php
