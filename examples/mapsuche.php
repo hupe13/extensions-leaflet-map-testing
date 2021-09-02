@@ -6,9 +6,9 @@
 <div class="wrap">
     <div class="wrap">
       <?php
-		    $drag = __('Suche', 'leaflet-map');
-        echo do_shortcode('[leaflet-map zoom=9 zoomcontrol doubleClickZoom=1 height=500 scrollwheel=1 maxbounds="51.374100,11.332917;53.522835,14.753333"]');
-        echo do_shortcode(sprintf('[leaflet-marker draggable=1 visible="false"] %s [/leaflet-marker]', $drag));
+      $drag = __('Suche', 'leaflet-map');
+      echo do_shortcode('[leaflet-map zoom=9 zoomcontrol doubleClickZoom=1 height=500 scrollwheel=1 maxbounds="51.374100,11.332917;53.522835,14.753333"]');
+      echo do_shortcode(sprintf('[leaflet-marker draggable=1 visible="false"] %s [/leaflet-marker]', $drag));
       ?>
     <script>
     function initShortcodes () {
