@@ -43,12 +43,9 @@ function testleafext_add_action_links ( $actions ) {
 
 if (is_admin()) {
   include_once TESTLEAFEXT_PLUGIN_DIR . 'admin.php';
-} //else {
+}
 
-//if (!is_admin() || is_plugin_active( 'elementor/elementor.php' ) ) {
-  include_once TESTLEAFEXT_PLUGIN_DIR . '/php/functions.php';
-  include_once TESTLEAFEXT_PLUGIN_DIR . '/php/placementstrategies.php';
-
-//}
+include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
+include_once TESTLEAFEXT_PLUGIN_DIR . '/php/elevation.php';
 
 ?>
