@@ -1,6 +1,6 @@
 # Extensions for Leaflet Map Testing
 
-Tested up to: 5.7  
+Tested up to: 5.8.1  
 License: GPLv2 or later  
 Contributors: hupe13
 
