@@ -9,8 +9,7 @@ defined( 'ABSPATH' ) or die();
 //Shortcode: [elevation gpx="...url..."]
 
 function testleafext_elevation_script($gpx,$theme,$settings){
-	$text = '
-	<script>
+	$text = '<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
 	window.WPLeafletMapPlugin.push(function () {
 		var map = window.WPLeafletMapPlugin.getCurrentMap();
@@ -48,7 +47,7 @@ function testleafext_elevation_script($gpx,$theme,$settings){
 		
 		$text = $text.'
 				detached: true,
-				collapsed: true,
+				collapsed: false,
 				';
 	// autohide: true, ohne Wirkung, siehe https://github.com/Raruto/leaflet-elevation/blob/c9ad81ef609d12d0020fe82429299f8b53cc3656/src/leaflet-elevation.js#L1304
 
@@ -81,17 +80,26 @@ function testleafext_elevation_script($gpx,$theme,$settings){
 		
 		var controlButton = L.easyButton(
 			"<i class=\"fa fa-area-chart\" aria-hidden=\"true\"></i>",
-			function(btn, map) { controlElevation._toggle(); },
+			function(btn, map) { 
+				controlElevation._toggle(); },
 				"Elevation",
-				//{ position: "bottomright" }
+				//{ position: "bottomleft" }
 				).addTo( map );
 		
 		// Load track from url (allowed data types: "*.geojson", "*.gpx")
 		controlElevation.load(track_options.url);
-
+	
+	
+		map.on("eledata_added", function(e) {
+			//console.log("eledata_added");
+			//Ja 2x!!! Koennte man als Parameter setzen
+			controlElevation._toggle();
+			controlElevation._toggle();
+		});
+		
 	});
 	</script>';
-	//$text = \JShrink\Minifier::minify($text);
+	$text = \JShrink\Minifier::minify($text);
 	return "\n".$text."\n";
 }
 
