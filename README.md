@@ -16,7 +16,7 @@ Download the zip file and <a href="https://wordpress.org/support/article/managin
 Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>.
 
 <h2>Testing</h2>
-
+<h3>Leaflet-providers</h3>
 <pre><code>[leaflet-map]
 [providers maps="WaymarkedTrails.hiking"]
 
