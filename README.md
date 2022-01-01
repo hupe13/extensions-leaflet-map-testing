@@ -22,8 +22,7 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 [leaflet-map mapid="OSM"]
 [providers maps="WaymarkedTrails.hiking,OPNVKarte"]</code></pre>
-For a list of providers see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">http://leaflet-extras.github.io/leaflet-providers/preview/</a>
-(use only these without any api key or similar).
+For a list of providers see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">http://leaflet-extras.github.io/leaflet-providers/preview/</a>.
 
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
