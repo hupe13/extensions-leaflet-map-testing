@@ -19,7 +19,7 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 <h3>Leaflet-providers</h3>
 <pre><code>[leaflet-map]
 [providers maps="WaymarkedTrails.hiking"]
-
+//
 [leaflet-map mapid="OSM"]
 [providers maps="WaymarkedTrails.hiking,OPNVKarte"]</code></pre>
 For a list of providers see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">http://leaflet-extras.github.io/leaflet-providers/preview/</a>.
