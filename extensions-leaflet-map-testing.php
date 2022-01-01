@@ -36,7 +36,8 @@ $leafextdir = explode('/',reset($leafext_active));
 
 // Add settings to plugin page
 function testleafext_add_action_links ( $actions ) {
-	$actions[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page='.TESTLEAFEXT_PLUGIN_SETTINGS) ) .'">'. esc_html__( "Settings").'</a>';
+	$actions[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page='.TESTLEAFEXT_PLUGIN_SETTINGS) ) .'">'.
+    esc_html__( "Settings").'</a>';
   return $actions;
 }
 //add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'testleafext_add_action_links' );
@@ -46,6 +47,6 @@ if (is_admin()) {
 }
 
 include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
-include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-providers.php';
+include_once TESTLEAFEXT_PLUGIN_DIR . '/php/providers.php';
 
 ?>

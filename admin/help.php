@@ -1,4 +1,0 @@
-<?php
-$text ='';
-
-echo $text;

@@ -1,6 +1,8 @@
 <?php
 
 //include TESTLEAFEXT_PLUGIN_DIR . '/admin/.php';
+//include TESTLEAFEXT_PLUGIN_DIR . '/admin/uploader.php';
+include TESTLEAFEXT_PLUGIN_DIR . '/admin/providers.php';
 
 // Admin Menu
 
@@ -22,7 +24,7 @@ function testleafext_add_page() {
 
 // Draw the menu page itself
 function testleafext_do_page() {
-	//var_dump($options);
+
 	$leafext_plugin_name = basename(dirname(  __FILE__  ));
 	?>
 	<div class="wrap">
@@ -36,6 +38,24 @@ function testleafext_do_page() {
 	echo $active_tab == 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
 
+
+	$tabs = array (
+		array (
+			'tab' => 'providers',
+			'title' => __('Leaflet Providers','extensions-leaflet-map'),
+		),
+		// array (
+		// 	'tab' => '',
+		// 	'title' => '',
+		// ),
+	);
+	foreach ( $tabs as $tab) {
+		echo '<a href="?page='.$leafext_plugin_name.'&tab='.$tab['tab'].'" class="nav-tab';
+		$active = ( $active_tab == $tab['tab'] ) ? ' nav-tab-active' : '' ;
+		echo $active;
+		echo '">'.$tab['title'].'</a>'."\n";
+	}
+
 	echo '</h3>';
 
 	echo '<div class="wrap">
@@ -43,6 +63,13 @@ function testleafext_do_page() {
 
 	if( $active_tab == 'help' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
+	} else if ( $active_tab == 'providers' ) {
+		echo '<form method="post" action="options.php">';
+		settings_fields('leafext_providers');
+		do_settings_sections( 'leafext_providers' );
+		submit_button();
+		submit_button( __( 'Reset', 'extensions-leaflet-map' ), 'delete', 'delete', false);
+		echo '</form>';
 	}
 ?>
 	</div>
