@@ -1,7 +1,7 @@
 <?php
 
 //include TESTLEAFEXT_PLUGIN_DIR . '/admin/.php';
-//include TESTLEAFEXT_PLUGIN_DIR . '/admin/uploader.php';
+include TESTLEAFEXT_PLUGIN_DIR . '/admin/uploader.php';
 include TESTLEAFEXT_PLUGIN_DIR . '/admin/providers.php';
 
 // Admin Menu
@@ -44,6 +44,10 @@ function testleafext_do_page() {
 			'tab' => 'providers',
 			'title' => __('Leaflet Providers','extensions-leaflet-map'),
 		),
+		array (
+			'tab' => 'manage_files',
+			'title' => __('Manage Files','extensions-leaflet-map'),
+		),
 		// array (
 		// 	'tab' => '',
 		// 	'title' => '',
@@ -70,6 +74,8 @@ function testleafext_do_page() {
 		submit_button();
 		submit_button( __( 'Reset', 'extensions-leaflet-map' ), 'delete', 'delete', false);
 		echo '</form>';
+	} else if ( $active_tab == 'manage_files' ) {
+		include TESTLEAFEXT_PLUGIN_DIR . '/admin/managefiles.php';
 	}
 ?>
 	</div>
