@@ -73,4 +73,77 @@ foreach ($gpx_files as $file) {
       "'".$myfile."'".')">elevation</a>';
   $gpx_table[] = $entry;
 }
-echo leafext_html_table($gpx_table);
+//echo leafext_html_table($gpx_table);
+
+//https://davescripts.com/php-pagination-of-an-array-of-data
+// The page to display (Usually is received in a url parameter)
+$data = $gpx_table;
+$page = intval($_GET['p']);
+
+// The number of records to display per page
+$page_size = 25;
+
+// Calculate total number of records, and total number of pages
+$total_records = count($data);
+$total_pages   = ceil($total_records / $page_size);
+
+// Validation: Page to display can not be greater than the total number of pages
+if ($page > $total_pages) {
+    $page = $total_pages;
+}
+
+// Validation: Page to display can not be less than 1
+if ($page < 1) {
+    $page = 1;
+}
+
+// Calculate the position of the first record of the page to display
+$offset = ($page - 1) * $page_size;
+
+// Get the subset of records to be displayed from the array
+$data = array_slice($data, $offset, $page_size);
+
+echo leafext_html_table($data);
+
+// page links
+$N = min($total_pages, 9);
+$pages_links = array();
+$tmp = $N;
+if ($tmp < $page || $page > $N) {
+    $tmp = 2;
+}
+for ($i = 1; $i <= $tmp; $i++) {
+    $pages_links[$i] = $i;
+}
+if ($page > $N && $page <= ($total_pages - $N + 2)) {
+    for ($i = $page - 3; $i <= $page + 3; $i++) {
+        if ($i > 0 && $i < $total_pages) {
+            $pages_links[$i] = $i;
+        }
+    }
+}
+$tmp = $total_pages - $N + 1;
+if ($tmp > $page - 2) {
+    $tmp = $total_pages - 1;
+}
+for ($i = $tmp; $i <= $total_pages; $i++) {
+    if ($i > 0) {
+        $pages_links[$i] = $i;
+    }
+}
+$prev = 0;
+
+echo '<div style="text-align: center;">';
+foreach ($pages_links as $p) {
+    if (($p - $prev) > 1) {
+      echo '<a href="#">...</a>';
+    }
+    $prev = $p;
+
+    $style_active = '';
+    if ($p == $page) {
+        $style_active = 'style="font-weight:bold"';
+    }
+    echo '<a '. $style_active .' href="admin.php?page=extensions-leaflet-map-testing&tab=manage_files&p='.$p.'">'. $p.'</a> ';
+}
+echo '</div>';
