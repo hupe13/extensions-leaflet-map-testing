@@ -78,7 +78,7 @@ foreach ($gpx_files as $file) {
 //https://davescripts.com/php-pagination-of-an-array-of-data
 // The page to display (Usually is received in a url parameter)
 $data = $gpx_table;
-$page = intval($_GET['p']);
+$page = isset($_GET['p']) ? intval($_GET['p']) : 1;
 
 // The number of records to display per page
 $page_size = 25;

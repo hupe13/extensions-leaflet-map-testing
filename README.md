@@ -26,7 +26,7 @@ For a list of providers see <a href="http://leaflet-extras.github.io/leaflet-pro
 For providers with api key or similar see  https://your-domain&#46;tld/wp-admin/admin.php?page=extensions-leaflet-map-testing&tab=providers.
 
 <h3>File Manager</h3>
-lists all gpx and kml files in uploads directory. Copy shortcodes.
+Lists all gpx and kml files in uploads directory. Copy shortcodes.
 
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
