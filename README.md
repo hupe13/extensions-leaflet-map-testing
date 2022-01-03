@@ -25,5 +25,8 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 For a list of providers see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">http://leaflet-extras.github.io/leaflet-providers/preview/</a>.
 For providers with api key or similar see  https://your-domain&#46;tld/wp-admin/admin.php?page=extensions-leaflet-map-testing&tab=providers.
 
+<h3>File Manager</h3>
+lists all gpx and kml files in uploads directory. Copy shortcodes.
+
 <h2>now in official plugin</h2>
 Former tested functions see <a href="https://github.com/hupe13/extensions-leaflet-map/">here</a>.
