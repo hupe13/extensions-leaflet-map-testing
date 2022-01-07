@@ -85,6 +85,8 @@ function leafext_providers_help() {
 '<p>'.'For a list of providers see <a href="http://leaflet-extras.github.io/leaflet-providers/preview/"
 >http://leaflet-extras.github.io/leaflet-providers/preview/</a>.'
 .'</p>';
+echo '<p>I did not tested all, I have only checked the Javascript code. If something is not working, please let me know.
+</p>';
 }
 
 // Draw the menu page itself

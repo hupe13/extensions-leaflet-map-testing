@@ -142,6 +142,7 @@ function leafext_providers_script($maps){
 		}
 		$text = $text.'
 		//console.log(baselayers);
+		//console.log(overlays);
 		L.control.layers(baselayers,overlays).addTo(map);
 	});
 	</script>';
