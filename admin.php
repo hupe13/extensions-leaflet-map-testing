@@ -35,7 +35,7 @@ function testleafext_do_page() {
 	echo '<a href="?page='.$leafext_plugin_name.'&tab=help" class="nav-tab';
 	echo $active_tab == 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
-	
+
 	$tabs = array (
 		array (
 			'tab' => 'manage_files',
@@ -55,8 +55,7 @@ function testleafext_do_page() {
 
 	echo '</h3>';
 
-	echo '<div class="wrap">
-	<h2>Extensions for Leaflet Map Options (Testing)</h2>';
+	echo '<div class="wrap">';
 
 	if( $active_tab == 'help' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
