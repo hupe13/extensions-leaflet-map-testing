@@ -15,7 +15,7 @@ function leafext_html_table($data = array())
 
 function leafext_list_files() {
 
-  $upload_dir = wp_upload_dir();
+  $upload_dir = wp_get_upload_dir();
   $upload_path = $upload_dir['path'];
   $upload_url = $upload_dir['url'];
   $text= '<script>

@@ -2,7 +2,6 @@
 
 //include TESTLEAFEXT_PLUGIN_DIR . '/admin/.php';
 include TESTLEAFEXT_PLUGIN_DIR . '/admin/uploader.php';
-//include TESTLEAFEXT_PLUGIN_DIR . '/admin/providers.php';
 
 // Admin Menu
 
@@ -26,10 +25,9 @@ function testleafext_add_page() {
 function testleafext_do_page() {
 
 	$leafext_plugin_name = basename(dirname(  __FILE__  ));
-	?>
-	<div class="wrap">
-	<h2>Extensions Tests Options</h2>
-<?php
+	echo '<div class="wrap">
+	<h2>Extensions Tests Options</h2>';
+
 	$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'help';
 
 	echo '<h3 class="nav-tab-wrapper">';
@@ -37,8 +35,7 @@ function testleafext_do_page() {
 	echo '<a href="?page='.$leafext_plugin_name.'&tab=help" class="nav-tab';
 	echo $active_tab == 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
-
-
+	
 	$tabs = array (
 		array (
 			'tab' => 'manage_files',
@@ -66,7 +63,6 @@ function testleafext_do_page() {
 	} else if ( $active_tab == 'manage_files' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/managefiles.php';
 	}
-?>
-	</div>
-	<?php
+
+	echo '</div>';
 }
