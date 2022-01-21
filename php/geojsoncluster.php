@@ -17,11 +17,12 @@ function leafext_geojsoncluster_script(){
       var geocount = geojsons.length;
       for (var j = 0, len = geocount; j < len; j++) {
         var geojson = geojsons[j];
+        //console.log(geojson);
         if (map_id == geojsons[j]._map._leaflet_id) {
           geojson.on("ready", function () {
             //console.log(this.layer);
 
-            geojson.layer.eachLayer(function(layer) {
+            this.layer.eachLayer(function(layer) {
     					//console.log(layer.feature);
               //console.log(layer.feature.properties);
               if (layer.feature.geometry.type == "Point" ) {
@@ -40,7 +41,6 @@ function leafext_geojsoncluster_script(){
                 //console.log(layer);
               }
     				});
-
           });
         }
       }
