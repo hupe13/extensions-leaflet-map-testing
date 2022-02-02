@@ -3,7 +3,7 @@
  * Plugin Name: extensions-leaflet-map-testing
  * Description: Tests for leaflet-map
  * Maybe candidates for https://wordpress.org/plugins/extensions-leaflet-map/
- * Version: 220121
+ * Version: 220202
  * Author: hupe13
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-testing
  * Primary Branch: main
@@ -40,12 +40,10 @@ function testleafext_add_action_links ( $actions ) {
     esc_html__( "Settings").'</a>';
   return $actions;
 }
-//add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'testleafext_add_action_links' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'testleafext_add_action_links' );
 
 if (is_admin()) {
   include_once TESTLEAFEXT_PLUGIN_DIR . 'admin.php';
 }
 
 include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-directory.php';
-include_once TESTLEAFEXT_PLUGIN_DIR . '/php/geojsoncluster.php';
-?>
