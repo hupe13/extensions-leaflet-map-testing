@@ -1,15 +1,17 @@
 <?php
-echo '<h3>Manage Files</h3>';
+echo '<h2>Manage Files</h2>';
 echo
-sprintf(__('Here you can see all gpx and kml files in the uploads directory.
+sprintf(__('Here you can see all gpx and kml files in subdirectories of uploads directory.
   You can manage these
   %s with any (S)FTP-Client,
   %s with any File Manager plugin,
-  %s with any plugin for importing uploaded files to the media library, e.g.','extensions-leaflet-map'),
+  %s with any plugin for importing uploaded files to the media library,','extensions-leaflet-map'),
   '<ul><li> - ','</li><li> - ','</li><li> - ','</li><li> - ').
-  ' <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a>,</li><li> - '.
-  __('or direct in the media library - then here appears an edit link.','extensions-leaflet-map').
-  '</li></ul>';
+  '</li><li> - '.
+  __('or direct in the media library.','extensions-leaflet-map').
+  '</li>
+  <li> - If they are in the media library then here appears an edit link. </li>
+  </ul>';
 //echo leafext_list_files();
 
 $upload_dir = wp_get_upload_dir();
@@ -53,35 +55,22 @@ function leafext_file_form($verz) {
 	echo '</form>';
 }
 
+echo '<h2>Listing ...</h2>';
+
 $dir=get_phwquery("dir");
 leafext_file_form($dir);
 if ( $dir != "" ) {
-  echo '<h1>Directory '.$dir.'</h1>';
+  echo '<h3>Directory '.$dir.'</h3>';
   echo '<p><code>[leaflet-dir src="'.$dir.'" ]</code>';
 
-  echo '<a href="#" onclick="createShortcode('.
+  echo ' <a href="#" onclick="createShortcodedir('.
       "'leaflet-dir  src='".','.
       "'".$dir."'".')">Copy</a></p>';
 
 	echo leafext_list_files($dir);
 }
 
-//https://gist.github.com/jasondavis/6ea170677014aa65aa2ba25269ae16dc
-function leafext_html_table($data = array())
-{
-    $rows = array();
-    foreach ($data as $row) {
-        $cells = array();
-        foreach ($row as $cell) {
-            $cells[] = "<td>{$cell}</td>";
-        }
-        $rows[] = "<tr>" . implode('', $cells) . "</tr>";
-    }
-    return "<table border='1'>" . implode('', $rows) . "</table>";
-}
-
 function leafext_list_files($dir) {
-
   $upload_dir = wp_get_upload_dir();
   $upload_path = $upload_dir['path'];
   $upload_url = $upload_dir['url'];
@@ -95,12 +84,16 @@ function leafext_list_files($dir) {
     leafext_short.remove();
     alert("Copied the text: " + leafext_short.value);
   }
+  function createShortcodedir(shortcode,file) {
+    var leafext_short = document.createElement("input");
+    document.body.appendChild(leafext_short);
+    leafext_short.value = "["+shortcode+"\"" + file + "\"]";
+    leafext_short.select();
+    document.execCommand("copy",false);
+    leafext_short.remove();
+    alert("Copied the text: " + leafext_short.value);
+  }
   </script>';
-
-  // $iterator = new RecursiveIteratorIterator(
-  //     new RecursiveDirectoryIterator($upload_path.'/'.$dir)
-  // );
-  // $gpx_files = new RegexIterator($iterator, '/\.(gpx|kml)$/'); // Dateiendung ".gpx"
 
 	$gpx_files = glob($upload_path.'/'.$dir.'/*.{gpx,kml}', GLOB_BRACE);
 
@@ -154,3 +147,11 @@ function leafext_list_files($dir) {
 
   return $text;
 }
+
+//Bug https://core.trac.wordpress.org/ticket/36418
+// add_filter( 'wp_mime_type_icon', function( $icon, $mime, $post_id )
+// {
+//     if( 'application/gpx+xml' === $mime && $post_id > 0 )
+//         $icon = TESTLEAFEXT_PLUGIN_URL . '/icons/gpx-file.svg';
+//     return $icon;
+// }, 10, 3 );

@@ -20,7 +20,7 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 <h3>Manage Files</h3>
 
 In admin interface <span>https</span>://my-wp.tld/wp-admin/admin.php?page=extensions-leaflet-map-testing&tab=manage_files:
-* Lists all gpx and kml files in uploads directory. Copy shortcodes for leaflet-gpx, leaflet-kml and elevation.
+* Lists all gpx and kml files in subdirectories from uploads directory. Copy shortcodes for leaflet-gpx, leaflet-kml and elevation.
 
 <h3>Tracks from all files in a directory</h3>
 

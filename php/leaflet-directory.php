@@ -104,19 +104,22 @@ function leafext_directory_function($atts) {
     $farben=array("green","red","blue","yellow","orange");
     $count=1;
     $shortcode='';
+
     foreach ( $files as $file) {
-      $gpx = simplexml_load_file($file);
-      $trackname= $gpx->trk->name;
-      $startlat = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lat;
-      $startlon = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lon;
-      $point=array(
-        "name" => $trackname,
-        "lat" => $startlat,
-        "lon" => $startlon,
-        "file" => $file,
-      );
-      //
-      $shortcode = $shortcode.'[leaflet-marker lat='.$point['lat'].' lng='.$point['lon'].']'.$point['name'].'[/leaflet-marker]';
+      if ( $command == "leaflet-gpx" ) {
+        $gpx = simplexml_load_file($file);
+        $trackname= $gpx->trk->name;
+        $startlat = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lat;
+        $startlon = (float)$gpx->trk->trkseg->trkpt[0]->attributes()->lon;
+        $point=array(
+          "name" => $trackname,
+          "lat" => $startlat,
+          "lon" => $startlon,
+          "file" => $file,
+        );
+        //
+        $shortcode = $shortcode.'[leaflet-marker lat='.$point['lat'].' lng='.$point['lon'].']'.$point['name'].'[/leaflet-marker]';
+      }
       $farbe=leafext_color_name_to_hex($farben[$count % count($farben)]);
       $count=$count+1;
       if ($dirpath != "" ) $file = str_replace($dirpath.'/',"",$file);
