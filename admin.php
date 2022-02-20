@@ -23,45 +23,51 @@ function testleafext_add_page() {
 
 // Draw the menu page itself
 function testleafext_do_page() {
+	$track = isset($_GET['track']) ? $_GET['track'] : "";
 
-	$leafext_plugin_name = basename(dirname(  __FILE__  ));
-	echo '<div class="wrap">
-	<h2>Extensions Tests Options</h2>';
+	if ( $track == "" ) {
+		$leafext_plugin_name = basename(dirname(  __FILE__  ));
+		echo '<div class="wrap">
+		<h2>Extensions Tests Options</h2>';
 
-	$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'help';
+		$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'help';
 
-	echo '<h3 class="nav-tab-wrapper">';
+		echo '<h3 class="nav-tab-wrapper">';
 
-	echo '<a href="?page='.$leafext_plugin_name.'&tab=help" class="nav-tab';
-	echo $active_tab == 'help' ? ' nav-tab-active' : '';
-	echo '">Hilfe!</a>';
+		echo '<a href="?page='.$leafext_plugin_name.'&tab=help" class="nav-tab';
+		echo $active_tab == 'help' ? ' nav-tab-active' : '';
+		echo '">Hilfe!</a>';
 
-	$tabs = array (
-		array (
-			'tab' => 'manage_files',
-			'title' => __('Manage Files','extensions-leaflet-map'),
-		),
-		// array (
-		// 	'tab' => '',
-		// 	'title' => '',
-		// ),
-	);
-	foreach ( $tabs as $tab) {
-		echo '<a href="?page='.$leafext_plugin_name.'&tab='.$tab['tab'].'" class="nav-tab';
-		$active = ( $active_tab == $tab['tab'] ) ? ' nav-tab-active' : '' ;
-		echo $active;
-		echo '">'.$tab['title'].'</a>'."\n";
-	}
+		$tabs = array (
+			array (
+				'tab' => 'manage_files',
+				'title' => __('Manage Files','extensions-leaflet-map'),
+			),
+			// array (
+			// 	'tab' => '',
+			// 	'title' => '',
+			// ),
+		);
 
-	echo '</h3>';
+		foreach ( $tabs as $tab) {
+			echo '<a href="?page='.$leafext_plugin_name.'&tab='.$tab['tab'].'" class="nav-tab';
+			$active = ( $active_tab == $tab['tab'] ) ? ' nav-tab-active' : '' ;
+			echo $active;
+			echo '">'.$tab['title'].'</a>'."\n";
+		}
 
-	echo '<div class="wrap">';
+		echo '</h3>';
 
-	if( $active_tab == 'help' ) {
-		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
-	} else if ( $active_tab == 'manage_files' ) {
+		echo '<div class="wrap">';
+
+		if( $active_tab == 'help' ) {
+			include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
+		} else if ( $active_tab == 'manage_files') {
+			include TESTLEAFEXT_PLUGIN_DIR . '/admin/managefiles.php';
+		}
+
+		echo '</div>';
+	} else {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/managefiles.php';
 	}
-
-	echo '</div>';
 }

@@ -42,14 +42,22 @@ function leafext_gpx_content( $content ){
 add_filter( 'the_content', 'leafext_gpx_content' );
 
 function leafext_get_gpx_data($file) {
-  $gpx_data = array();
+  $gpxdata = array();
 	//
 	$gpx = simplexml_load_file($file);
-	$gpx_data['trackname']= $gpx->trk->name;
-  $gpx_data['time']= $gpx->metadata->time;
-  if ( $gpx_data['time']== "" ) $gpx_data['time']= $gpx->trk->trkseg->trkpt[0]->time;
-  if ( $gpx_data['time']== "" ) $gpx_data['time']= " ";
-  return $gpx_data;
+	$gpxdata['trackname']= $gpx->trk->name;
+  //$gpx_data['time']= $gpx->metadata->time;
+  //if ( $gpx_data['time']== "" )
+  $gpxdata['time']= $gpx->trk->trkseg->trkpt[0]->time;
+  if ( $gpxdata['time']== "" ) $gpxdata['time']= " ";
+  return $gpxdata;
+}
+
+function leafext_get_kml_data($track) {
+  $kmldata=array();
+  $kml=simplexml_load_file($track,"SimpleXMLElement",LIBXML_NOCDATA);
+  $kmldata['trackname'] = $kml->Document->name;
+  return $kmldata;
 }
 
 //https://gist.github.com/jasondavis/6ea170677014aa65aa2ba25269ae16dc

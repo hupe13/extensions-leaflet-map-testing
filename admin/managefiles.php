@@ -1,21 +1,15 @@
 <?php
-echo '<h2>Manage Files</h2>';
-echo
-sprintf(__('Here you can see all gpx and kml files in subdirectories of uploads directory.
-  You can manage these
-  %s with any (S)FTP-Client,
-  %s with any File Manager plugin,
-  %s with any plugin for importing uploaded files to the media library,','extensions-leaflet-map'),
-  '<ul><li> - ','</li><li> - ','</li><li> - ','</li><li> - ').
-  '</li><li> - '.
-  __('or direct in the media library.','extensions-leaflet-map').
-  '</li>
-  <li> - If they are in the media library then here appears an edit link. </li>
-  </ul>';
-//echo leafext_list_files();
-
-$upload_dir = wp_get_upload_dir();
-$upload_path = $upload_dir['path'];
+//$TB_iframe = isset($_GET['TB_iframe']) ? $_GET['TB_iframe'] : "";
+//var_dump($TB_iframe);
+//var_dump($_SERVER);
+$track = isset($_GET['track']) ? $_GET['track'] : "";
+//var_dump($track);
+if ( $track == "") {
+	leafext_managefiles();
+} else {
+	include TESTLEAFEXT_PLUGIN_DIR . '/admin/thickbox.php';
+	leafext_thickbox($track);
+}
 
 function leafext_all_subdirs() {
 	$upload_dir = wp_get_upload_dir();
@@ -24,10 +18,10 @@ function leafext_all_subdirs() {
 	$iterator = new RecursiveIteratorIterator(
 		new RecursiveDirectoryIterator($upload_path)
 	);
-	$gpx_files = new RegexIterator($iterator, '/\.(gpx|kml)$/'); // Dateiendung ".gpx"
-	//var_dump($gpx_files);
+	$track_files = new RegexIterator($iterator, '/\.(gpx|kml)$/'); // Dateiendung ".gpx" und ".kml"
+	//var_dump($track_files);
 	$gpx_dirs = array();
-	foreach ($gpx_files as $file) {
+	foreach ($track_files as $file) {
 		$myfile = str_replace($upload_path,'',$file->getPathname());
 		$entry = dirname($myfile);
 		if (!in_array($entry,$gpx_dirs)) $gpx_dirs[] = $entry;
@@ -55,22 +49,48 @@ function leafext_file_form($verz) {
 	echo '</form>';
 }
 
-echo '<h2>Listing ...</h2>';
+function leafext_managefiles() {
+  echo '<h2>Manage Files</h2>';
+  echo
+  sprintf(__('Here you can see all gpx and kml files in subdirectories of uploads directory.
+  You can manage these
+  %s with any (S)FTP-Client,
+  %s with any File Manager plugin,
+  %s with any plugin for importing uploaded files to the media library,','extensions-leaflet-map'),
+  '<ul><li> - ','</li><li> - ','</li><li> - ','</li><li> - ').
+  '</li><li> - '.
+  __('or direct in the media library.','extensions-leaflet-map').
+  '</li>
+  <li> - If they are in the media library then here appears an edit link. </li>
+  </ul>';
+	echo "<h3>To Do</h3>
+	<ul><li>
+	Query allow gpx and kml (and maybe other) upload to media library?
+	<li>Target directory is upload_dir/gpx/ or upload_dir/kml/ currently.
+	<li>Okay or not okay? Or should they custom paths?
+	<li>avoid copy popups";
 
-$dir=get_phwquery("dir");
-leafext_file_form($dir);
-if ( $dir != "" ) {
-  echo '<h3>Directory '.$dir.'</h3>';
-  echo '<p><code>[leaflet-dir src="'.$dir.'" ]</code>';
+  echo '<h2>Listing ...</h2>';
 
-  echo ' <a href="#" onclick="createShortcodedir('.
-      "'leaflet-dir  src='".','.
-      "'".$dir."'".')">Copy</a></p>';
+  $dir=get_phwquery("dir");
+  leafext_file_form($dir);
+  if ( $dir != "" ) {
+    echo '<h3>Directory '.$dir.'</h3>';
+    echo '<p><code>[leaflet-dir src="'.$dir.'" ]</code>';
 
-	echo leafext_list_files($dir);
+    echo ' <a href="#" onclick="createShortcodedir('.
+    "'leaflet-dir  src='".','.
+    "'".$dir."'".')">Copy</a></p>';
+
+    echo leafext_list_files($dir);
+
+  }
 }
 
 function leafext_list_files($dir) {
+	//https://codex.wordpress.org/Javascript_Reference/ThickBox
+	add_thickbox();
+	//
   $upload_dir = wp_get_upload_dir();
   $upload_path = $upload_dir['path'];
   $upload_url = $upload_dir['url'];
@@ -95,20 +115,21 @@ function leafext_list_files($dir) {
   }
   </script>';
 
-	$gpx_files = glob($upload_path.'/'.$dir.'/*.{gpx,kml}', GLOB_BRACE);
+	$track_files = glob($upload_path.'/'.$dir.'/*.{gpx,kml}', GLOB_BRACE);
 
-	//var_dump($gpx_files);
+	//var_dump($track_files);
   date_default_timezone_set(wp_timezone_string());
 
-  $gpx_table = array();
+  $track_table = array();
   $entry = array('<b>'.__('Date','extensions-leaflet-map').'</b>',
     '<b>'.__('Name','extensions-leaflet-map').'</b>',
+		'<b>'.__('View','extensions-leaflet-map').'</b>',
     '<b>'.__('Edit','extensions-leaflet-map').'</b>',
     '<b>'.__('leaflet Shortcode','extensions-leaflet-map').'</b>',
     '<b>'.__('elevation Shortcode','extensions-leaflet-map').'</b>');
-  $gpx_table[] = $entry;
+  $track_table[] = $entry;
 
-  foreach ($gpx_files as $file) {
+  foreach ($track_files as $file) {
     //if (!$file->isFile()) continue;
     $entry = array();
     //$myfile = str_replace($upload_path.'/','',$file->getPathname());
@@ -124,15 +145,18 @@ function leafext_list_files($dir) {
         $entry['post_title'] = $key -> post_title;
         //$entry['post_name'] = $key -> post_name;
         //$entry['guid'] = $key -> guid;
+				$entry['view'] = '';
         $entry['edit'] = '<a href ="'.get_admin_url().'post.php?post='.$key -> ID.'&action=edit">'.__('Edit').'</a>';
       }
     } else {
       //$entry['post_date'] = date('Y-m-d G:i:s', $file->getMTime());
 			$entry['post_date'] = date('Y-m-d G:i:s', filemtime($file));
       $entry['post_title'] = $myfile;
-      $entry['edit'] = '';
+			$entry['view'] = '<a href="https://leafext.de/dev/wp-admin/admin.php?page=extensions-leaflet-map-testing&tab=manage_files&track='
+					.$myfile.'&TB_iframe=true" class="thickbox">Track</a>'; //&width=600&height=550
+			$entry['edit'] = "";
     }
-    //$entry['copy'] = '<div class="input">'.$myfile.'</div><a href="#" onclick="myFunction(event)">Copy</a>';
+
     $path_parts = pathinfo($myfile);
     $entry['leaflet'] = '<a href="#" onclick="createShortcode('.
         "'leaflet-".$path_parts['extension']."  src='".','.
@@ -140,11 +164,10 @@ function leafext_list_files($dir) {
     $entry['elevation'] = '<a href="#" onclick="createShortcode('.
         "'elevation gpx='".','.
         "'".$myfile."'".')">elevation</a>';
-    $gpx_table[] = $entry;
+    $track_table[] = $entry;
   }
 
-  $text = $text.leafext_html_table($gpx_table);
-
+  $text = $text.leafext_html_table($track_table);
   return $text;
 }
 
