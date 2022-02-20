@@ -152,7 +152,7 @@ function leafext_list_files($dir) {
       //$entry['post_date'] = date('Y-m-d G:i:s', $file->getMTime());
 			$entry['post_date'] = date('Y-m-d G:i:s', filemtime($file));
       $entry['post_title'] = $myfile;
-			$entry['view'] = '<a href="https://leafext.de/dev/wp-admin/admin.php?page=extensions-leaflet-map-testing&tab=manage_files&track='
+			$entry['view'] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page='.TESTLEAFEXT_PLUGIN_SETTINGS) ) .'&tab=manage_files&track='
 					.$myfile.'&TB_iframe=true" class="thickbox">Track</a>'; //&width=600&height=550
 			$entry['edit'] = "";
     }
