@@ -1,13 +1,13 @@
 <?php
 function leafext_thickbox($track){
-  //echo '<style>#wpadminbar { display:none; }</style>';
+  echo '<style>#wpadminbar { display:none; }</style>';
   date_default_timezone_set(wp_timezone_string());
   $upload_dir = wp_get_upload_dir();
   $upload_path = $upload_dir['path'];
   $upload_url = $upload_dir['url'];
   $path_parts = pathinfo($track);
   $type = $path_parts['extension'];
-  if ( ! ( 'kml' == $type || 'gpx' == $type ) ) return;
+  if ( 'kml' != $type && 'gpx' != $type ) return;
   //
   echo '<div class="attachment-info"><div class="details"><h2>';
   _e( "Details" );
