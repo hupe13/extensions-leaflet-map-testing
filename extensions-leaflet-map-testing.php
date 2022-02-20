@@ -48,4 +48,4 @@ if (is_admin()) {
 
 include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-directory.php';
 include_once TESTLEAFEXT_PLUGIN_DIR . '/php/managefiles.php';
-include_once TESTLEAFEXT_PLUGIN_DIR . '/php/attachment-on-fly.php';
+//include_once TESTLEAFEXT_PLUGIN_DIR . '/php/attachment-on-fly.php';
