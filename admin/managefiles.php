@@ -49,10 +49,8 @@ function leafext_file_form($verz) {
 	echo '</form>';
 }
 
-function leafext_managefiles() {
-  echo '<h2>Manage Files</h2>';
-  echo
-  sprintf(__('Here you can see all gpx and kml files in subdirectories of uploads directory.
+function leafext_managefiles_help() {
+  echo sprintf(__('Here you can see all gpx and kml files in subdirectories of uploads directory.
   You can manage these
   %s with any (S)FTP-Client,
   %s with any File Manager plugin,
@@ -68,22 +66,32 @@ function leafext_managefiles() {
 	Query allow gpx and kml (and maybe other) upload to media library?
 	<li>Target directory is upload_dir/gpx/ or upload_dir/kml/ currently.
 	<li>Okay or not okay? Or should they custom paths?
-	<li>avoid copy popups";
+  </ul>";
+}
 
+function leafext_managefiles() {
+  echo '<h2>Manage Files</h2>';
+  leafext_managefiles_help();
   echo '<h2>Listing ...</h2>';
-
   $dir=get_phwquery("dir");
   leafext_file_form($dir);
   if ( $dir != "" ) {
+		leafext_admin_css();
+		leafext_admin_js();
     echo '<h3>Directory '.$dir.'</h3>';
-    echo '<p><code>[leaflet-dir src="'.$dir.'" ]</code>';
 
-    echo ' <a href="#" onclick="createShortcodedir('.
-    "'leaflet-dir  src='".','.
-    "'".$dir."'".')">Copy</a></p>';
-
+		echo '<div>Shortcode for showing all files of this directory on a map:
+			<span class="leafexttooltip" href="#" onclick="leafext_createShortcode('.
+			"'leaflet-dir  src='".','.
+			"'',".
+			"'".$dir."'".')"
+			onmouseout="leafext_outFunc()">
+			<span class="leafextcopy" id="leafextTooltip">Copy to clipboard</span>
+			<code>[leaflet-dir src="'.$dir.'"]</code>
+			</span></div>';
+		echo '<p>';
     echo leafext_list_files($dir);
-
+		echo '</p>';
   }
 }
 
@@ -94,26 +102,6 @@ function leafext_list_files($dir) {
   $upload_dir = wp_get_upload_dir();
   $upload_path = $upload_dir['path'];
   $upload_url = $upload_dir['url'];
-  $text= '<script>
-  function createShortcode(shortcode,file) {
-    var leafext_short = document.createElement("input");
-    document.body.appendChild(leafext_short);
-    leafext_short.value = "["+shortcode+"\"'.$upload_url.'" + file + "\"]";
-    leafext_short.select();
-    document.execCommand("copy",false);
-    leafext_short.remove();
-    alert("Copied the text: " + leafext_short.value);
-  }
-  function createShortcodedir(shortcode,file) {
-    var leafext_short = document.createElement("input");
-    document.body.appendChild(leafext_short);
-    leafext_short.value = "["+shortcode+"\"" + file + "\"]";
-    leafext_short.select();
-    document.execCommand("copy",false);
-    leafext_short.remove();
-    alert("Copied the text: " + leafext_short.value);
-  }
-  </script>';
 
 	$track_files = glob($upload_path.'/'.$dir.'/*.{gpx,kml}', GLOB_BRACE);
 
@@ -130,26 +118,20 @@ function leafext_list_files($dir) {
   $track_table[] = $entry;
 
   foreach ($track_files as $file) {
-    //if (!$file->isFile()) continue;
     $entry = array();
-    //$myfile = str_replace($upload_path.'/','',$file->getPathname());
 		$myfile = str_replace($upload_path.'/','',$file);
     global $wpdb;
     $sql = "SELECT post_id FROM $wpdb->postmeta WHERE meta_value LIKE '".substr($myfile, 1)."'";
     $results = $wpdb->get_results($sql);
     if (count($results) > 0 ) {
       foreach ($results as $result) {
-        //var_dump( get_post(get_object_vars($result)["post_id"]));
         $key = get_post(get_object_vars($result)["post_id"]);
         $entry['post_date'] = $key -> post_date;
         $entry['post_title'] = $key -> post_title;
-        //$entry['post_name'] = $key -> post_name;
-        //$entry['guid'] = $key -> guid;
 				$entry['view'] = '';
         $entry['edit'] = '<a href ="'.get_admin_url().'post.php?post='.$key -> ID.'&action=edit">'.__('Edit').'</a>';
       }
     } else {
-      //$entry['post_date'] = date('Y-m-d G:i:s', $file->getMTime());
 			$entry['post_date'] = date('Y-m-d G:i:s', filemtime($file));
       $entry['post_title'] = $myfile;
 			$entry['view'] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page='.TESTLEAFEXT_PLUGIN_SETTINGS) ) .'&tab=manage_files&track='
@@ -158,16 +140,27 @@ function leafext_list_files($dir) {
     }
 
     $path_parts = pathinfo($myfile);
-    $entry['leaflet'] = '<a href="#" onclick="createShortcode('.
-        "'leaflet-".$path_parts['extension']."  src='".','.
-        "'".$myfile."'".')">leaflet-'.$path_parts['extension'].'</a>';
-    $entry['elevation'] = '<a href="#" onclick="createShortcode('.
-        "'elevation gpx='".','.
-        "'".$myfile."'".')">elevation</a>';
+
+		$entry['leaflet'] = '<span class="leafexttooltip" href="#" onclick="leafext_createShortcode('.
+        "'leaflet-".$path_parts['extension']." src='".','.
+				"'".$upload_url."',".
+        "'".$myfile."'".')"
+				onmouseout="leafext_outFunc()">
+				<span class="leafextcopy" id="leafextTooltip">Copy to clipboard</span>
+				<code>[leaflet-'.$path_parts['extension'].' src="..."]</code></span>';
+
+		$entry['elevation'] = '<span class="leafexttooltip" href="#" onclick="leafext_createShortcode('.
+			"'elevation gpx='".','.
+			"'".$upload_url."',".
+			"'".$myfile."'".')"
+			onmouseout="leafext_outFunc()">
+			<span class="leafextcopy" id="leafextTooltip">Copy to clipboard</span>
+			<code>[elevation gpx="..."]</code></span>';
+
     $track_table[] = $entry;
   }
 
-  $text = $text.leafext_html_table($track_table);
+  $text = leafext_html_table($track_table);
   return $text;
 }
 

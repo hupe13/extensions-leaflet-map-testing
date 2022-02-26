@@ -1,6 +1,8 @@
 <?php
 function leafext_thickbox($track){
-  echo '<style>#wpadminbar { display:none; }</style>';
+  echo '<style>#wpadminbar { display:none;}
+  html.wp-toolbar {padding-top: 0;}
+  </style>';
   date_default_timezone_set(wp_timezone_string());
   $upload_dir = wp_get_upload_dir();
   $upload_path = $upload_dir['path'];

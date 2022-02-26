@@ -21,6 +21,18 @@ function testleafext_add_page() {
     'manage_options', 'extensions-leaflet-map-testing', 'testleafext_do_page');
 }
 
+function leafext_admin_css() {
+  wp_enqueue_style( 'leafext_admin',
+  plugins_url('css/admin.css',
+		TESTLEAFEXT_PLUGIN_FILE));
+}
+
+function leafext_admin_js() {
+	wp_enqueue_script('leafext_createShortcode_js',
+		plugins_url('js/createShortcode.js',
+		TESTLEAFEXT_PLUGIN_FILE));
+}
+
 // Draw the menu page itself
 function testleafext_do_page() {
 	$track = isset($_GET['track']) ? $_GET['track'] : "";

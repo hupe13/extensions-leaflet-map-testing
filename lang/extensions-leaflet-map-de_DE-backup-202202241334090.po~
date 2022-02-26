@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: extensions-leaflet-map-testing\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-24 13:30+0000\n"
+"PO-Revision-Date: 2022-02-24 13:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: Deutsch\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.8; wp-5.9.1\n"
+"X-Domain: extensions-leaflet-map"
+
+#: admin.php:56
+msgid "Manage Files"
+msgstr ""
+
+#: admin/managefiles.php:53 admin/managefiles1.php:55
+#, php-format
+msgid ""
+"Here you can see all gpx and kml files in subdirectories of uploads "
+"directory.\n"
+"  You can manage these\n"
+"  %s with any (S)FTP-Client,\n"
+"  %s with any File Manager plugin,\n"
+"  %s with any plugin for importing uploaded files to the media library,"
+msgstr ""
+
+#: admin/managefiles.php:60 admin/managefiles1.php:62
+msgid "or direct in the media library."
+msgstr ""
+
+#: admin/managefiles.php:112 admin/managefiles1.php:125
+msgid "Date"
+msgstr ""
+
+#: admin/managefiles.php:113 admin/managefiles1.php:126
+msgid "Name"
+msgstr ""
+
+#: admin/managefiles.php:114 admin/managefiles1.php:127
+msgid "View"
+msgstr ""
+
+#: admin/managefiles.php:115 admin/managefiles1.php:128
+msgid "Edit"
+msgstr ""
+
+#: admin/managefiles.php:116 admin/managefiles1.php:129
+msgid "leaflet Shortcode"
+msgstr ""
+
+#: admin/managefiles.php:117 admin/managefiles1.php:130
+msgid "elevation Shortcode"
+msgstr ""
+
+#. Name of the plugin
+msgid "extensions-leaflet-map-testing"
+msgstr ""
+
+#. Description of the plugin
+msgid "Tests for leaflet-map"
+msgstr ""
+
+#. Author of the plugin
+msgid "hupe13"
+msgstr ""
