@@ -1,1 +1,4 @@
 <?php
+
+define('TESTLEAFEXT_ELEVATION_VERSION',"2.2.3");
+define('TESTLEAFEXT_ELEVATION_URL', TESTLEAFEXT_PLUGIN_URL . '/leaflet-plugins/leaflet-elevation-'.TESTLEAFEXT_ELEVATION_VERSION.'/');

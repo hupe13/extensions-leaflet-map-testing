@@ -3,7 +3,7 @@
  * Plugin Name: extensions-leaflet-map-testing
  * Description: Tests for leaflet-map
  * Maybe candidates for https://wordpress.org/plugins/extensions-leaflet-map/
- * Version: 220226
+ * Version: 220507   
  * Author: hupe13
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-testing
  * Primary Branch: main
@@ -29,8 +29,7 @@ if ( ! function_exists( 'is_plugin_active' ) )
 function leafext_load_textdomain() {
   load_textdomain( 'extensions-leaflet-map', TESTLEAFEXT_PLUGIN_DIR . '/lang/extensions-leaflet-map-de_DE.mo' );
 }
-add_action( 'init', 'leafext_load_textdomain' );
-
+//add_action( 'init', 'leafext_load_textdomain' );
 
 $leafext_active = preg_grep('/extensions-leaflet-map.php/', get_option('active_plugins'));
 if ( count ( $leafext_active ) == 0 ) {
@@ -60,3 +59,4 @@ if (is_admin()) {
 include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-directory.php';
 include_once TESTLEAFEXT_PLUGIN_DIR . '/php/managefiles.php';
 //include_once TESTLEAFEXT_PLUGIN_DIR . '/php/attachment-on-fly.php';
+include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
