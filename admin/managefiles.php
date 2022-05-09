@@ -73,7 +73,7 @@ function leafext_managefiles() {
   echo '<h2>Manage Files</h2>';
   leafext_managefiles_help();
   echo '<h2>Listing ...</h2>';
-  $dir=get_phwquery("dir");
+  $dir = isset($_GET["dir"]) ? $_GET["dir"] : "";
   leafext_file_form($dir);
   if ( $dir != "" ) {
 		leafext_admin_css();
