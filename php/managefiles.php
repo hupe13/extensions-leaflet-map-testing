@@ -4,7 +4,7 @@ function leafext_gpx_content( $content ){
   global $post;
   //
   if ( is_attachment() && 'application/gpx+xml' == get_post_mime_type( $post->ID ) ) {
-    $content = '[leaflet-map fitbounds][leaflet-gpx src="'. $post->guid . '"]';
+    $content = '[leaflet-map fitbounds !scrollwheel !dragging][leaflet-gpx src="'. $post->guid . '"]';
     $gpx_data = leafext_get_gpx_data($post->guid);
     $fields = array();
     $fields[] = array(
@@ -25,7 +25,7 @@ function leafext_gpx_content( $content ){
   }
   //
   if ( is_attachment() && 'application/vnd.google-earth.kml+xml' == get_post_mime_type( $post->ID ) ) {
-    $content = '[leaflet-map fitbounds][leaflet-kml src="'. $post->guid . '"]';
+    $content = '[leaflet-map fitbounds !scrollwheel !dragging][leaflet-kml src="'. $post->guid . '"]';
     $fields = array();
     $fields[] = array(
       'key' => 'url',
@@ -45,11 +45,19 @@ function leafext_get_gpx_data($file) {
   $gpxdata = array();
 	//
 	$gpx = simplexml_load_file($file);
-	$gpxdata['trackname']= $gpx->trk->name;
+  if (isset($gpx->trk->name)){
+	   $gpxdata['trackname']= $gpx->trk->name;
+   } else {
+      $gpxdata['trackname']= "";
+   }
   //$gpx_data['time']= $gpx->metadata->time;
   //if ( $gpx_data['time']== "" )
-  $gpxdata['time']= $gpx->trk->trkseg->trkpt[0]->time;
-  if ( $gpxdata['time']== "" ) $gpxdata['time']= " ";
+  if (isset($gpx->trk->trkseg->trkpt[0]->time)){
+    $gpxdata['time'] = $gpx->trk->trkseg->trkpt[0]->time;
+  } else {
+    $gpxdata['time'] = "";
+  }
+  if ( $gpxdata['time'] == "" ) $gpxdata['time'] = " ";
   return $gpxdata;
 }
 
@@ -96,7 +104,7 @@ function leafext_attachment_fields_to_edit( $form_fields, $post ){
       'label' => __( 'Overview' ),
       'input' => 'html',
       'html'  => "Map",
-      'helps' => do_shortcode('[leaflet-map height=300 width=300 fitbounds][leaflet-gpx src="'.wp_get_attachment_url( $post->ID ).'"]'),
+      'helps' => do_shortcode('[leaflet-map height=300 width=300 !scrollwheel !dragging fitbounds][leaflet-gpx src="'.wp_get_attachment_url( $post->ID ).'"]'),
     );
   }
 
@@ -108,7 +116,7 @@ function leafext_attachment_fields_to_edit( $form_fields, $post ){
       'label' => __( 'Overview' ),
       'input' => 'html',
       'html'  => $trackname,
-      'helps' => do_shortcode('[leaflet-map height=300 width=300 fitbounds][leaflet-kml src="'.wp_get_attachment_url( $post->ID ).'"]'),
+      'helps' => do_shortcode('[leaflet-map height=300 width=300 !scrollwheel !dragging fitbounds][leaflet-kml src="'.wp_get_attachment_url( $post->ID ).'"]'),
     );
   }
 

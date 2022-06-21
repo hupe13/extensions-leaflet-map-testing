@@ -25,7 +25,7 @@ function leafext_thickbox($track){
   echo '<div ><strong>';
   _e( "File size: " );
   echo '</strong> '.size_format(filesize($upload_path.$track)).'</div></div><p>';
-  $content = do_shortcode('[leaflet-map  height=300 width=300 fitbounds][leaflet-'.$type.' src="'. $upload_url . $track .'"]');
+  $content = do_shortcode('[leaflet-map  height=300 width=300 !scrollwheel !dragging fitbounds][leaflet-'.$type.' src="'. $upload_url . $track .'"]{name}[/leaflet-'.$type.']');
 	echo $content;
   echo '</p></div>';
 

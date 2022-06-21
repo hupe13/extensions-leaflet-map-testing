@@ -11,23 +11,41 @@ if ( $track == "") {
 	leafext_thickbox($track);
 }
 
-function leafext_all_subdirs() {
+//http://www.ashleysheridan.co.uk/blog/Speed+Testing+the+SPL+Iterators+for+Fetching+Files
+function leafext_list_allfiles($dir,$pattern) {
 	$upload_dir = wp_get_upload_dir();
 	$upload_path = $upload_dir['path'];
-
-	$iterator = new RecursiveIteratorIterator(
-		new RecursiveDirectoryIterator($upload_path)
-	);
-	$track_files = new RegexIterator($iterator, '/\.(gpx|kml)$/'); // Dateiendung ".gpx" und ".kml"
-	//var_dump($track_files);
-	$gpx_dirs = array();
-	foreach ($track_files as $file) {
-		$myfile = str_replace($upload_path,'',$file->getPathname());
-		$entry = dirname($myfile);
-		if (!in_array($entry,$gpx_dirs)) $gpx_dirs[] = $entry;
+	$files = array();
+	$fh = opendir($dir);
+	while (($file = readdir($fh)) !== false) {
+		if ($file == '.' || $file == '..') continue;
+		$filepath = $dir . '/' . $file;
+		if (is_dir($filepath) ) {
+			$files = array_merge($files, leafext_list_allfiles($filepath, $pattern) );
+		} else {
+			//if (preg_match($pattern, $file) ) array_push($files, str_replace($upload_path,'',$filepath));
+			if (preg_match($pattern, $file) ) array_push($files, $filepath);
+		}
 	}
-	asort($gpx_dirs);
-	return $gpx_dirs;
+	closedir($fh);
+	return $files;
+}
+
+function leafext_list_dirs($base_dir) {
+	$upload_dir = wp_get_upload_dir();
+	$upload_path = $upload_dir['path'];
+	$directories = array();
+	foreach(scandir($base_dir) as $file) {
+		if($file == '.' || $file == '..') continue;
+		$dir = $base_dir.'/'.$file;
+		if(is_dir($dir)) {
+			if (count(glob($dir.'/*.{gpx,kml}', GLOB_BRACE)) > 0 ) {
+				$directories [] = str_replace($upload_path,'',$dir);
+			}
+			$directories = array_merge($directories, leafext_list_dirs($dir));
+		}
+	}
+	return $directories;
 }
 
 function leafext_file_form($verz) {
@@ -36,7 +54,12 @@ function leafext_file_form($verz) {
 	echo '<input type="hidden" id="tab" name="tab" value="manage_files">';
 	echo '<select name="dir">';
 	if ($verz == "" ) echo '<option selected  value="">  </option>';
-	foreach (leafext_all_subdirs() as $dir) {
+
+	$upload_dir = wp_get_upload_dir();
+	$upload_path = $upload_dir['path'];
+	//foreach (leafext_ele_subdirs() as $dir) {
+	//foreach (leafext_list_allfiles( $upload_path, '/\.gpx/' ) as $dir) {
+	foreach (leafext_list_dirs($upload_path) as $dir) {
 		if ($verz == $dir) {
 			echo '<option selected ';
 		} else {
@@ -54,18 +77,18 @@ function leafext_managefiles_help() {
   You can manage these
   %s with any (S)FTP-Client,
   %s with any File Manager plugin,
-  %s with any plugin for importing uploaded files to the media library,','extensions-leaflet-map'),
+  %s with any plugin for importing uploaded files to the Media Library,','extensions-leaflet-map'),
   '<ul><li> - ','</li><li> - ','</li><li> - ','</li><li> - ').
   '</li><li> - '.
-  __('or direct in the media library.','extensions-leaflet-map').
+  __('or direct in the Media Library.','extensions-leaflet-map').
   '</li>
-  <li> - If they are in the media library then here appears an edit link. </li>
+  <li> - If they are in the Media Library then here appears an edit link. </li>
   </ul>';
 	echo "<h3>To Do</h3>
-	<ul><li>
-	Query allow gpx and kml (and maybe other) upload to media library?
-	<li>Target directory is upload_dir/gpx/ or upload_dir/kml/ currently.
-	<li>Okay or not okay? Or should they custom paths?
+	<ul>
+	<li> Query allow gpx and kml (and maybe other) upload to Media Library?
+	<li> Permissions (only Media Library)
+	<li>
   </ul>";
 }
 
@@ -74,12 +97,24 @@ function leafext_managefiles() {
   leafext_managefiles_help();
   echo '<h2>Listing ...</h2>';
   $dir = isset($_GET["dir"]) ? $_GET["dir"] : "";
+	$all = isset($_GET["all"]) ? $_GET["all"] : "";
   leafext_file_form($dir);
-  if ( $dir != "" ) {
+
+	echo '<h2>All Files</h2>';
+	echo '
+	<form action="'.admin_url( 'admin.php' ).'">
+	<input type="hidden" name="page" value="'.TESTLEAFEXT_PLUGIN_SETTINGS.'">
+	<input type="hidden" name="tab" value="manage_files">
+	<input type="number" min="10" name="all" value="10" size="4">
+	<input type="submit" value="Submit">
+	</form>';
+
+  if ( $dir != "" || $all != "" ) {
 		leafext_admin_css();
 		leafext_admin_js();
+	}
+	if ( $dir != "" ) {
     echo '<h3>Directory '.$dir.'</h3>';
-
 		echo '<div>Shortcode for showing all files of this directory on a map:
 			<span class="leafexttooltip" href="#" onclick="leafext_createShortcode('.
 			"'leaflet-dir  src='".','.
@@ -92,7 +127,36 @@ function leafext_managefiles() {
 		echo '<p>';
     echo leafext_list_files($dir);
 		echo '</p>';
-  }
+  } else if ($all != "") {
+		echo '<p>';
+		$upload_dir = wp_get_upload_dir();
+		$upload_path = $upload_dir['path'];
+		$files = leafext_list_allfiles($upload_path.'/','/\.(?:gpx|kml)(?:\?\S+)?$/i');
+		$pageurl = admin_url( 'admin.php' ).'?page='.TESTLEAFEXT_PLUGIN_SETTINGS.'&tab=manage_files&all='.$all.'&nr=%_%';
+		$pages = intdiv(count($files), $all) + 1;
+		$pagenr = max(1,isset($_GET["nr"]) ? $_GET["nr"] : "1");
+		echo paginate_links( array(
+        'base'               => $pageurl, // http://example.com/all_posts.php%_% : %_% is replaced by format (below).
+        'format'             => '%#%', // ?page=%#% : %#% is replaced by the page number.
+        'total'              => $pages,
+        'current'            => $pagenr,
+        'aria_current'       => 'page',
+        'show_all'           => false,
+        'prev_next'          => true,
+        'prev_text'          => __( '&laquo; Previous' ),
+        'next_text'          => __( 'Next &raquo;' ),
+        'end_size'           => 1,
+        'mid_size'           => 2,
+        'type'               => 'plain',
+        'add_args'           => array(), // Array of query args to add.
+        'add_fragment'       => '',
+        'before_page_number' => '',
+        'after_page_number'  => '',
+    ));
+		$pagefiles = array_chunk($files, $all);
+		echo leafext_files_table($pagefiles[$pagenr - 1]);
+		echo '</p>';
+	}
 }
 
 function leafext_list_files($dir) {
@@ -104,7 +168,10 @@ function leafext_list_files($dir) {
   $upload_url = $upload_dir['url'];
 
 	$track_files = glob($upload_path.'/'.$dir.'/*.{gpx,kml}', GLOB_BRACE);
+	return leafext_files_table($track_files);
+}
 
+function leafext_files_table($track_files) {
 	//var_dump($track_files);
   date_default_timezone_set(wp_timezone_string());
 
@@ -118,6 +185,9 @@ function leafext_list_files($dir) {
   $track_table[] = $entry;
 
   foreach ($track_files as $file) {
+		$upload_dir = wp_get_upload_dir();
+	  $upload_path = $upload_dir['path'];
+	  $upload_url = $upload_dir['url'];
     $entry = array();
 		$myfile = str_replace($upload_path.'/','',$file);
     global $wpdb;

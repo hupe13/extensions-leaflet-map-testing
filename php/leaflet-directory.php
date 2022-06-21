@@ -118,7 +118,7 @@ function leafext_directory_function($atts) {
           "file" => $file,
         );
         //
-        $shortcode = $shortcode.'[leaflet-marker lat='.$point['lat'].' lng='.$point['lon'].']'.$point['name'].'[/leaflet-marker]';
+        $shortcode = $shortcode.'[*leaflet-marker lat='.$point['lat'].' lng='.$point['lon'].']'.$point['name'].'[/leaflet-marker]';
       }
       $farbe=leafext_color_name_to_hex($farben[$count % count($farben)]);
       $count=$count+1;

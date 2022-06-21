@@ -3,7 +3,7 @@
  * Plugin Name: extensions-leaflet-map-testing
  * Description: Tests for leaflet-map
  * Maybe candidates for https://wordpress.org/plugins/extensions-leaflet-map/
- * Version: 220509   
+ * Version: 220621
  * Author: hupe13
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-testing
  * Primary Branch: main
