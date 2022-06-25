@@ -106,6 +106,13 @@ function leafext_directory_function($atts) {
     $shortcode='';
 
     foreach ( $files as $file) {
+      $farbe=leafext_color_name_to_hex($farben[$count % count($farben)]);
+      $count=$count+1;
+      if ($dirpath != "" ) $file = str_replace($dirpath.'/',"",$file);
+      $shortcode = $shortcode.'['.$command.' src="'.$url.'/'.$file.'" color="'.$farbe.'"]{name}[/'.$command.']';
+    }
+    $shortcode = $shortcode.'[hidemarkers]';
+    foreach ( $files as $file) {
       if ( $command == "leaflet-gpx" ) {
         $gpx = simplexml_load_file($file);
         $trackname= $gpx->trk->name;
@@ -118,12 +125,8 @@ function leafext_directory_function($atts) {
           "file" => $file,
         );
         //
-        $shortcode = $shortcode.'[*leaflet-marker lat='.$point['lat'].' lng='.$point['lon'].']'.$point['name'].'[/leaflet-marker]';
+        $shortcode = $shortcode.'[leaflet-marker lat='.$point['lat'].' lng='.$point['lon'].']'.$point['name'].'[/leaflet-marker]';
       }
-      $farbe=leafext_color_name_to_hex($farben[$count % count($farben)]);
-      $count=$count+1;
-      if ($dirpath != "" ) $file = str_replace($dirpath.'/',"",$file);
-      $shortcode = $shortcode.'['.$command.' src="'.$url.'/'.$file.'" color="'.$farbe.'"]{name}[/'.$command.']';
     }
     $text=do_shortcode($shortcode);
     //$text=$shortcode;
@@ -145,4 +148,4 @@ function leafext_directory_function($atts) {
     return $text;
   }
 }
-add_shortcode('leaflet-dir', 'leafext_directory_function' );
+if ( is_admin() == false ) add_shortcode('leaflet-dir', 'leafext_directory_function' );

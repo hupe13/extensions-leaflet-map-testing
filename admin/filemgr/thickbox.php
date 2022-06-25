@@ -1,4 +1,11 @@
 <?php
+/**
+ * thickbox
+ * extensions-leaflet-map
+ */
+// Direktzugriff auf diese Datei verhindern:
+defined( 'ABSPATH' ) or die();
+
 function leafext_thickbox($track){
   echo '<style>#wpadminbar { display:none;}
   html.wp-toolbar {padding-top: 0;}
@@ -8,8 +15,9 @@ function leafext_thickbox($track){
   $upload_path = $upload_dir['path'];
   $upload_url = $upload_dir['url'];
   $path_parts = pathinfo($track);
-  $type = $path_parts['extension'];
-  if ( 'kml' != $type && 'gpx' != $type ) return;
+  $type = strtolower($path_parts['extension']);
+  if ( 'kml' != $type && 'gpx' != $type && 'geojson' != $type && 'json' != $type) return;
+  if ($type == "json") $type="geojson";
   //
   echo '<div class="attachment-info"><div class="details"><h2>';
   _e( "Details" );
@@ -29,14 +37,17 @@ function leafext_thickbox($track){
 	echo $content;
   echo '</p></div>';
 
+  $data = "";
   if ( 'gpx' == $type ) $data = leafext_get_gpx_data($upload_path.$track);
   if ( 'kml' == $type ) $data = leafext_get_kml_data($upload_path.$track);
-  $form_fields = array();
-  foreach ( $data as $key => $value ) {
-    $form_fields[$key] = array(
-      'key' => __( $key ),
-      'value'  => $value,
-    );
+  if (is_array($data)) {
+    $form_fields = array();
+    foreach ( $data as $key => $value ) {
+      $form_fields[$key] = array(
+        'key' => __( $key ),
+        'value'  => $value,
+      );
+    }
+    echo leafext_html_table($form_fields);
   }
-  echo leafext_html_table($form_fields);
 }

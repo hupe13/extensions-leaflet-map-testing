@@ -1,7 +1,7 @@
 <?php
 
 //include TESTLEAFEXT_PLUGIN_DIR . '/admin/.php';
-include TESTLEAFEXT_PLUGIN_DIR . '/admin/uploader.php';
+include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/uploader.php';
 //include TESTLEAFEXT_PLUGIN_DIR . '/admin/managefiles_functions.php';
 
 // Admin Menu
@@ -20,18 +20,8 @@ function testleafext_add_page() {
 	//Add Submenu
 	add_submenu_page( 'leaflet-map', 'Extensions Test Options', 'Extensions Tests',
     'manage_options', 'extensions-leaflet-map-testing', 'testleafext_do_page');
-}
-
-function leafext_admin_css() {
-  wp_enqueue_style( 'leafext_admin',
-  plugins_url('css/admin.css',
-		TESTLEAFEXT_PLUGIN_FILE));
-}
-
-function leafext_admin_js() {
-	wp_enqueue_script('leafext_createShortcode_js',
-		plugins_url('js/createShortcode.js',
-		TESTLEAFEXT_PLUGIN_FILE));
+	add_submenu_page( 'leaflet-shortcode-helper', 'Extensions Test Autor', 'Extensions Tests Autor',
+	  'edit_posts', 'extensions-leaflet-map-testing-autor', 'testleafext_autor_do_page');
 }
 
 // Draw the menu page itself
@@ -76,11 +66,15 @@ function testleafext_do_page() {
 		if( $active_tab == 'help' ) {
 			include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
 		} else if ( $active_tab == 'manage_files') {
-			include TESTLEAFEXT_PLUGIN_DIR . '/admin/managefiles.php';
+			include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/main.php';
 		}
 
 		echo '</div>';
 	} else {
-		include TESTLEAFEXT_PLUGIN_DIR . '/admin/managefiles.php';
+		include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/main.php';
 	}
+}
+
+function testleafext_autor_do_page() {
+	include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/main.php';
 }

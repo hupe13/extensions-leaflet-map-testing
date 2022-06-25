@@ -1,6 +1,13 @@
 <?php
+/**
+ * managefiles functions viewing pages in media library
+ * extensions-leaflet-map
+ */
+// Direktzugriff auf diese Datei verhindern:
+defined( 'ABSPATH' ) or die();
 
-function leafext_gpx_content( $content ){
+//Display content from Media Library in Permalink (Attachmentseite)
+function leafext_media_library_content( $content ){
   global $post;
   //
   if ( is_attachment() && 'application/gpx+xml' == get_post_mime_type( $post->ID ) ) {
@@ -37,51 +44,27 @@ function leafext_gpx_content( $content ){
     );
     $content = $content . leafext_html_table($fields);
   }
+  //
+  if ( is_attachment() && 'application/geo+json' == get_post_mime_type( $post->ID ) ) {
+    $content = '[leaflet-map fitbounds !scrollwheel !dragging][leaflet-geojson src="'. $post->guid . '"]';
+    $fields = array();
+    $fields[] = array(
+      'key' => 'url',
+      'value' => $post->guid,
+    );
+    $fields[] = array(
+      'key' => 'filename',
+      'value' => basename($post->guid),
+    );
+    $content = $content . leafext_html_table($fields);
+  }
+  //
   return $content;
 }
-add_filter( 'the_content', 'leafext_gpx_content' );
+add_filter( 'the_content', 'leafext_media_library_content' );
 
-function leafext_get_gpx_data($file) {
-  $gpxdata = array();
-	//
-	$gpx = simplexml_load_file($file);
-  if (isset($gpx->trk->name)){
-	   $gpxdata['trackname']= $gpx->trk->name;
-   } else {
-      $gpxdata['trackname']= "";
-   }
-  //$gpx_data['time']= $gpx->metadata->time;
-  //if ( $gpx_data['time']== "" )
-  if (isset($gpx->trk->trkseg->trkpt[0]->time)){
-    $gpxdata['time'] = $gpx->trk->trkseg->trkpt[0]->time;
-  } else {
-    $gpxdata['time'] = "";
-  }
-  if ( $gpxdata['time'] == "" ) $gpxdata['time'] = " ";
-  return $gpxdata;
-}
-
-function leafext_get_kml_data($track) {
-  $kmldata=array();
-  $kml=simplexml_load_file($track,"SimpleXMLElement",LIBXML_NOCDATA);
-  $kmldata['trackname'] = $kml->Document->name;
-  return $kmldata;
-}
-
-//https://gist.github.com/jasondavis/6ea170677014aa65aa2ba25269ae16dc
-function leafext_html_table($data = array())
-{
-    $rows = array();
-    foreach ($data as $row) {
-        $cells = array();
-        foreach ($row as $cell) {
-            $cells[] = "<td>{$cell}</td>";
-        }
-        $rows[] = "<tr>" . implode('', $cells) . "</tr>";
-    }
-    return "<table border='1'>" . implode('', $rows) . "</table>";
-}
-
+//Display on edit page in Media Library
+//Klappt nicht im Grid Mode, da modal -> Ansatz: map.invalidateSize()?
 function leafext_attachment_fields_to_edit( $form_fields, $post ){
   libxml_use_internal_errors(true);
   // get post mime type
@@ -109,17 +92,70 @@ function leafext_attachment_fields_to_edit( $form_fields, $post ){
   }
 
   if ( 'application/vnd.google-earth.kml+xml' == $type ){
-    $kml=simplexml_load_file($attachment_path,"SimpleXMLElement",LIBXML_NOCDATA);
-    $trackname = $kml->Document->name;
+    $name = leafext_get_kml_data($attachment_path)['name'];
     $form_fields['overview'] = array(
-      'value' => $trackname,
+      'value' => $name,
       'label' => __( 'Overview' ),
       'input' => 'html',
-      'html'  => $trackname,
+      'html'  => $name,
       'helps' => do_shortcode('[leaflet-map height=300 width=300 !scrollwheel !dragging fitbounds][leaflet-kml src="'.wp_get_attachment_url( $post->ID ).'"]'),
     );
   }
 
+  if ( 'application/geo+json' == $type ){
+    $form_fields['overview'] = array(
+      'value' => basename($attachment_path),
+      'label' => __( 'Overview' ),
+      'input' => 'html',
+      'html'  => 'Map',
+      'helps' => do_shortcode('[leaflet-map height=300 width=300 !scrollwheel !dragging fitbounds][leaflet-geojson src="'.wp_get_attachment_url( $post->ID ).'"]'),
+    );
+  }
+
+  // application/vnd.garmin.tcx+xml .tcx
+
   return $form_fields;
 }
 add_filter( 'attachment_fields_to_edit', 'leafext_attachment_fields_to_edit', 10, 2 );
+
+//Get Name and Date from gpx track
+function leafext_get_gpx_data($file) {
+  $gpxdata = array();
+	$gpx = simplexml_load_file($file);
+  if (isset($gpx->trk->name)){
+	   $gpxdata['trackname']= $gpx->trk->name;
+   } else {
+      $gpxdata['trackname']= " ";
+   }
+  if (isset($gpx->trk->trkseg->trkpt[0]->time)){
+    $gpxdata['time'] = $gpx->trk->trkseg->trkpt[0]->time;
+  } else {
+    $gpxdata['time'] = " ";
+  }
+  return $gpxdata;
+}
+
+//Get Name from kml
+function leafext_get_kml_data($file) {
+  $kmldata=array();
+  $kml=simplexml_load_file($file,"SimpleXMLElement",LIBXML_NOCDATA);
+  if (isset($kml->Document->name)) {
+    $kmldata['name'] = $kml->Document->name;
+  } else {
+    $kmldata['name'] = " ";
+  }
+  return $kmldata;
+}
+
+//Display array as table
+function leafext_html_table($data = array()) {
+  $rows = array();
+  foreach ($data as $row) {
+    $cells = array();
+    foreach ($row as $cell) {
+      $cells[] = "<td>{$cell}</td>";
+    }
+    $rows[] = "<tr>" . implode('', $cells) . "</tr>";
+  }
+  return "<table border='1'>" . implode('', $rows) . "</table>";
+}

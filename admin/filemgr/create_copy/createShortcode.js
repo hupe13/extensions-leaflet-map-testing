@@ -1,3 +1,7 @@
+//
+// extensions-leaflet-map
+// Copy Shortcode to clipboard
+//
 function leafext_createShortcode(shortcode,uploadurl,file) {
   evt = window.event;
   var target = evt.currentTarget.querySelector(".leafextcopy");
