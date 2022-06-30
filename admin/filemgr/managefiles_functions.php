@@ -72,7 +72,7 @@ function leafext_list_paginate($extensions,$all) {
 			'after_page_number'  => '',
 		));
 	}
-	echo '</p><<p>';
+	echo '</p><p>';
 	echo leafext_files_table($pagefiles[$pagenr - 1]);
 	echo '</p>';
 }
