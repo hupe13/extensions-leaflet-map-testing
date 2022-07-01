@@ -101,7 +101,7 @@ function leafext_form_filemgr($field) {
 	$settings = leafext_filemgr_settings();
 	$setting = $settings[$field];
 	if ( $option['desc'] != "" ) echo '<p>'.$option['desc'].'</p>';
-	if (!current_user_can('manage-options')) {
+	if (!current_user_can('manage_options')) {
 		$disabled = " disabled ";
 	} else {
 		$disabled = "";
