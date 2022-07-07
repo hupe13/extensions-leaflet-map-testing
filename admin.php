@@ -1,8 +1,6 @@
 <?php
 
 //include TESTLEAFEXT_PLUGIN_DIR . '/admin/.php';
-include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/uploader.php';
-include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/filemgr.php';
 include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/main.php';
 
 // Admin Menu
@@ -13,6 +11,18 @@ add_action('admin_menu', 'testleafext_add_page', 99);
 // Init plugin options to white list our options
 function testleafext_init(){
 	register_setting( 'testleafext_options', 'testleafext_maps', 'testleafext_validate' );
+}
+
+// Add menu page
+function testleafext_add_page() {
+	add_submenu_page( 'leaflet-map', 'Extensions Test Options', 'Extensions Tests',
+    'manage_options', 'extensions-leaflet-map-testing', 'testleafext_do_page');
+
+	$options = leafext_filemgr_settings();
+	if ($options['nonadmin'] == true) {
+	add_submenu_page( 'leaflet-shortcode-helper', 'Extensions Test Autor', 'Extensions Tests Autor',
+	  'edit_posts', 'extensions-leaflet-map-testing-autor', 'leafext_filemgr_autor_page');
+	}
 }
 
 // Draw the menu page itself
@@ -57,4 +67,8 @@ function testleafext_do_page() {
 	}
 
 	echo '</div>';
+}
+
+function leafext_filemgr_autor_page() {
+	leafext_managefiles();
 }

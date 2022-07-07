@@ -2,161 +2,227 @@
 // Direktzugriff auf diese Datei verhindern:
 defined( 'ABSPATH' ) or die();
 
-//Parameter and Values
-function leafext_filemgr_params($typ = array()) {
-	$params = array(
-		array(
-			'param' => 'gpx',
-			'shortdesc' => __('Allow gpx.',"extensions-leaflet-map"),
-			'desc' => '',
-			'default' => false,
-			'values' => 1,
-		),
-		array(
-			'param' => 'gpxupload',
-			'shortdesc' => __('Allow gpx upload to /upload_dir()/gpx/.',"extensions-leaflet-map"),
-			'desc' => 'Das kann von Interesse sein, wenn du wp-gpx-maps verwendet hast.',
-			'default' => false,
-			'values' => 1,
-		),
-		array(
-			'param' => 'kml',
-			'shortdesc' => __('Allow kml.',"extensions-leaflet-map"),
-			'desc' => '',
-			'default' => false,
-			'values' => 1,
-		),
-		array(
-			'param' => 'geojson',
-			'shortdesc' => __('Allow geojson / json.',"extensions-leaflet-map"),
-			'desc' => '',
-			'default' => false,
-			'values' => 1,
-		),
-		array(
-			'param' => 'tcx',
-			'shortdesc' => __('Allow tcx.',"extensions-leaflet-map"),
-			'desc' => '',
-			'default' => false,
-			'values' => 1,
-		),
-		array(
-			'param' => 'nonadmin',
-			'shortdesc' => __('Allow non admin.',"extensions-leaflet-map"),
-			'desc' => 'Erlaube allen Nutzern, die auf das Backend Zugriff haben, die Dateien zu sehen. Eine Berechtigungsprüfung (<code>current_user_can( "edit_post / read", this_post)</code>) findet nur statt, wenn die Dateien in der Mediathek registriert sind.',
-			'default' => false,
-			'values' => 1,
-		),
-	);
-	return $params;
+//for listing files
+
+function leafext_file_listing_init(){
+	register_setting( 'leafext_file_listing', 'leafext_listing' );
+	add_settings_section( 'leafext_listing_settings', '', '', 'leafext_file_listing' );
+	add_settings_field("leafext_listing_types", "Zeige Dateien vom Typ", 'leafext_listing_form_types','leafext_file_listing','leafext_listing_settings'); //type
+	add_settings_field("leafext_listing_all", "Zeige alle Dateien", 'leafext_listing_form_all','leafext_file_listing','leafext_listing_settings'); //all
+	add_settings_field("leafext_listing_dirs", "bzw. im Verzeichnis", 'leafext_listing_form_dirs','leafext_file_listing','leafext_listing_settings'); //verz, count,
+	add_settings_field("leafext_listing_files", "und zeige gleichzeitig", 'leafext_listing_form_files','leafext_file_listing','leafext_listing_settings'); //anzahl
+	add_settings_field("leafext_listing_default", "Speichere Abfrage", 'leafext_listing_form_default','leafext_file_listing','leafext_listing_settings'); //anzahl
 }
+add_action('admin_init', 'leafext_file_listing_init');
 
-// Add menu page
-function testleafext_add_page() {
-	//Add Submenu
-	add_submenu_page( 'leaflet-map', 'Extensions Test Options', 'Extensions Tests',
-    'manage_options', 'extensions-leaflet-map-testing', 'testleafext_do_page');
-
-	$options = leafext_filemgr_settings();
-	if ($options['nonadmin'] == true) {
-	add_submenu_page( 'leaflet-shortcode-helper', 'Extensions Test Autor', 'Extensions Tests Autor',
-	  'edit_posts', 'extensions-leaflet-map-testing-autor', 'leafext_filemgr_autor_page');
-	}
-}
-
-// init settings
-
-function leafext_filemgr_init(){
-	register_setting( 'leafext_settings_filemgr', 'leafext_filemgr', 'leafext_validate_filemgr_options' );
-	add_settings_section( 'filemgr_settings', __('File Manager','extensions-leaflet-map'), 'leafext_managefiles_help', 'leafext_settings_filemgr' );
-	$fields = leafext_filemgr_params();
-	foreach($fields as $field) {
-		add_settings_field("leafext_filemgr[".$field['param']."]", $field['shortdesc'], 'leafext_form_filemgr','leafext_settings_filemgr', 'filemgr_settings', $field['param']);
-	}
-}
-add_action('admin_init', 'leafext_filemgr_init');
-
-function leafext_validate_filemgr_options($options){
-	//var_dump($_POST,$input);
-	if (isset($_POST['submit'])) {
-		$defaults=array();
-		$params = leafext_filemgr_params();
-		foreach($params as $param) {
-			$defaults[$param['param']] = $param['default'];
-		}
-		$params = get_option('leafext_filemgr', $defaults);
-		foreach ($options as $key => $value) {
-			$params[$key] = $value;
-		}
-		return $params;
-	}
-	if (isset($_POST['delete'])) delete_option('leafext_filemgr');
-	return false;
-}
-
-function leafext_form_filemgr($field) {
-	$options = leafext_filemgr_params();
-	//var_dump($options); wp_die();
-	$option = leafext_array_find2($field, $options);
-	$settings = leafext_filemgr_settings();
-	$setting = $settings[$field];
-	if ( $option['desc'] != "" ) echo '<p>'.$option['desc'].'</p>';
-	if (!current_user_can('manage_options')) {
-		$disabled = " disabled ";
+function leafext_listing_form_types() {
+	if (count($_POST) != 0) {
+		$type =	isset($_POST["type"]) ? $_POST["type"] : "";
+	} else if ( isset($_GET["type"] ) ) {
+		$type = $_GET["type"];
 	} else {
-		$disabled = "";
-	}
-
-	if (!is_array($option['values'])) {
-		if ($setting != $option['default'] ) {
-			//var_dump($setting,$option['default']);
-			echo __("Plugins Default", "extensions-leaflet-map").': ';
-			echo $option['default'] ? "true" : "false";
-			echo '<br>';
+		$stored = get_option('leafext_file_listing_'.get_current_user_id());
+		if (is_array($stored)) {
+			$type = $stored['type'];
+		} else {
+			$type = array ("gpx");
 		}
-		echo '<input '.$disabled.' type="radio" name="leafext_filemgr['.$option['param'].']" value="1" ';
-		echo $setting ? 'checked' : '' ;
-		echo '> true &nbsp;&nbsp; ';
-		echo '<input '.$disabled.' type="radio" name="leafext_filemgr['.$option['param'].']" value="0" ';
-		echo (!$setting) ? 'checked' : '' ;
-		echo '> false ';
+	}
+	$types = array ("gpx","kml","geojson","json","tcx");
+
+	foreach ( $types as $typ) {
+		$checked = in_array($typ, $type) ? " checked " : "";
+		echo ' <input type="checkbox" name="type[]" value="'.$typ.'" id="'.$typ.'" '.$checked.'>';
+		echo '<label for="'.$typ.'" >'.$typ.' </label>';
 	}
 }
 
-function leafext_filemgr_settings() {
-	$defaults=array();
-	$params = leafext_filemgr_params();
-	foreach($params as $param) {
-		$defaults[$param['param']] = $param['default'];
+function leafext_listing_form_dirs() {
+	if (count($_POST) != 0) {
+		$verz =	isset($_POST["verz"]) ? $_POST["verz"] : (isset($_POST["dir"]) ? $_POST["dir"] : "");
+		$count = isset($_POST["count"]) ? $_POST["count"] : "5";
+		$type =	isset($_POST["type"]) ? $_POST["type"] : "";
+		$all =	isset($_POST["all"]) ? $_POST["all"] : "";
+	} else if (count($_GET) > 2) {  //mehr als page und tab
+		$verz =	isset($_GET["verz"]) ? $_GET["verz"] : (isset($_GET["dir"]) ? $_GET["dir"] : "");
+		$count = isset($_GET["count"]) ? $_GET["count"] : "5";
+		$type =	isset($_GET["type"]) ? $_GET["type"] : "";
+		$all =	isset($_GET["all"]) ? $_GET["all"] : "";
+	} else {
+		$stored = get_option('leafext_file_listing_'.get_current_user_id());
+		if (is_array($stored)) {
+			$verz = $stored['dir'];
+			$count = $stored['count'];
+			$type = $stored['type'];
+			$all = $stored['all'];
+		} else {
+			$verz = "";
+			$count = "5";
+			$type = array("gpx");
+			$all = "";
+		}
 	}
-	$options = shortcode_atts($defaults, get_option('leafext_filemgr'));
-	//var_dump($options); wp_die();
-	return $options;
+
+	$extensions = is_array($type) ? '{'.implode(",", $type).'}' : '{gpx,kml,geojson,json,tcx}';
+
+	$upload_dir = wp_get_upload_dir();
+	$upload_path = $upload_dir['path'];
+	$disabled = ($all == "on") ? "disabled" : "";
+
+	echo 'mit mindestens <input '.$disabled.' type="number" min="2" name="count" id="leafext_dirListnr" value="'.$count.'" size="3"> Dateien: ';
+	echo '<select name="dir" id="leafext_dirList" '.$disabled.'>';
+	if ($verz == "" ) echo '<option selected value="">Please select ...</option>';
+	foreach (leafext_list_dirs($upload_path,$extensions,$count) as $dir) {
+		if ($verz == $dir) {
+			echo '<option selected ';
+		} else {
+			echo '<option ';
+		}
+		echo 'value="'.$dir.'">'.$dir.'</option>';
+	}
+	echo '</select>';
+	echo '<p>Wenn du die Zahl änderst, sende das Formular ab, um die gewünschten Verzeichnisse zu erhalten.</p>';
+
 }
 
-function leafext_managefiles_help() {
-	echo sprintf(__('Here you can see all gpx and kml files in subdirectories of uploads directory.
-	You can manage these
-	%s with any (S)FTP-Client,
-	%s with any File Manager plugin,
-	%s with any plugin for importing uploaded files to the Media Library,','extensions-leaflet-map'),
-	'<ul style="list-style: disc;">
-	<li style="margin-left: 1.5em;"> ',
-	'</li><li style="margin-left: 1.5em;"> ',
-	'</li><li style="margin-left: 1.5em;"> ',
-	'</li><li style="margin-left: 1.5em;"> ').
-	'</li><li style="margin-left: 1.5em;"> '.
-	__('direct in the Media Library.','extensions-leaflet-map').
-	'</li>
-	<li style="margin-left: 1.5em;"> or in your own way.</li>
-	</ul>';
-	echo '<h3>To Do</h3>
-	<ul style="list-style: disc;">
-  <li style="margin-left: 1.5em;"> Select ext to view?
-	<li style="margin-left: 1.5em;"> Cleanup and Translation
-	</ul>';
+function leafext_listing_form_all() {
+	?>
+	<script>
+	function leafext_EnableDisableDirListing(leafext_filesall) {
+		var leafext_dirList = document.getElementById("leafext_dirList");
+		var leafext_dirListnr = document.getElementById("leafext_dirListnr");
+		if (leafext_filesall.checked) {
+			leafext_dirList.setAttribute('disabled', "disabled");
+			leafext_dirListnr.setAttribute('disabled', true);
+		} else {
+			leafext_dirList.removeAttribute('disabled');
+			leafext_dirListnr.removeAttribute('disabled');
+		}
+	}
+	</script>
+	<?php
+	if (count($_POST) != 0) {
+		$all = isset($_POST["all"]) ? $_POST["all"] : "";
+	} else if (isset($_GET["all"])) {
+		$all = $_GET["all"];
+	} else {
+		$stored = get_option('leafext_file_listing_'.get_current_user_id());
+		if (is_array($stored)) {
+			$all = $stored['all'];
+		} else {
+			$all = "";
+		}
+	}
+	$checked = ($all == "on") ? "checked" : "";
+	echo '<input type="checkbox" '.$checked.' name="all" id="leafext_filesall" onchange="leafext_EnableDisableDirListing(this)">';
 }
 
-function leafext_filemgr_autor_page() {
-	leafext_managefiles();
+function leafext_listing_form_files() {
+	if (count($_POST) != 0) {
+		$anzahl = isset($_POST["anzahl"]) ? $_POST["anzahl"] : "10";
+	} else if (isset($_GET["anzahl"])) {
+		$anzahl = $_GET["anzahl"];
+	} else {
+		$stored = get_option('leafext_file_listing_'.get_current_user_id());
+		if (is_array($stored)) {
+			$anzahl = $stored['anzahl'];
+		} else {
+			$anzahl = "10";
+		}
+	}
+	echo '<input type="number" min="1" name="anzahl" value="'.$anzahl.'" size="4"> Einträge';
+}
+
+function leafext_listing_form_default() {
+	echo '<input type="checkbox" name="store" id="leafext_store">';
+}
+
+function leafext_managefiles() {
+
+	$page = isset($_GET['page']) ? $_GET['page'] : "";
+	$tab = isset($_GET['tab']) ? $_GET['tab'] : "";
+	$track = isset($_GET['track']) ? $_GET['track'] : "";
+
+	if ( $track != "") {
+		include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/thickbox.php';
+		leafext_thickbox($track);
+	} else {
+		// echo '<pre>';
+		// if (isset($_POST)) var_dump($_POST);
+		// if (isset($_GET)) var_dump($_GET);
+		// echo '</pre>';
+
+		if (count($_POST) != 0) {
+			if(wp_verify_nonce($_REQUEST['leafext_file_listing'], 'leafext_file_listing')){
+				//echo "valid" ;   // Nonce is matched and valid. do whatever you want now.
+			} else {
+				echo "invalid" ; wp_die();
+			}
+		}
+
+		echo '<h2>Manage Files</h2>';
+
+		if (count($_POST) != 0) {
+			$dir = isset($_POST["dir"]) ? $_POST["dir"] : "";
+			$all = isset($_POST['all']) ? $_POST['all'] : '';
+			$type =	isset($_POST["type"]) ? $_POST["type"] : "";
+			$anzahl = isset($_POST["anzahl"]) ? $_POST["anzahl"] : "10";
+			$store = isset($_POST["store"]) ? $_POST["store"] : "";
+			if ($store == "on") {
+				$defaults = array();
+				$defaults["type"]   = isset($_POST["type"])   ? $_POST["type"]   : array("gpx");
+				$defaults["all"]    = isset($_POST["all"])    ? $_POST["all"]    : "";
+				$defaults["count"]  = isset($_POST["count"])  ? $_POST["count"]  : "5";
+				$defaults["dir"]    = isset($_POST["dir"])    ? $_POST["dir"]    : "";
+				$defaults["anzahl"] = isset($_POST["anzahl"]) ? $_POST["anzahl"] : "10";
+				update_option('leafext_file_listing_'.get_current_user_id(), $defaults);
+			}
+		} else {
+			$dir = isset($_GET["dir"]) ? $_GET["dir"] : "";
+			$all = isset($_GET['all']) ? $_GET['all'] : '';
+			$type =	isset($_GET["type"]) ? $_GET["type"] : "";
+			$anzahl = isset($_GET["anzahl"]) ? $_GET["anzahl"] : "10";
+		}
+		$extensions = is_array($type) ? '{'.implode(",", $type).'}' : '{gpx,kml,geojson,json,tcx}';
+
+		if ( $dir == "" && $all == "" && !current_user_can('manage_options')) leafext_managefiles_help();
+
+		// $stored = get_option('leafext_file_listing_'.get_current_user_id);
+		// var_dump($stored);
+		//var_dump(get_current_user_id());
+
+		echo '<form method="post" action="'.admin_url( 'admin.php' ).'?page='.$page.'&tab='.$tab.'">';
+		wp_nonce_field('leafext_file_listing', 'leafext_file_listing');
+		settings_fields('leafext_file_listing');
+		do_settings_sections( 'leafext_file_listing' );
+		submit_button("Liste alle Files");
+		echo '</form>';
+
+		if ( $dir != "" || $all != "" ) {
+			leafext_createShortcode_js();
+			leafext_createShortcode_css();
+		}
+		if ( $dir != "" ) {
+			echo '<h3>Directory '.$dir.'</h3>';
+			if ($dir != "/") {
+				echo '<div>Shortcode for showing all files of this directory on a map:'.
+				'<span class="leafexttooltip" href="#" onclick="leafext_createShortcode('.
+				"'leaflet-dir  src='".','.
+				"'',".
+				"'/".trim($dir,'/')."/'".')"'.
+				'onmouseout="leafext_outFunc()">'.
+				'<span class="leafextcopy" id="leafextTooltip">Copy to clipboard</span>'.
+				'<code>[leaflet-dir src="/'.trim($dir,'/').'/"]</code>'.
+				'</span>'.
+				'</div>';
+			}
+			echo '<p>';
+			leafext_list_paginate(leafext_list_dir($dir,$extensions),$anzahl);
+			echo '</p>';
+		} else if ($all != "") {
+			$upload_dir = wp_get_upload_dir();
+			$upload_path = $upload_dir['path'].'/';
+			leafext_list_paginate(leafext_list_allfiles($upload_path,$extensions),$anzahl);
+		}
+	}
 }

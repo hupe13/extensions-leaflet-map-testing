@@ -6,6 +6,9 @@
 // Direktzugriff auf diese Datei verhindern:
 defined( 'ABSPATH' ) or die();
 
+include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/uploader.php';
+include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/filemgr-settings.php';
+include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/filemgr.php';
 include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/managefiles_functions.php';
 
 function leafext_filemgr_tab() {
@@ -19,14 +22,13 @@ function leafext_filemgr_tab() {
 		);
 	}
 	$tabs[] =	array (
-		'tab' => 'filemgrfiles',
+		'tab' => 'filemgr-list',
 		'title' => __('Manage Files','extensions-leaflet-map'),
 	);
 
+	$page = isset($_GET['page']) ? $_GET['page'] : "";
 	$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : '';
 	$textheader = '<div class="nav-tab-wrapper">';
-
-	$page = isset($_GET['page']) ? $_GET['page'] : "";
 
 	foreach ( $tabs as $tab) {
 		$textheader = $textheader. '<a href="?page='.$page.'&tab='.$tab['tab'].'" class="nav-tab';
@@ -45,67 +47,10 @@ function leafext_admin_filemgr($active_tab) {
 		echo '<form method="post" action="options.php">';
 		settings_fields('leafext_settings_filemgr');
 		do_settings_sections( 'leafext_settings_filemgr' );
-		submit_button( __( 'Reset', 'extensions-leaflet-map' ), 'delete', 'delete', false);
 		submit_button();
+		submit_button( __( 'Reset', 'extensions-leaflet-map' ), 'delete', 'delete', false);
 		echo '</form>';
-	} else if( $active_tab == 'filemgrfiles') {
+	} else if( $active_tab == 'filemgr-list') {
 		leafext_managefiles();
 	}
 }
-
-function leafext_managefiles() {
-
-	$track = isset($_GET['track']) ? $_GET['track'] : "";
-	$page = isset($_GET['page']) ? $_GET['page'] : "";
-	$tab = isset($_GET['tab']) ? $_GET['tab'] : "";
-
-	if ( $track == "") {
-
-		echo '<h2>Manage Files</h2>';
-
-		$dir = isset($_GET["dir"]) ? $_GET["dir"] : "";
-		$all = isset($_GET["all"]) ? $_GET["all"] : "";
-		$count = isset($_GET["count"]) ? $_GET["count"] : "5";
-		$extensions = '{gpx,kml,geojson,json,tcx}';
-
-		if ( $dir == "" && $all == "" ) leafext_managefiles_help();
-
-		echo '<h2>List directories in upload directory with files with the extensions '.$extensions.'</h2>';
-
-		leafext_dirs_form($dir,$extensions,$count);
-
-		echo '<h2>Listing all files</h2>';
-
-		leafext_files_form($all);
-
-		if ( $dir != "" || $all != "" ) {
-			leafext_createShortcode_js();
-			leafext_createShortcode_css();
-		}
-		if ( $dir != "" ) {
-			echo '<h3>Directory '.$dir.'</h3>';
-			if ($dir != "/") {
-				echo '
-				<div>Shortcode for showing all files of this directory on a map:
-					<span class="leafexttooltip" href="#" onclick="leafext_createShortcode('.
-					"'leaflet-dir  src='".','.
-					"'',".
-					"'/".trim($dir,'/')."/'".')"
-					onmouseout="leafext_outFunc()">
-					<span class="leafextcopy" id="leafextTooltip">Copy to clipboard</span>
-					<code>[leaflet-dir src="/'.trim($dir,'/').'/"]</code>
-					</span>
-					</div>';
-				}
-				echo '<p>';
-				echo leafext_list_files($dir,$extensions);
-				echo '</p>';
-			} else if ($all != "") {
-				leafext_list_paginate($extensions,$all);
-			}
-
-		} else {
-			include TESTLEAFEXT_PLUGIN_DIR . '/admin/filemgr/thickbox.php';
-			leafext_thickbox($track);
-		}
-	}

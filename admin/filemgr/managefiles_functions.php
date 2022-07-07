@@ -8,8 +8,6 @@ defined( 'ABSPATH' ) or die();
 
 // list all files with extensions in dir and subdirs
 function leafext_list_allfiles($directory,$extensions) {
-	$upload_dir = wp_get_upload_dir();
-	$upload_path = $upload_dir['path'];
 	$files = array();
 	$dir = '/'.trim($directory,'/').'/';
 	foreach(glob($dir.'*.'.$extensions, GLOB_BRACE) as $file) {
@@ -38,19 +36,33 @@ function leafext_list_dirs($directory,$extensions,$count) {
 	return $directories;
 }
 
-// Unterteile Liste aller Files in pages
-function leafext_list_paginate($extensions,$all) {
+// list all files with extensions in dir
+function leafext_list_dir($directory,$extensions) {
 	$upload_dir = wp_get_upload_dir();
-	$upload_path = $upload_dir['path'];
+	$upload_path = $upload_dir['path'].'/';
+	$directory = trim($directory,'/');
+	$dir = str_replace('//','/',$upload_path.$directory.'/');
+	$files = glob($dir.'*.'.$extensions, GLOB_BRACE);
+	return $files;
+}
+
+// Unterteile Liste aller Files in pages
+function leafext_list_paginate($files,$anzahl) {
 	$page = isset($_GET['page']) ? $_GET['page'] : "";
 	$tab = isset($_GET['tab']) ? $_GET['tab'] : "";
-	$files = leafext_list_allfiles($upload_path.'/',$extensions);
-	$pageurl = admin_url( 'admin.php' ).'?page='.$page.'&tab='.$tab.'&all='.$all.'&nr=%_%';
-	$pages = intdiv(count($files), $all) + 1;
+	if (count($_POST) != 0) {
+		$all =	isset($_POST["all"]) ? '&all="on"' : "";
+		$dir =	isset($_POST["dir"]) ? "&dir=".$_POST["dir"] : "";
+	} else {
+		$all =	isset($_GET["all"])  ? '&all="on"' : "";
+		$dir =	isset($_GET["dir"])  ? "&dir=".$_GET["dir"] : "";
+	}
+	$pageurl = admin_url( 'admin.php' ).'?page='.$page.'&tab='.$tab.'&anzahl='.$anzahl.$all.$dir.'&nr=%_%';
+	$pages = intdiv(count($files), $anzahl) + 1;
 	$pagenr = max(1,isset($_GET["nr"]) ? $_GET["nr"] : "1");
-	$pagefiles = array_chunk($files, $all);
+	$pagefiles = array_chunk($files, $anzahl);
 
-	echo '<h2>All files - page '.$pagenr.'/'.$pages.'</h2>';
+	echo '<h2>Listing - page '.$pagenr.'/'.$pages.'</h2>';
 	echo '<p>';
 	if (count($pagefiles) > 1 ) {
 		echo paginate_links( array(
@@ -77,16 +89,6 @@ function leafext_list_paginate($extensions,$all) {
 	echo '</p>';
 }
 
-// list all files with extensions in dir and return table
-function leafext_list_files($directory,$extensions) {
-	$upload_dir = wp_get_upload_dir();
-	$upload_path = $upload_dir['path'].'/';
-	$directory = trim($directory,'/');
-	$dir = str_replace('//','/',$upload_path.$directory.'/');
-	$track_files = glob($dir.'*.'.$extensions, GLOB_BRACE);
-	return leafext_files_table($track_files);
-}
-
 // enqueue javascript and css for creating shortcode for copy
 function leafext_createShortcode_js() {
 	wp_enqueue_script('leafext_createShortcode_js',
@@ -99,49 +101,7 @@ function leafext_createShortcode_css() {
 	TESTLEAFEXT_PLUGIN_FILE));
 }
 
-// Formulare
-// Formu to list all dirs with at least count files with extensions in it.
-function leafext_dirs_form($verz,$extensions,$count) {
-	$page = isset($_GET['page']) ? $_GET['page'] : "";
-	$tab = isset($_GET['tab']) ? $_GET['tab'] : "";
-	echo '<form action="'.admin_url( 'admin.php' ).'" method="get">';
-	echo '<input type="hidden" id="page" name="page" value="'.$page.'">';
-	echo '<input type="hidden" id="tab" name="tab" value="'.$tab.'">';
-	echo '<select name="dir">';
-	if ($verz == "" ) echo '<option selected  value=""></option>';
-
-	$upload_dir = wp_get_upload_dir();
-	$upload_path = $upload_dir['path'];
-
-	foreach (leafext_list_dirs($upload_path,$extensions,$count) as $dir) {
-		if ($verz == $dir) {
-			echo '<option selected ';
-		} else {
-			echo '<option ';
-		}
-		echo 'value="'.$dir.'">'.$dir.'</option>';
-	}
-	echo '</select>';
-	echo '<input type="number" min="2" name="count" value="'.$count.'" size="3">';
-	echo '<input type="submit" value="Submit">';
-	echo '</form>';
-}
-
-// Formu to list all files with extensions count/page.
-function leafext_files_form($count) {
-	$page = isset($_GET['page']) ? $_GET['page'] : "";
-	$tab = isset($_GET['tab']) ? $_GET['tab'] : "";
-	if ( $count == "" ) $count = "10";
-	echo '
-	<form action="'.admin_url( 'admin.php' ).'">
-	<input type="hidden" name="page" value="'.$page.'">
-	<input type="hidden" name="tab" value="'.$tab.'">
-	<input type="number" min="10" name="all" value="'.$count.'" size="4">
-	<input type="submit" value="Submit">
-	</form>';
-}
-
-// Liste alle Dateien entsprechend der Anfrage auf
+// Baue Tabelle
 function leafext_files_table($track_files) {
 	//https://codex.wordpress.org/Javascript_Reference/ThickBox
 	add_thickbox();
@@ -233,7 +193,6 @@ function leafext_files_table($track_files) {
 
 		//if (!( $entry['edit'] == "" && $entry['view'] == "" ))
 		$track_table[] = $entry;
-
 	}
 
 	$text = leafext_html_table($track_table);

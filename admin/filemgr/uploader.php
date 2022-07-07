@@ -15,24 +15,26 @@ function leafext_correct_filetypes( $data, $file, $filename, $mimes, $real_mime 
 	}
 	$wp_file_type = wp_check_filetype( $filename, $mimes );
 	$settings = leafext_filemgr_settings();
+	$allowed = $settings['types'];
 
 	// Check for the file type you want to enable, e.g. 'gpx'.
-	if ( $settings['gpx'] == "1" && 'gpx' === $wp_file_type['ext'] ) {
+	if ( in_array('gpx',$allowed) && 'gpx' === strtolower($wp_file_type['ext']) ) {
 		$data['ext'] = 'gpx';
 		$data['type'] = 'application/gpx+xml';
 	}
-	if ( $settings['kml'] == "1" && 'kml' === $wp_file_type['ext'] ) {
+	if ( in_array('kml',$allowed) && 'kml' === strtolower($wp_file_type['ext']) ) {
 		$data['ext'] = 'kml';
 		$data['type'] = 'application/vnd.google-earth.kml+xml';
 	}
-	if ( $settings['geojson'] == "1" &&
-		('geojson' === strtolower($wp_file_type['ext']) ||
-			'json' === strtolower($wp_file_type['ext']) ) ) {
-		$path_parts = pathinfo($filename);
-		$data['ext'] = $path_parts['extension'];
+	if ( in_array('geojson',$allowed) && 'geojson' === strtolower($wp_file_type['ext']) ) {
+		$data['ext'] = 'geojson';
 		$data['type'] = 'application/geo+json';
 	}
-	if ( $settings['tcx'] == "1" && 'tcx' === $wp_file_type['ext'] ) {
+	if ( in_array('json',$allowed) && 'json' === strtolower($wp_file_type['ext']) ) {
+		$data['ext'] = 'json';
+		$data['type'] = 'application/geo+json';
+	}
+	if ( in_array('tcx',$allowed)  && 'tcx' === strtolower($wp_file_type['ext']) ) {
 		$data['ext'] = 'tcx';
 		$data['type'] = 'application/vnd.garmin.tcx+xml';
 	}
@@ -44,11 +46,12 @@ add_filter( 'wp_check_filetype_and_ext', 'leafext_correct_filetypes', 10, 5 );
 //Erlaube Upload gpx usw.
 function leafext_add_mimes( $mime_types ) {
 	$settings = leafext_filemgr_settings();
-	if ( $settings['gpx']     == "1" ) $mime_types['gpx']     = 'application/gpx+xml';
-	if ( $settings['kml']     == "1" ) $mime_types['kml']     = 'application/vnd.google-earth.kml+xml';
-	if ( $settings['geojson'] == "1" ) $mime_types['geojson'] = 'application/geo+json';
-	if ( $settings['geojson'] == "1" ) $mime_types['json']    = 'application/geo+json';
-	if ( $settings['tcx']     == "1" ) $mime_types['tcx']     = 'application/vnd.garmin.tcx+xml';
+	$allowed = $settings['types'];
+	if ( in_array('gpx',$allowed) )     $mime_types['gpx']     = 'application/gpx+xml';
+	if ( in_array('kml',$allowed) )     $mime_types['kml']     = 'application/vnd.google-earth.kml+xml';
+	if ( in_array('geojson',$allowed) ) $mime_types['geojson'] = 'application/geo+json';
+	if ( in_array('json',$allowed) )    $mime_types['json']    = 'application/geo+json';
+	if ( in_array('tcx',$allowed) )     $mime_types['tcx']     = 'application/vnd.garmin.tcx+xml';
 	return $mime_types;
 }
 add_filter( 'upload_mimes', 'leafext_add_mimes' );
