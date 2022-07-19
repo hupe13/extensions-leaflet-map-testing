@@ -1,8 +1,11 @@
 # Extensions Leaflet Map Testing
 
+Contributors: hupe13    
+Tags: leaflet
 Tested up to: 6.0  
+Requires at least: 5.5.3     
+Requires PHP: 7.4     
 License: GPLv2 or later  
-Contributors: hupe13
 
 ## Description
 
@@ -17,20 +20,4 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Testing</h2>
 
-<h3>Manage Files</h3>
-
-In admin interface <span>https</span>://my-wp.tld/wp-admin/admin.php?page=extensions-leaflet-map-testing&tab=manage_files:
-* Lists all gpx and kml files in subdirectories from uploads directory. Copy shortcodes for leaflet-gpx, leaflet-kml and elevation.
-* You can see a preview or you can upload the files via media library, then you the files see and manage there.
-
-<h3>Tracks from all files in a directory</h3>
-
-```
-[leaflet-map fitbounds]
-[leaflet-dir url="..." src="..." type="..." cmd="..."]
-```
-
-* url - url to directory, default: URL from wp_get_upload_dir().
-* src - (relative) path to directory, accessible both from path and from url
-* type - gpx or kml, default: gpx  // kml not tested yet
-* cmd - command: leaflet-gpx or leaflet-kml (default - see type), elevation-tracks or multielevation
+nothing at the moment
