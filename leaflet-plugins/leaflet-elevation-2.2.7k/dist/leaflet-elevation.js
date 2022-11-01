@@ -163,14 +163,6 @@
 	 */
 	const wrapDelta = (curr, prev, deltaMax) => Math.abs(curr - prev) > deltaMax ? prev + deltaMax * Math.sign(curr - prev) : curr;
 
-	/**
-	 * Round numbers according to size
-	 */
-	function precision(x,n){
-		if ( typeof x == 'number')
-		return Number(parseFloat(x.toPrecision(n)).toFixed(n));
-	}
-
 	var _ = /*#__PURE__*/Object.freeze({
 		__proto__: null,
 		Colors: Colors,
@@ -206,8 +198,7 @@
 		hasClass: hasClass,
 		round: round,
 		clamp: clamp,
-		wrapDelta: wrapDelta,
-		precision: precision
+		wrapDelta: wrapDelta
 	});
 
 	var Options = {
