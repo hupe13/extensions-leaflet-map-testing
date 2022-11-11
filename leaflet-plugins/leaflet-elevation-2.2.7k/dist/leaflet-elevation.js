@@ -138,7 +138,7 @@
 	 */
 	const iMax = (iVal, max = -Infinity) =>  (((typeof (iVal) === 'number') && (iVal > max)) ? iVal : max);
 	const iMin = (iVal, min = +Infinity) =>  (((typeof (iVal) === 'number') && (iVal < min)) ? iVal : min);
-	const iAvg = (iVal, avg = 0, idx = 1) => (((typeof (iVal) === 'number') && idx > 1) ? ((iVal + avg * (idx - 1)) / idx) : ((iVal && idx < 2) ? iVal : avg));
+	const iAvg = (iVal, avg = 0, idx = 1) => (typeof (iVal) === 'number') ? (iVal + avg * (idx - 1)) / idx : undefined;
 	const iSum = (iVal, sum = 0) => iVal + sum;
 
 	/**
