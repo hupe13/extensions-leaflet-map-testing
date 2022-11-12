@@ -17,8 +17,8 @@ define('TESTLEAFEXT_ELEVATION_URL', TESTLEAFEXT_PLUGIN_URL . '/leaflet-plugins/l
 define('TESTLEAFEXT_ELEVATION_DIR', TESTLEAFEXT_PLUGIN_DIR . '/leaflet-plugins/leaflet-elevation-'.TESTLEAFEXT_ELEVATION_VERSION.'/');
 function testleafext_enqueue_elevation () {
   wp_enqueue_script( 'elevation_js',
-  plugins_url('leaflet-plugins/leaflet-elevation-'.TESTLEAFEXT_ELEVATION_VERSION.'/dist/leaflet-elevation.min.js',
-  //plugins_url('leaflet-plugins/leaflet-elevation-'.TESTLEAFEXT_ELEVATION_VERSION.'/dist/leaflet-elevation.js',
+  //plugins_url('leaflet-plugins/leaflet-elevation-'.TESTLEAFEXT_ELEVATION_VERSION.'/dist/leaflet-elevation.min.js',
+  plugins_url('leaflet-plugins/leaflet-elevation-'.TESTLEAFEXT_ELEVATION_VERSION.'/dist/leaflet-elevation.js',
   TESTLEAFEXT_PLUGIN_FILE),
   array('wp_leaflet_map'),null);
   //

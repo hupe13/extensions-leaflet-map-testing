@@ -39,7 +39,7 @@ function testleafext_elevation_pace($options) {
 }
 
 //Shortcode: [elevation gpx="...url..."]
-function testleafext_elevation_script($gpx,$settings){
+function testleafext_elevation_script($gpx,$settings,$tag){
 	$text = '
 	<script>
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
@@ -58,6 +58,7 @@ function testleafext_elevation_script($gpx,$settings){
 
 	$text = $text.leafext_elevation_locale();
 
+	if ($tag == "testelevation1") {
 	$text = $text.'
 
 	//BEGIN
@@ -133,6 +134,7 @@ function testleafext_elevation_script($gpx,$settings){
 							props.summary.minspeed.value = (track, unit) => toPrecision(track.speed_min || 0, 2) + "&nbsp;" + unit;
 							props.summary.maxspeed.value = (track, unit) => toPrecision(track.speed_max || 0, 2) + "&nbsp;" + unit;
 							props.summary.avgspeed.value = (track, unit) => toPrecision(track.speed_avg || 0, 2) + "&nbsp;" + unit;
+							//props.summary.avgspeed.value = (track, unit) => (track.speed_avg || 0) + "&nbsp;" + unit;
 						}
 						break;
 						case "time":
@@ -150,9 +152,10 @@ function testleafext_elevation_script($gpx,$settings){
 		// Proceed as usual
 		//var controlElevation = L.control.elevation(opts.elevationControl.options);
 		//controlElevation.load(opts.elevationControl.url);
-		//END
-
-	// Instantiate elevation control.
+		//END';
+	}
+	$text = $text.
+	'// Instantiate elevation control.
 	L.Control.Elevation.prototype.__btnIcon = "'.LEAFEXT_ELEVATION_URL.'/images/elevation.svg";
 	var controlElevation = L.control.elevation(elevation_options);
 	var track_options= { url: "'.$gpx.'" };
@@ -185,7 +188,7 @@ function testleafext_elevation_script($gpx,$settings){
 	return "\n".$text."\n";
 }
 
-function testleafext_elevation_function( $atts ) {
+function testleafext_elevation_function( $atts, $content, $tag ) {
 	if ( ! $atts['gpx'] ) {
 		$text = "[elevation ";
 		foreach ($atts as $key=>$item){
@@ -255,8 +258,9 @@ function testleafext_elevation_function( $atts ) {
 	list($options,$style) = leafext_elevation_color($options);
 	ksort($options);
 
-	$text=$style.testleafext_elevation_script($track,$options);
+	$text=$style.testleafext_elevation_script($track,$options,$tag);
 	//
 	return $text;
 }
 add_shortcode('testelevation', 'testleafext_elevation_function' );
+add_shortcode('testelevation1', 'testleafext_elevation_function' );
