@@ -24,4 +24,4 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <code>[leafletsearch propertyname=....]</code>
 
-<code>[propertyname]</code> similar to property in <code>leaflet-featuregroup</code>
+<code>propertyname</code> similar to property in <code>leaflet-featuregroup</code> and for markers like  option in <code>leaflet-optiongroup</code>
