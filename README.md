@@ -20,4 +20,8 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Testing</h2>
 
-nothing at the moment
+[Leaflet Control Search](https://github.com/stefanocudini/leaflet-search)
+
+<code>[leafletsearch propertyname=....]</code>
+
+<code>[propertyname]</code> similar to property in <code>leaflet-featuregroup</code>
