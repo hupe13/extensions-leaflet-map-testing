@@ -1,0 +1,104 @@
+# Translation of Plugins - Extensions for Leaflet Map - Stable (latest release) in German
+# This file is distributed under the same license as the Plugins - Extensions for Leaflet Map - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-02-02 20:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Loco https://localise.biz/\n"
+"Language: de_DE\n"
+"Project-Id-Version: Plugins - Extensions for Leaflet Map - Stable (latest "
+"release)\n"
+"Language-Team: Deutsch\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-02 19:42+0000\n"
+"Last-Translator: \n"
+"X-Loco-Version: 2.6.3; wp-6.1.1"
+
+#: php/leaflet-search.php:23
+#, php-format
+msgid "%s for marker, %s depending on geojson layer"
+msgstr "%s für Marker, %s abhängig von der Geojson-Layer"
+
+#: php/leaflet-search.php:20
+#, php-format
+msgid ""
+"a option / property for marker or a %s for geojson layer, must be unique"
+msgstr ""
+"eine Option/Eigenschaft für Marker oder ein %s für eine Geojson-Layer, muss "
+"eindeutig sein"
+
+#: php/leaflet-search.php:162
+msgid "Default"
+msgstr "Standard"
+
+#: php/leaflet-search.php:161
+msgid "Description"
+msgstr "Beschreibung"
+
+#: php/leaflet-search.php:54
+msgid "error message"
+msgstr "Fehlernachricht"
+
+#. Name of the plugin
+msgid "extensions-leaflet-map-testing"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/hupe13/extensions-leaflet-map-testing"
+msgstr ""
+
+#. Author of the plugin
+msgid "hupe13"
+msgstr "hupe13"
+
+#: php/leaflet-search.php:55
+msgid "Location not found"
+msgstr "Standort nicht gefunden"
+
+#: php/leaflet-search.php:85
+#, php-format
+msgid ""
+"not specified for default (red circle), %s for no marker, or a definition "
+"like %s"
+msgstr ""
+"nicht angegeben für Standard (roter Kreis), %s für keinen Marker, oder eine "
+"Definition wie %s"
+
+#: php/leaflet-search.php:62
+msgid "placeholder value"
+msgstr "Platzhalter"
+
+#: php/leaflet-search.php:76
+msgid "position in the map"
+msgstr "Position in der Karte"
+
+#: php/leaflet-search.php:166
+msgid "red circle"
+msgstr "roter Kreis"
+
+#: php/leaflet-search.php:69
+msgid "remove circle and marker on search control collapsed"
+msgstr "entferne Kreismarker beim Schließen des Kontrollfeldes"
+
+#: php/leaflet-search.php:63
+msgid "Search..."
+msgstr "Suche..."
+
+#: php/leaflet-search.php:83
+msgid "show or hide marker at the position found"
+msgstr "Zeige Marker an der gefundenen Position oder nicht"
+
+#. Description of the plugin
+msgid "Tests for leaflet-map / extensions-leaflet-map"
+msgstr ""
+
+#: php/leaflet-search.php:163
+msgid "Values"
+msgstr "Werte"
+
+#: php/leaflet-search.php:35
+msgid "zoom level for move to location for searching markers"
+msgstr "Zoomlevel wenn der gefundene Standort angezeigt wird"

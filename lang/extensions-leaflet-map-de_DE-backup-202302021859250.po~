@@ -1,0 +1,1980 @@
+# Translation of Plugins - Extensions for Leaflet Map - Stable (latest release) in German
+# This file is distributed under the same license as the Plugins - Extensions for Leaflet Map - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-01-27 23:59:05+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"Language: de\n"
+"Project-Id-Version: Plugins - Extensions for Leaflet Map - Stable (latest release)\n"
+
+#: admin/marker/placementstrategies.php:117
+msgid "It also works with"
+msgstr "Es funktioniert auch mit"
+
+#: admin/marker/clustergroup.php:30
+msgid "If you don't use this shortcode yet, start %sthere%s."
+msgstr "Wenn du diesen Shortcode noch nicht verwendet hast, verwende %sdiese%s."
+
+#: admin/marker/clustergroup.php:21
+msgid "If you don't use this shortcode yet, start your work with %sthese two%s."
+msgstr "Wenn du diesen Shortcode noch nicht nutzt, verwende %sdiese beiden%s."
+
+#: admin/featuregroup.php:195
+msgid "When markers are grouped, %s is automatically active and the parameter and settings for %s are valid too."
+msgstr "Wenn Marker gruppiert werden, ist %s automatisch aktiv und die Parameter und Einstellungen für %s gelten ebenfalls."
+
+#: admin/elevation/waypoints.php:141 admin/elevation/waypoints.php:144
+msgid "Or set this in the %selevation settings%s."
+msgstr "Oder definiere es in den %sEinstellungen für Höhenprofile%s."
+
+#: admin/elevation/waypoints.php:130
+msgid "and Javascript to describe the icon."
+msgstr "und Javascript um das Icon zu beschreiben."
+
+#: admin/elevation/waypoints.php:129
+msgid "css describing the waypoint, e.g. the definition of the icon url,"
+msgstr "das css um den Wegpunkt zu beschreiben, z.B. die Definition der Icon-URL,"
+
+#: admin/elevation/waypoints.php:128
+msgid "the waypoint in the track file,"
+msgstr "der Wegpunkt im Trackfile,"
+
+#: admin/elevation/waypoints.php:126
+msgid "To change the display of waypoints in the elevation profile, 3 things are important:"
+msgstr "Um die Anzeige von Wegpunkten im Höhenprofil zu ändern, sind 3 Dinge wichtig:"
+
+#: admin/elevation/waypoints.php:125
+msgid "Introduction"
+msgstr "Einleitung"
+
+#: admin/elevation/waypoints.php:119
+msgid "You can of course use %s and define waypoints with additional %s and %s shortcodes."
+msgstr "Du kannst natürlich auch %s setzen und Wegpunkte mit zusätzlichen Shortcodes für %s und %s definieren."
+
+#: admin/featuregroup.php:129
+msgid "The %s are case sensitive."
+msgstr "Bei den %s wird zwischen Groß- und Kleinschreibung unterschieden."
+
+#: admin/featuregroup.php:118
+msgid "%s is case sensitive."
+msgstr "Bei %s wird zwischen Groß- und Kleinschreibung unterschieden."
+
+#: admin/featuregroup.php:84
+msgid "The options are case sensitive."
+msgstr "Bei den Optionen wird zwischen Groß- und Kleinschreibung unterschieden."
+
+#: php/choropleth.php:29
+msgid "get a tooltip on mouse over"
+msgstr "Tooltip beim Überfahren mit der Maus anzeigen"
+
+#: php/choropleth.php:28
+msgid "show legend"
+msgstr "Legende anzeigen"
+
+#: php/choropleth.php:27
+msgid "q for quantile, e for equidistant, k for k-means"
+msgstr "q für quantile, e für equidistant, k für k-means"
+
+#: php/choropleth.php:26
+msgid "number of breaks or steps in range"
+msgstr "Zahl der Abstände oder Schritte im Bereich"
+
+#: php/choropleth.php:25
+msgid "opacity of the colors in scale"
+msgstr "Transparenz der Farben in der Skala"
+
+#: php/choropleth.php:24
+msgid "a comma separated list of colors for scale - include as many as you like"
+msgstr "eine kommagetrennte Liste von Farben für die Skala - füge so viele ein, wie du möchtest"
+
+#: php/choropleth.php:23
+msgid "which property in the features to use"
+msgstr "welche Eigenschaft in den Merkmalen zu verwenden ist"
+
+#: admin/help.php:60
+msgid "Leaflet Choropleth"
+msgstr "Leaflet Choropleth"
+
+#: admin/help.php:58
+msgid "Grouping by options and features"
+msgstr "Gruppieren nach Optionen und Eigenschaften"
+
+#: admin/featuregroup.php:202 admin/marker/clustergroup.php:17
+#: admin/marker/clustergroup.php:26
+msgid "The shortcode %s is a special case of %s respectively %s."
+msgstr "Der Shortcode %s ist ein Spezialfall von %s bzw. %s."
+
+#: admin/featuregroup.php:194
+msgid "Notes"
+msgstr "Hinweise"
+
+#: admin/featuregroup.php:175
+msgid "If %s contains %s and %s, then the elements for which the option / property specified in %s does not apply, are placed in the %s group. Elements whose %s is not known are placed in the %s group. See also the developer console."
+msgstr "Wenn %s %s und %s enthält, werden die Elemente, für die die in %s angegebene Option/Eigenschaft nicht gilt, in die Gruppe %s gestellt. Elemente, deren %s nicht bekannt ist, werden in der Gruppe %s platziert. Siehe auch die Entwicklerkonsole."
+
+#: admin/featuregroup.php:162 admin/marker/clustergroup.php:46
+#: admin/marker/clustergroup.php:96
+msgid "initial visibility of a group, default: %s. Either %s (valid for all groups) or a comma-separated list of %s and %s, where the number must match those of %s."
+msgstr "initiale Sichtbarkeit einer Gruppe, Standardwert: %s. Entweder %s (gültig für alle Gruppen) oder eine durch Komma getrennte Liste von %s und %s, wobei die Zahl mit der von %s übereinstimmen muss."
+
+#: admin/featuregroup.php:158
+msgid "However, make sure that they are unique. Otherwise unwanted, but sometimes interesting effects can occur. Test it with your application!"
+msgstr "Achte jedoch darauf, dass sie eindeutig sind. Andernfalls können unerwünschte, aber manchmal interessante Effekte auftreten. Teste es in deiner Anwendung!"
+
+#: admin/featuregroup.php:154
+msgid "You can specify multiple %s and %s. If the %s are called the same, the elements will be placed in the same group despite having different options resp. properties."
+msgstr "Du kannst mehrere %s und %s angeben. Wenn die %s gleich genannt werden, werden die Elemente trotz unterschiedlicher Optionen bzw. Eigenschaften in dieselbe Gruppe eingeordnet."
+
+#: admin/featuregroup.php:140
+msgid "The default is %s for %s and %s for %s."
+msgstr "Der Standard ist %s für %s und %s für %s."
+
+#: admin/featuregroup.php:134
+msgid "search substring %s or the exact string %s in %s."
+msgstr "suche eine Zeichenkette %s oder die genaue Zeichenfolge %s in %s."
+
+#: admin/featuregroup.php:133 admin/featuregroup.php:161
+#: admin/marker/clustergroup.php:45 admin/marker/clustergroup.php:95
+msgid "optional"
+msgstr "optional"
+
+#: admin/featuregroup.php:123
+msgid "comma separated strings to distinguish the elements, e.g. the exact string or an unique substring in %s (e.g.%s)"
+msgstr "durch Kommata getrennte Zeichenfolgen zur Unterscheidung der Elemente, z. B. die genaue Zeichenfolge oder eine eindeutige Zeichenkette in %s (z. B. %s)"
+
+#: admin/featuregroup.php:95
+msgid "A %s has %s, each of them has a %s and %s. %s is the label of a %s in %s, e.g."
+msgstr "Eine %s hat %s, jede von ihnen hat eine %s und %s. %s ist die Bezeichnung einer %s in %s, z. B."
+
+#: admin/featuregroup.php:90
+msgid "gpx and kml are similar to geojson, so you can also use %s there. But it's not that easy to find relevant features."
+msgstr "gpx und kml ähneln geojson, daher kannst du dort auch %s verwenden. Aber es ist nicht so einfach, relevante Features zu finden."
+
+#: admin/featuregroup.php:89
+msgid "In a geojson file there are features and properties. They are different for each application."
+msgstr "In einer Geojson-Datei gibt es features und properties. Sie sind für jede Anwendung unterschiedlich."
+
+#: admin/featuregroup.php:80
+msgid "You can use %s for grouping, it is not used by leaflet-geojson but passed through."
+msgstr "Du kannst %s für die Gruppierung verwenden, es wird von leaflet-geojson nicht verwendet, aber durchgereicht."
+
+#: admin/featuregroup.php:77
+msgid "Every marker with an icon has the option %s as default."
+msgstr "Jeder Marker mit einem Icon hat die Option %s als Standard."
+
+#: admin/featuregroup.php:74
+msgid "%s switches only the markers."
+msgstr "%s schaltet nur Marker um."
+
+#: admin/featuregroup.php:65
+msgid "You can use iconclass to group, regardless of whether they affect the appearance of the icon or not."
+msgstr "Du kannst iconclass zum Gruppieren verwenden, unabhängig davon, ob es das Aussehen des Symbols beeinflusst oder nicht."
+
+#: admin/featuregroup.php:60
+msgid "Meaningful options may be:"
+msgstr "Sinnvolle Optionen können sein:"
+
+#: admin/featuregroup.php:58
+msgid "Not every option is suitable for every element."
+msgstr "Nicht jede Option ist für jedes Element geeignet."
+
+#: admin/featuregroup.php:57
+msgid "For %s you can use any option of the leaflet element."
+msgstr "Für %s kannst du jede Option des Leaflet Elements verwenden."
+
+#: admin/featuregroup.php:55
+msgid "Each of the above leaflet elements has options. These are from the shortcode %s and are fixed."
+msgstr "Jedes der oben genannten leaflet-Elemente hat Optionen. Diese stammen aus dem Shortcode %s und sind vorgegeben."
+
+#: admin/featuregroup.php:27
+msgid ""
+"uses this Leaflet plugin to group leaflet elements like %s and others by options and properties. There are two shortcodes: %s and %s.\n"
+"Use %s to group elements by options and %s to group elements by properties."
+msgstr "verwendet dieses Leaflet-Plugin, um Leaflet-Elemente wie %s und andere nach Optionen und Eigenschaften zu gruppieren. Es gibt zwei Shortcodes: %s und %s. Verwende %s, um Elemente nach Optionen zu gruppieren, und %s, um Elemente nach Eigenschaften (properties) zu gruppieren."
+
+#: admin/featuregroup.php:21
+msgid "is a simple plugin to create Feature Groups that add their child layers into a parent group. Typical usage is to switch them through L.Control.Layers to dynamically add/remove groups of markers from Leaflet.markercluster."
+msgstr "ist ein einfaches Plugin zur Erstellung von Feature Gruppen, die ihre untergeordneten Ebenen zu einer übergeordneten Gruppe hinzufügen. Typischerweise werden sie über L.Control.Layers umgeschaltet, um dynamisch Gruppen von Markern aus Leaflet.markercluster hinzuzufügen oder zu entfernen."
+
+#: admin/featuregroup.php:15
+msgid "Group elements and dynamically add/remove from map"
+msgstr "Gruppieren von Elementen und dynamisches Hinzufügen/Entfernen aus der Karte"
+
+#: admin/elevation/sgpx.php:121
+msgid "It may be that %s does not work with your theme. Block oriented themes like %s do not work. Then this is the only option."
+msgstr "Es kann sein, dass %s mit deinem Theme nicht funktioniert. Blockorientierte Themes wie %s funktionieren nicht. Dann ist dies die einzige Möglichkeit."
+
+#: admin/choropleth.php:56
+msgid "Help me, if I'm wrong."
+msgstr "Hilf mir, wenn man es besser beschreiben kann."
+
+#: admin/choropleth.php:53
+msgid "k-means: each standard deviation becomes a class."
+msgstr "k-means: jede Standardabweichung wird zu einer Klasse."
+
+#: admin/choropleth.php:52
+msgid "equidistant: divide the classes into equal groups."
+msgstr "Äquidistant: Die Klassen werden in gleiche Gruppen aufgeteilt."
+
+#: admin/choropleth.php:51
+msgid "quantile maps try to arrange groups so they have the same quantity."
+msgstr "Bei Quantilkarten wird versucht, die Gruppen so anzuordnen, dass sie die gleiche Menge aufweisen."
+
+#: admin/choropleth.php:24
+msgid "Use it like the popup content for Geojsons in Leaflet Map: To add feature properties to the popups, use the inner content and curly brackets to substitute the values:"
+msgstr "Verwende es wie den Popup-Inhalt für Geojsons in Leaflet Map: Um Feature-Eigenschaften zu den Popups hinzuzufügen, verwende den inneren Inhalt und geschweifte Klammern, um die Werte zu ersetzen:"
+
+#: admin/choropleth.php:21
+msgid "You can specify %s as you like."
+msgstr "Du kannst %s angeben wie du möchtest."
+
+#: admin/choropleth.php:20
+msgid "Popup Content"
+msgstr "Popup-Inhalt"
+
+#: admin.php:160
+msgid "Marker"
+msgstr "Marker"
+
+#: php/elevation.php:145
+msgid "none - show filename in control - show trackname in control"
+msgstr "nichts - zeige Dateiname im Kontrollfeld - zeige Trackname im Kontrollfeld"
+
+#: php/elevation.php:144
+msgid "Switch Track on and off"
+msgstr "Schalte die Anzeige des Tracks um"
+
+#: admin/help.php:76
+msgid "More Functions"
+msgstr "Weitere Funktionen"
+
+#: admin/help.php:56
+msgid "Further Leaflet Plugins"
+msgstr "Weitere Leaflet Plugins"
+
+#: admin/help.php:44
+msgid "Functions for Markers"
+msgstr "Funktionen für Marker"
+
+#: admin/help.php:29
+msgid "Leaflet Plugins"
+msgstr "Leaflet Plugins"
+
+#: admin/filemgr/filemgr-settings.php:111
+msgid "You can manage these according to your permissions"
+msgstr "Du kannst diese entsprechend deinen Berechtigungen verwalten"
+
+#: admin/filemgr/filemgr-settings.php:106
+msgid "You can display all gpx, kml, geojson, json and tcx files in subdirectories of uploads directory."
+msgstr "Du kannst dir alle gpx-, kml-, geojson, json und tcx-Dateien in Unterverzeichnissen des Uploads-Verzeichnisses anzeigen lassen."
+
+#: php/extramarker.php:110
+msgid "Use SVG version, Possible values: true or false"
+msgstr "SVG-Version verwenden, Mögliche Werte: true oder false"
+
+#: php/extramarker.php:101
+msgid "Shape of the marker (css class), Possible values: 'circle', 'square', 'star', or 'penta'"
+msgstr "Form des Markers (css-Klasse), Mögliche Werte: 'circle', 'square', 'star', oder 'penta'"
+
+#: php/extramarker.php:92
+msgid "The icon library's base class, Possible values: fa (see icon library's documentation)"
+msgstr "Die Basisklasse der Icon-Bibliothek, mögliche Werte: fa (siehe Dokumentation der Icon-Bibliothek)"
+
+#: php/extramarker.php:83
+msgid "Instead of an icon, define a plain text, Possible values: '1' or 'A', must set icon: 'fa-number'"
+msgstr "Anstelle eines Icons kann ein Text definiert werden, mögliche Werte: '1' oder 'A', bei 'icon' muss 'fa-number' angegeben werden"
+
+#: php/extramarker.php:74
+msgid "Color of the marker (css class), Possible values: 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'white', or color hex code if svg is true"
+msgstr "Farbe der Marker (css-Klasse), Mögliche Werte: 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'white', oder Farb-Hex-Code, wenn svg true ist"
+
+#: php/extramarker.php:65
+msgid "Custom HTML code, Possible values: &lt;svg&gt;, images, or other HTML; a truthy assignment will override the default html icon creation behavior"
+msgstr "Benutzerdefinierter HTML-Code, mögliche Werte: &lt;svg&gt;, Bilder oder anderes HTML; eine gültige Zuweisung setzt das Standardverhalten bei der Erstellung von HTML-Icons außer Kraft"
+
+#: php/extramarker.php:56
+msgid "Rotates the icon with css transformations, Possible values: numeric degrees"
+msgstr "Dreht das Icon mit css-Transformationen, Mögliche Werte: Anzahl Grad"
+
+#: php/extramarker.php:47
+msgid "Color of the icon, Possible values: 'white', 'black' or css code (hex, rgba etc)"
+msgstr "Farbe des Icons, mögliche Werte: 'white', 'black' oder css-Code (hex, rgba usw.)"
+
+#: php/extramarker.php:38
+msgid "Name of the icon with prefix, Possible values: fa-coffee (see icon library's documentation)"
+msgstr "Name des Icons mit Präfix, mögliche Werte: fa-coffee (siehe Dokumentation der Icon-Bibliothek)"
+
+#: php/extramarker.php:29
+msgid "Additional classes in the created &lt;i&gt; tag, Possible values: fa-rotate90 myclass; space delimited classes to add"
+msgstr "Zusätzliche Klassen im erstellten &lt;i&gt; Tag, Mögliche Werte: fa-rotate90 myclass; durch Leerzeichen getrennt"
+
+#: php/extramarker.php:21
+msgid "Longitude"
+msgstr "Längengrad"
+
+#: php/extramarker.php:14
+msgid "Latitude"
+msgstr "Breitengrad"
+
+#: php/elevation.php:379
+msgid "zFollow zoom"
+msgstr "zFollow zoom"
+
+#: php/elevation.php:134
+msgid "If (!detached) control position on one of map corners."
+msgstr "Wenn (!detached) Position des Steuerungsfeldes an einer der Kartenecken."
+
+#: php/elevation.php:112
+msgid "%s outside, %s inside"
+msgstr "%s außerhalb, %s innerhalb"
+
+#: php/elevation.php:111
+msgid "Chart container outside/inside map container"
+msgstr "Diagramm außerhalb bzw. in der Karte"
+
+#: admin/help.php:52
+msgid "more markers"
+msgstr "Mehr Marker"
+
+#: admin/help.php:7
+msgid "Found an issue? Do you have a question?"
+msgstr "Hast du einen Fehler gefunden? Hast du eine Frage?"
+
+#: admin/choropleth.php:36 admin/marker/extramarker.php:108
+msgid "Description"
+msgstr "Beschreibung"
+
+#: admin/marker/extramarker.php:97
+msgid "More icons"
+msgstr "Mehr Icons"
+
+#: admin/marker/extramarker.php:83
+msgid "Some Icons"
+msgstr "Einige Icons"
+
+#: admin/marker/extramarker.php:68
+msgid "All Shapes without (1) / with (2) SVG"
+msgstr "Alle Formen ohne (1) / mit (2) SVG"
+
+#: admin/marker/extramarker.php:55
+msgid "All Colors"
+msgstr "Alle Farben"
+
+#: admin/marker/extramarker.php:12
+msgid "Only the %s is included in the plugin %s. You can install the %sother fonts%s and use these also."
+msgstr "Nur der %s ist im Plugin %s enthalten. Du kannst die %sanderen Fonts%s installieren und diese ebenfalls verwenden."
+
+#: admin/elevation/multielevation.php:116
+msgid "See also"
+msgstr "Siehe auch"
+
+#: admin/elevation/elevation.php:130
+msgid "Many thanks to the translators."
+msgstr "Vielen Dank an die Übersetzer."
+
+#: admin/elevation/elevation.php:129
+msgid "A language pack will be generated, if at least 90% of all strings are translated, like german or spanish."
+msgstr "Ein Sprachpaket wird generiert, wenn mindestens 90 % aller Zeichenfolgen übersetzt sind, wie z.B. deutsch oder spanisch."
+
+#: admin/elevation/elevation.php:128
+msgid "I will include these translations in the plugin. Swedish, for example, is already included."
+msgstr "Ich werde diese Übersetzungen in das Plugin aufnehmen. Schwedisch, zum Beispiel, ist bereits enthalten."
+
+#: admin/elevation/elevation.php:122
+msgid "%s has some english strings in the frontend. Go to %s, choose your language and %s or %s, filter %s and translate these 36 short strings."
+msgstr "%s hat einige englische Zeichenfolgen im Frontend. Gehe zu %s, wähle deine Sprache und %s oder %s, filtere nach %s und übersetze diese 36 kurzen Zeichenfolgen."
+
+#: admin/elevation/elevation.php:121
+msgid "Your web site language isn't english? You can speak english?"
+msgstr "Die Sprache deiner Website ist nicht englisch oder deutsch? Du kannst englisch?"
+
+#: admin/elevation/elevation.php:120
+msgid "Translation"
+msgstr "Übersetzung"
+
+#: php/elevation.php:509
+msgctxt "In Frontend"
+msgid "Pace"
+msgstr "Tempo"
+
+#: admin/elevation/elevation.php:283
+msgid "If summary is displayed, you can customize the information to display with css, e.g. show Total Length, Total Time, Total Ascent, Total Descent, Avg Speed, Avg Pace only:"
+msgstr "Wenn eine Zusammenfassung angezeigt wird, kannst du die anzuzeigenden Informationen mit css anpassen, z. B. nur Gesamtlänge, Gesamtzeit, Gesamtaufstieg, Gesamtabstieg, Durchschnittsgeschwindigkeit, Durchschnittstempo anzeigen:"
+
+#: php/managefiles.php:87 php/managefiles.php:98 php/managefiles.php:108
+msgid "Overview"
+msgstr "Übersicht"
+
+#: php/gesture.php:15
+msgid "If it is true, it is valid for any map (depending on %s respectively %s) and you can't change it. If it is false, you can enable it for a map:"
+msgstr "Wenn es wahr ist, gilt es für jede Karte (abhängig von %s bzw. %s) und kann nicht geändert werden. Ist es falsch, kannst du sie für eine Karte aktivieren:"
+
+#: admin/gesture.php:126
+msgid "You can test it yourself on a %sseparate page%s."
+msgstr "Du kannst es selbst auf einer %sExtra-Seite%s (leider nur auf englisch) testen."
+
+#: admin/gesture.php:120
+msgid "You can change it with "
+msgstr "Du kannst es ändern mit "
+
+#: admin/gesture.php:118
+msgid "It is only enabled on touch devices by default."
+msgstr "Sie ist standardmäßig nur auf Mobilgeräten aktiviert."
+
+#: admin/gesture.php:118
+msgid "It is enabled on both desktop and touch device by default."
+msgstr "Sie ist sowohl auf dem Desktop als auch auf Mobilgeräten standardmäßig aktiviert."
+
+#: admin/gesture.php:117
+msgid "This means for you:"
+msgstr "Das bedeutet für dich:"
+
+#: admin/gesture.php:115
+msgid "is true at default"
+msgstr "ist standardmäßig true"
+
+#: admin/gesture.php:113
+msgid "is"
+msgstr "ist"
+
+#: admin/gesture.php:112
+msgid "Scroll Wheel Zoom"
+msgstr "Zoomen mit dem Mausrad"
+
+#: admin/gesture.php:110
+msgid "Your %s setting for"
+msgstr "Deine %s Einstellung für"
+
+#: admin/gesture.php:106
+msgid "If %s is enabled, it becomes active on touch devices only."
+msgstr "Wenn %s aktiviert ist, wird sie nur auf Touch-Geräten aktiv."
+
+#: admin/gesture.php:103
+msgid "If Scroll Wheel Zoom (%s) is enabled, it becomes active on both desktop and touch devices."
+msgstr "Wenn der Scrollrad-Zoom (%s) aktiviert ist, wird sie sowohl auf Desktop- als auch auf Touch-Geräten aktiv."
+
+#: admin/gesture.php:100
+msgid "When Gesture Handling is enabled:"
+msgstr "Wenn Gestensteuerung aktiviert ist:"
+
+#: admin/gesture.php:97
+msgid "It is disabled by default. You can enable it for a map with"
+msgstr "Es ist standardmäßig deaktiviert. Du kannst es für eine Karte aktivieren mit"
+
+#: admin/gesture.php:95
+msgid "It is enabled for all maps."
+msgstr "Es ist für alle Maps aktiviert."
+
+#: admin/gesture.php:89
+msgid "You can enable it for all maps or for individual maps."
+msgstr "Du kannst sie für alle Karten aktivieren oder für eine einzelne Karte."
+
+#: admin/gesture.php:85
+msgid "Brings the basic functionality of Gesture Handling into Leaflet Map. Prevents users from getting trapped on the map when scrolling a long page."
+msgstr "Bringt die grundlegende Funktionalität der Gestensteuerung in Leaflet Map. Verhindert, dass Benutzer beim Scrollen einer langen Seite in der Karte hängen bleiben."
+
+#: admin/filemgr/thickbox.php:36
+msgid "File size: "
+msgstr "Dateigröße: "
+
+#: admin/filemgr/thickbox.php:29
+msgid "File name:"
+msgstr "Dateiname:"
+
+#: admin/filemgr/thickbox.php:27
+msgid "Uploaded on:"
+msgstr "Hochgeladen am:"
+
+#: admin/filemgr/thickbox.php:25
+msgid "Details"
+msgstr "Details"
+
+#: admin/filemgr/managefiles_functions.php:167
+msgid "View"
+msgstr "Anzeigen"
+
+#: admin/filemgr/managefiles_functions.php:161
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: admin/filemgr/managefiles_functions.php:128
+msgid "elevation Shortcode"
+msgstr "elevation Shortcode"
+
+#: admin/filemgr/managefiles_functions.php:127
+msgid "leaflet Shortcode"
+msgstr "leaflet Shortcode"
+
+#: admin/filemgr/managefiles_functions.php:126
+msgid "Media Library"
+msgstr "Mediathek"
+
+#: admin/filemgr/managefiles_functions.php:125
+#: admin/filemgr/managefiles_functions.php:159
+#: admin/filemgr/managefiles_functions.php:165
+#: admin/filemgr/managefiles_functions.php:178
+msgid "Preview"
+msgstr "Vorschau"
+
+#: admin/filemgr/managefiles_functions.php:124
+msgid "Name"
+msgstr "Name"
+
+#: admin/filemgr/managefiles_functions.php:123
+msgid "Date"
+msgstr "Datum"
+
+#: admin/filemgr/managefiles_functions.php:98
+msgid "no files"
+msgstr "keine Dateien"
+
+#: admin/filemgr/managefiles_functions.php:96
+msgid "Listing Files"
+msgstr "Anzeige der Dateien"
+
+#: admin/filemgr/managefiles_functions.php:82
+msgid "Next &raquo;"
+msgstr "Weiter &raquo;"
+
+#: admin/filemgr/managefiles_functions.php:81
+msgid "&laquo; Previous"
+msgstr "&laquo; Zurück"
+
+#: admin/filemgr/managefiles_functions.php:70
+msgid "Listing - page"
+msgstr "Liste - Seite"
+
+#: admin/filemgr/main.php:26
+msgid "List Files"
+msgstr "Anzeige der Dateien"
+
+#: admin/filemgr/leaflet-directory.php:24
+msgid "Use the %sdirectory listing%s for simplicity."
+msgstr "Verwende der Einfachheit halber die %sVerzeichnisanzeige%s."
+
+#: admin/filemgr/leaflet-directory.php:19
+msgid "If %s and a file is a gpx file, display start point and cluster"
+msgstr "Wenn %s und die Datei eine gpx-Datei ist, zeige Startpunkt an und clustere"
+
+#: admin/filemgr/leaflet-directory.php:18
+msgid "For %s it is ignored. For %s a list of %s. Default is %s."
+msgstr "Für %s wird es ignoriert. Für %s eine Liste von %s. Standard is %s."
+
+#: admin/filemgr/leaflet-directory.php:17
+msgid "draw the content with %scommands "
+msgstr "stelle den Inhalt mit %sBefehlen dar "
+
+#: admin/filemgr/leaflet-directory.php:16
+msgid "(default) prepare the tracks for %s"
+msgstr "(Standard) bereite die Tracks für %s vor"
+
+#: admin/filemgr/leaflet-directory.php:15
+msgid "(relative) path to directory, accessible both from path and from url"
+msgstr "(relativer) Pfad zum Verzeichnis, der sowohl über den Pfad als auch über die URL zugänglich ist"
+
+#: admin/filemgr/leaflet-directory.php:14
+msgid "url to directory, default: URL from upload directory."
+msgstr "URL zum Verzeichnis, Standard: URL vom Upload-Verzeichnis."
+
+#: admin/filemgr/leaflet-directory.php:5 admin/filemgr/main.php:30
+#: admin/help.php:74
+msgid "Tracks from all files in a directory"
+msgstr "Tracks aus allen Dateien in einem Verzeichnis"
+
+#: admin/filemgr/filemgr.php:215
+msgid "for showing all files of this directory on a map"
+msgstr "zum Anzeigen aller Dateien dieses Verzeichnisses auf einer Karte"
+
+#: admin/filemgr/filemgr.php:213
+msgid "Directory"
+msgstr "Verzeichnis"
+
+#: admin/filemgr/filemgr.php:204
+msgid "List files"
+msgstr "Anzeige der Dateien"
+
+#: admin/filemgr/filemgr.php:134
+msgid "entries"
+msgstr "Einträge"
+
+#: admin/filemgr/filemgr.php:85
+msgid "If you change the number, submit the form to get the directories you want."
+msgstr "Wenn du die Zahl änderst, sende das Formular ab, um die gewünschten Verzeichnisse zu erhalten."
+
+#: admin/filemgr/filemgr.php:75
+msgid "Please select"
+msgstr "Bitte auswählen"
+
+#: admin/filemgr/filemgr.php:73
+msgid "Files"
+msgstr "Dateien"
+
+#: admin/filemgr/filemgr.php:73
+msgid "with at least"
+msgstr "mit mindestens"
+
+#: admin/filemgr/filemgr.php:14
+msgid "Save query"
+msgstr "Speichere Abfrage"
+
+#: admin/filemgr/filemgr.php:13
+msgid "and show at the same time"
+msgstr "und zeige gleichzeitig"
+
+#: admin/filemgr/filemgr.php:12
+msgid "or in the directory"
+msgstr "oder in dem Verzeichnis"
+
+#: admin/filemgr/filemgr.php:11
+msgid "Show all files"
+msgstr "Zeige alle Dateien"
+
+#: admin/filemgr/filemgr.php:10
+msgid "Show files of type"
+msgstr "Zeige Dateien vom Typ"
+
+#: admin/filemgr/filemgr-settings.php:129
+msgid "or in your own way."
+msgstr "oder auf deine eigene Art und Weise."
+
+#: admin/filemgr/filemgr-settings.php:126
+msgid "with any plugin for importing uploaded files to the Media Library."
+msgstr "mit einem beliebigen Plugin zum Importieren hochgeladener Dateien in die Mediathek."
+
+#: admin/filemgr/filemgr-settings.php:123
+msgid "with any File Manager plugin,"
+msgstr "mit einem beliebigen Dateimanager-Plugin,"
+
+#: admin/filemgr/filemgr-settings.php:120
+msgid "with any (S)FTP-Client,"
+msgstr "mit einem beliebigen (S)FTP-Programm"
+
+#: admin/filemgr/filemgr-settings.php:117
+msgid "direct in the Media Library."
+msgstr "direkt in der Mediathek."
+
+#: admin/filemgr/filemgr-settings.php:113
+msgid "You can manage these"
+msgstr "Du kannst sie verwalten"
+
+#: admin/filemgr/filemgr-settings.php:108
+msgid "Here you can display all gpx, kml, geojson, json and tcx files in subdirectories of uploads directory."
+msgstr "Hier kannst du dir alle gpx-, kml-, geojson, json und tcx-Dateien in Unterverzeichnissen des Uploads-Verzeichnisses anzeigen lassen."
+
+#: admin/filemgr/filemgr-settings.php:25
+msgid "Allow all users who have access to the backend to see the files. A permission check %s only done if the files are registered in the media library."
+msgstr "Erlaube allen Benutzern, die auf das Backend Zugriff haben, die Dateien zu sehen. Eine Berechtigungsprüfung %s findet nur statt, wenn die Dateien in der Mediathek registriert sind."
+
+#: admin/filemgr/filemgr-settings.php:24
+msgid "Allow non admin"
+msgstr "Erlaube Nicht-Administratoren"
+
+#: admin/filemgr/filemgr-settings.php:18
+msgid "This may be of interest if you have used wp-gpx-maps."
+msgstr "Das kann von Interesse sein, wenn du wp-gpx-maps verwendet hast."
+
+#: admin/filemgr/filemgr-settings.php:17
+msgid "Upload gpx files into the directory"
+msgstr "Lade gpx-Dateien in das Verzeichnis"
+
+#: admin/filemgr/filemgr-settings.php:11
+msgid "Allow upload to media library"
+msgstr "Erlaube das Hochladen in die Mediathek"
+
+#: admin/filemgr/filemgr-settings.php:10
+msgid "Types"
+msgstr "Typen"
+
+#: admin.php:149 admin.php:153 admin/filemgr/main.php:21 admin/help.php:70
+#: admin/help.php:72
+msgid "Files for Leaflet Map"
+msgstr "Dateien für Leaflet Map"
+
+#: php/sgpx.php:193
+msgid "You are using the sgpx shortcode from plugin wp-gpx-maps. wp-gpx-maps and leaflet-map don't work together."
+msgstr "Du verwendest den Shortcode sgpx des Plugins wp-gpx-maps. wp-gpx-maps und leaflet-map funktionieren nicht gleichzeitig."
+
+#: php/multielevation.php:37
+msgid "The active track is displayed in this color."
+msgstr "Der aktive Track wird in dieser Farbe angezeigt."
+
+#: php/multielevation.php:36
+msgid "Highlight color"
+msgstr "Highlight-Farbe"
+
+#: php/multielevation.php:14
+msgid "Filename as name"
+msgstr "Dateiname als Name"
+
+#: php/elevation.php:520
+msgctxt "In Frontend: Abbreviation for pace in the chart"
+msgid "pace"
+msgstr "Tempo"
+
+#: php/elevation.php:512
+msgctxt "In Frontend"
+msgid "Avg Pace"
+msgstr "Durchschnittliches Tempo"
+
+#: php/elevation.php:511
+msgctxt "In Frontend"
+msgid "Max Pace"
+msgstr "Schnellstes Tempo"
+
+#: php/elevation.php:510
+msgctxt "In Frontend"
+msgid "Min Pace"
+msgstr "Langsamstes Tempo"
+
+#: php/elevation.php:502
+msgctxt "In Frontend"
+msgid "Avg Slope"
+msgstr "Durchschnittliche Steigung"
+
+#: php/elevation.php:497
+msgctxt "In Frontend"
+msgid "Avg Elevation"
+msgstr "Durchschnittliche Höhe"
+
+#: php/elevation.php:281
+msgid "Display date and clock time"
+msgstr "Zeige Datum und Uhrzeit"
+
+#: php/elevation.php:269
+msgid "Display time info (duration)"
+msgstr "Zeitinfo anzeigen (Dauer)"
+
+#: php/elevation.php:259
+msgid "show distance data in graph and summary / show distance data in summary only / don't show distance data"
+msgstr "Entfernungsdaten in Diagramm und Zusammenfassung anzeigen / Entfernungsdaten nur in Zusammenfassung anzeigen / Entfernungsdaten nicht anzeigen"
+
+#: php/elevation.php:187
+msgid "Display circle marker on End"
+msgstr "Kreismarker am Ziel anzeigen"
+
+#: php/elevation.php:177
+msgid "Display circle marker on Start"
+msgstr "Kreismarker am Start anzeigen"
+
+#: php/elevation.php:155
+msgid "Toggle chart ruler filter."
+msgstr "Diagrammlineal ein- und ausschalten."
+
+#: php/elevation.php:98
+msgid "Toggle chart"
+msgstr "Diagramm umschalten"
+
+#: php/elevation.php:90
+msgid "three digit number (px), minimum 100, maximum 499"
+msgstr "dreistellige Zahl (px), mindestens 100, höchstens 499"
+
+#: php/elevation.php:86
+msgid "Height of the chart"
+msgstr "Höhe des Diagramms"
+
+#: php/elevation.php:74
+msgid "If %s is disabled, you can't see all charts at the same time (except at the beginning)."
+msgstr "Wenn %s deaktiviert ist, kann man nicht alle Diagramme gleichzeitig sehen (außer am Anfang)."
+
+#: php/elevation.php:71
+msgid "You can always toggle the charts individually by clicking on %s."
+msgstr "Du kannst die Diagramme jederzeit einzeln umschalten, indem du auf %s klickst."
+
+#: php/elevation.php:46
+msgid "Track colors according to the values of elevation"
+msgstr "Farben des Track entsprechend der Höhenwerte"
+
+#: admin/elevation/owntheme.php:137
+msgid "or check out Raruto's %sexamples%s"
+msgstr "oder sieh dir Rarutos %sBeispiele%s an"
+
+#: admin/elevation/owntheme.php:14
+msgid "Other Theme"
+msgstr "Anderes Theme"
+
+#: admin/elevation/owncolors.php:188
+msgid "Colors"
+msgstr "Farben"
+
+#: admin/elevation/owncolors.php:185
+msgid "To change it see the bottom of the page."
+msgstr "Um es zu ändern, siehe unten auf der Seite."
+
+#: admin/elevation/owncolors.php:183
+msgid "Your theme is the"
+msgstr "Dein Theme ist das"
+
+#: admin/elevation/owncolors.php:88
+msgid "Chart background color"
+msgstr "Hintergrundfarbe des Diagramms"
+
+#: admin/elevation/owncolors.php:82
+msgid "Track color"
+msgstr "Trackfarbe"
+
+#: admin/elevation/owncolors.php:76 php/elevation.php:356
+msgid "Pace profile - time per distance"
+msgstr "Tempodiagramm - Zeit pro Strecke"
+
+#: admin/elevation/owncolors.php:52 php/elevation.php:308
+msgid "Altitude chart profile"
+msgstr "Höhenprofil"
+
+#: admin/elevation/main.php:24
+msgid "Theme / Colors"
+msgstr "Theme / Farben"
+
+#: admin/elevation/elevation.php:295
+msgid "Others"
+msgstr "Andere"
+
+#: admin/elevation/elevation.php:266
+msgid "hidden"
+msgstr "ausgeblendet"
+
+#: admin/elevation/elevation.php:258 admin/elevation/elevation.php:259
+#: admin/elevation/elevation.php:265 admin/elevation/elevation.php:275
+#: admin/elevation/elevation.php:276 admin/elevation/elevation.php:277
+#: admin/elevation/elevation.php:278
+msgid "no"
+msgstr "nein"
+
+#: admin/elevation/elevation.php:249 admin/elevation/elevation.php:250
+#: admin/elevation/elevation.php:252 admin/elevation/elevation.php:253
+#: admin/elevation/elevation.php:254 admin/elevation/elevation.php:260
+#: admin/elevation/elevation.php:261 admin/elevation/elevation.php:269
+#: admin/elevation/elevation.php:270 admin/elevation/elevation.php:271
+msgid "yes"
+msgstr "ja"
+
+#: admin/elevation/elevation.php:234 admin/elevation/elevation.php:237
+#: admin/elevation/elevation.php:241 admin/elevation/elevation.php:245
+msgid "Your setting:"
+msgstr "Deine Einstellung:"
+
+#: admin/elevation/elevation.php:227
+msgid "Tooltip display"
+msgstr "Anzeige Tooltip"
+
+#: admin/elevation/elevation.php:226
+msgid "Axis display"
+msgstr "Achsenanzeige"
+
+#: admin/elevation/elevation.php:225
+msgid "Display diagram"
+msgstr "Anzeige des Diagramms"
+
+#: admin/elevation/elevation.php:224
+msgid "Setting"
+msgstr "Einstellung"
+
+#: admin/elevation/elevation.php:211
+msgid "Charts"
+msgstr "Diagramme"
+
+#: admin/elevation/elevation.php:200
+msgid "Information display"
+msgstr "Anzeige der Informationen"
+
+#: admin/elevation/elevation.php:190
+msgid "Distance and time"
+msgstr "Weg und Zeit"
+
+#: admin/elevation/elevation.php:183
+msgid "Markers and Waypoints"
+msgstr "Marker und Wegpunkte"
+
+#: admin/elevation/elevation.php:176
+msgid "Appearance"
+msgstr "Aussehen"
+
+#: admin/elevation/elevation.php:162
+msgid "in %sGerman%s and %sEnglish%s"
+msgstr "in %sDeutsch%s und %sEnglisch%s"
+
+#: admin/elevation/elevation.php:160
+msgid "Detailed documentation and examples"
+msgstr "Ausführliche Dokumentation und Beispiele"
+
+#: php/elevation.php:525
+msgctxt "In Frontend: Abbreviation for altitude in the chart"
+msgid "y"
+msgstr "y"
+
+#: php/elevation.php:524
+msgctxt "In Frontend: Abbreviation for length in the chart"
+msgid "x"
+msgstr "x"
+
+#: php/elevation.php:523
+msgctxt "In Frontend: Abbreviation for speed in the chart"
+msgid "v"
+msgstr "v"
+
+#: php/elevation.php:522
+msgctxt "In Frontend: Abbreviation for duration in the chart"
+msgid "T"
+msgstr "T"
+
+#: php/elevation.php:521
+msgctxt "In Frontend: Abbreviation for time in the chart"
+msgid "t"
+msgstr "t"
+
+#: php/elevation.php:519
+msgctxt "In Frontend: Abbreviation for slope in the chart"
+msgid "m"
+msgstr "m"
+
+#: php/elevation.php:518
+msgctxt "In Frontend: Abbreviation for heart rate in the chart"
+msgid "hr"
+msgstr "hr"
+
+#: php/elevation.php:517
+msgctxt "In Frontend: Abbreviation for cadence in the chart"
+msgid "cad"
+msgstr "cad"
+
+#: php/elevation.php:516
+msgctxt "In Frontend: Abbreviation for acceleration in the chart"
+msgid "a"
+msgstr "a"
+
+#: php/elevation.php:514
+msgctxt "In Frontend"
+msgid "Elevation"
+msgstr "Höhe"
+
+#: php/elevation.php:513
+msgctxt "In Frontend"
+msgid "Download"
+msgstr "Herunterladen"
+
+#: php/elevation.php:508
+msgctxt "In Frontend"
+msgid "Avg Acceleration"
+msgstr "durchschnittliche Beschleunigung"
+
+#: php/elevation.php:507
+msgctxt "In Frontend"
+msgid "Max Acceleration"
+msgstr "maximale Beschleunigung"
+
+#: php/elevation.php:506
+msgctxt "In Frontend"
+msgid "Min Acceleration"
+msgstr "minimale Beschleunigung"
+
+#: php/elevation.php:505
+msgctxt "In Frontend"
+msgid "Avg Speed"
+msgstr "Durchschnittsgeschwindigkeit"
+
+#: php/elevation.php:504
+msgctxt "In Frontend"
+msgid "Max Speed"
+msgstr "maximale Geschwindigkeit"
+
+#: php/elevation.php:503
+msgctxt "In Frontend"
+msgid "Min Speed"
+msgstr "langsamste Geschwindigkeit"
+
+#: php/elevation.php:501
+msgctxt "In Frontend"
+msgid "Max Slope"
+msgstr "max. Steigung"
+
+#: php/elevation.php:500
+msgctxt "In Frontend"
+msgid "Min Slope"
+msgstr "max. Gefälle"
+
+#: php/elevation.php:499
+msgctxt "In Frontend"
+msgid "Total Descent"
+msgstr "Gesamtabstieg"
+
+#: php/elevation.php:498
+msgctxt "In Frontend"
+msgid "Total Ascent"
+msgstr "Gesamtanstieg"
+
+#: php/elevation.php:496
+msgctxt "In Frontend"
+msgid "Min Elevation"
+msgstr "Minimale Höhe"
+
+#: php/elevation.php:495
+msgctxt "In Frontend"
+msgid "Max Elevation"
+msgstr "Maximale Höhe"
+
+#: php/elevation.php:494
+msgctxt "In Frontend"
+msgid "Total Length"
+msgstr "Gesamtstrecke"
+
+#: php/elevation.php:493
+msgctxt "In Frontend"
+msgid "Total Time"
+msgstr "Gesamtzeit"
+
+#: php/elevation.php:492
+msgctxt "In Frontend"
+msgid "Speed"
+msgstr "Geschwindigkeit"
+
+#: php/elevation.php:491
+msgctxt "In Frontend"
+msgid "Slope"
+msgstr "Steigung"
+
+#: php/elevation.php:490
+msgctxt "In Frontend"
+msgid "Altitude"
+msgstr "Höhe"
+
+#: php/elevation.php:489
+msgctxt "In Frontend"
+msgid "Acceleration"
+msgstr "Beschleunigung"
+
+#: admin/tiles/help.php:15
+msgid "Pay attention to the setting for %s, it depends on the used Map Tiles, see for example %shere%s."
+msgstr "Achte auf die Einstellung für %s, sie hängt von den verwendeten Kachelserver ab, siehe zum Beispiel %shier%s."
+
+#: admin/help/hover.php:43
+msgid "Parameters"
+msgstr "Parameter"
+
+#: admin/help/hover.php:23
+msgid "The %s option is valid for %s only and optional."
+msgstr "Die Option %s gilt nur für %s und ist optional."
+
+#: admin/help/hover.php:19
+msgid "The tooltip content is the same as the popup content and/or the content of %s option."
+msgstr "Der Inhalt vom Tooltip ist derselbe wie der Inhalt vom Popup und/oder der Inhalt der Option %s."
+
+#: admin/help/hover.php:15
+msgid "Load an element with any %s shortcode"
+msgstr "Lade ein Element mit einem %s Shortcode"
+
+#: admin/help/hover.php:8
+msgid "Use it to highlight a %s element and get a tooltip on mouse over."
+msgstr "Verwende es, um ein %s-Element hervorzuheben und einen Tooltip beim Überfahren mit der Maus zu erhalten."
+
+#: admin/marker/markercluster.php:153
+msgid "Please see the admin page for options."
+msgstr "Die Optionen können auf der Adminseite eingestellt werden."
+
+#: admin/marker/clustergroup.php:118
+msgid "If %s contains %s and %s, then markers (respectively Points) for which the property %s does not apply are placed in the %s group. Markers (respectively Points) whose property is not known are placed in the %s group. See also the developer console."
+msgstr "Wenn %s %s und %s enthält, dann werden Marker (bzw. Punkte), für die die Eigenschaft %s nicht gilt, in die Gruppe %s gestellt. Marker (bzw. Punkte), deren Eigenschaft nicht bekannt ist, werden in der Gruppe %s platziert. Siehe auch die Entwicklerkonsole."
+
+#: admin/featuregroup.php:121 admin/featuregroup.php:173
+#: admin/featuregroup.php:184 admin/marker/clustergroup.php:116
+#: admin/marker/clustergroup.php:126
+msgid "and"
+msgstr "und"
+
+#: admin/marker/clustergroup.php:105
+msgid "Shortcode for grouping markers (points) in leaflet-geojson"
+msgstr "Shortcode um Punkte (Points) in leaflet-geojson zu gruppieren"
+
+#: admin/marker/clustergroup.php:86
+msgid "comma separated strings to distinguish the markers, e.g. an unique substring in %s or the exact string (e.g.%s) in %s"
+msgstr "durch Komma getrennte Zeichenketten (substrings) zur Unterscheidung der Marker, z. B. eine eindeutige Zeichenfolge in %s oder die exakte Zeichenkette in (z.B. %s) in %s"
+
+#: admin/marker/clustergroup.php:69
+msgid "is the name of a property in properties of the Point in the FeatureCollection"
+msgstr "ist der Name einer Eigenschaft in properties des Markers (Point) in der FeatureCollection"
+
+#: admin/marker/clustergroup.php:66
+msgid "Options for grouping markers (points) in leaflet-geojson"
+msgstr "Optionen um Punkte (Points) in leaflet-geojson zu gruppieren"
+
+#: admin/marker/clustergroup.php:56
+msgid "Shortcode for grouping leaflet-markers"
+msgstr "Shortcode um leaflet-markers zu gruppieren"
+
+#: admin/marker/clustergroup.php:34
+msgid "Options for grouping leaflet-markers"
+msgstr "Optionen um leaflet-markers zu gruppieren"
+
+#: php/elevation.php:242
+msgid "If %s is selected, you must define some %ssettings for the icons"
+msgstr "Wenn %s ausgewählt ist, musst du einige %sEinstellungen für die Icons festlegen"
+
+#: php/elevation.php:241
+msgid "Only meaningful, if waypoints are shown in the map."
+msgstr "Nur sinnvoll, wenn Wegpunkte in der Karte angezeigt werden."
+
+#: php/elevation.php:239
+msgid "Toggle custom waypoint icons"
+msgstr "Icons für Wegpunkte"
+
+#: php/elevation.php:222
+msgid "Only meaningful, if %swaypoints%s is not %s."
+msgstr "Nur sinnvoll, wenn %swaypoints%s nicht %s ist."
+
+#: php/elevation.php:221
+msgid "Show waypoint labels in map and in chart / only in map / only in chart / none"
+msgstr "Zeige Beschriftungen der Wegpunkte auf der Karte und im Diagramm / nur auf der Karte / nur im Diagramm / nicht anzeigen"
+
+#: php/elevation.php:220
+msgid "Toggle waypoint labels"
+msgstr "Wegpunktbezeichnungen"
+
+#: php/elevation.php:210
+msgid "Display waypoints in map and in chart / only in map / only in chart / none"
+msgstr "Wegpunkte auf der Karte und im Diagramm / nur auf der Karte / nur im Diagramm / nicht anzeigen"
+
+#: admin/elevation/waypoints.php:197
+msgid "Generated Javascript"
+msgstr "Generiertes Javascript"
+
+#: admin/elevation/waypoints.php:183
+msgid "If you need more special characters than %s for your waypoints, please ask in the forum."
+msgstr "Wenn du mehr Sonderzeichen für die Wegpunkte als %s benötigst, frage bitte im Forum."
+
+#: admin/elevation/waypoints.php:179
+msgid "e.g."
+msgstr "z. B."
+
+#: admin/elevation/waypoints.php:174
+msgid "Any blank character from %sText of GPS symbol name%s is converted to a minus sign, uppercase to lowercase, a comma will be escaped."
+msgstr "Jedes Leerzeichen aus %sName des GPS-Symbols%s wird in ein Minuszeichen umgewandelt, Großbuchstaben werden in Kleinbuchstaben umgewandelt, ein Komma wird maskiert."
+
+#: admin/elevation/waypoints.php:170
+msgid "You can use any css describing the waypoint."
+msgstr "Du kannst jedes beliebige css verwenden, das den Wegpunkt beschreibt."
+
+#: admin/elevation/waypoints.php:166
+msgid "Must be defined for each waypoint, also for the default."
+msgstr "Muss für jeden Wegpunkt definiert werden, auch für den Standard."
+
+#: admin/elevation/waypoints.php:162
+msgid "CSS to define as HTML block (between %s and %s) or in css file"
+msgstr "Im HTML Block (eingeschlossen von %s und %s) oder in der css-Datei zu definierendes CSS"
+
+#: admin/elevation/waypoints.php:156
+msgid "The waypoint CSS class Selector"
+msgstr "Der CSS-Klassen-Selektor für den Wegpunkt"
+
+#: admin/elevation/waypoints.php:148
+msgid "Waypoint specified in file"
+msgstr "Wegpunkt wie in Datei angegeben"
+
+#: admin/elevation/waypoints.php:114
+msgid "Here you can define extra waypoint options."
+msgstr "Hier kannst du Optionen für Wegpunkte konfigurieren."
+
+#: admin/elevation/waypoints.php:73
+msgid "Delete"
+msgstr "Löschen"
+
+#: admin/elevation/waypoints.php:49
+msgid "It may be empty, then its javascript is the default for all waypoints."
+msgstr "Es kann leer sein, dann ist das Javascript der Standard für alle Wegpunkte."
+
+#: admin/elevation/waypoints.php:46
+msgid "Valid characters: lowercase, uppercase, numbers, -, comma, blank character."
+msgstr "Gültige Zeichen: Kleinbuchstaben, Großbuchstaben, Zahlen, -, Komma, Leerzeichen."
+
+#: admin/elevation/waypoints.php:17 admin/elevation/waypoints.php:35
+#: admin/elevation/waypoints.php:149 admin/elevation/waypoints.php:153
+msgid "Text of GPS symbol name"
+msgstr "Name des GPS-Symbols"
+
+#: admin/elevation/main.php:28
+msgid "Customize waypoints"
+msgstr "Wegpunkte anpassen"
+
+#: admin/tiles/providers.php:25
+msgid "Providers requiring registration"
+msgstr "Provider, die eine Registrierung erfordern"
+
+#: admin/tiles/layerswitch.php:121
+msgid "You can use the parameter <code>providers</code> also."
+msgstr "Du kannst zusätzlich den Parameter <code>providers</code> verwenden."
+
+#: admin/tiles/layerswitch.php:110
+msgid "Per default all defined tile servers appear."
+msgstr "Standardmäßig werden alle definierten Kachelserver angezeigt."
+
+#: admin/tiles/help.php:33
+msgid "Your Settings"
+msgstr "Deine Einstellungen"
+
+#: admin/help/hover.php:48
+msgid "determines how much to extend click tolerance round a path/object on the map."
+msgstr "bestimmt, um wie viel die Klicktoleranz um einen Pfad/Objekt auf der Karte erweitert werden soll."
+
+#: admin/help/hover.php:44
+msgid "Both parameters are optional."
+msgstr "Beide Parameter sind optional."
+
+#: admin/help/hover.php:41
+msgid "And hover"
+msgstr "Und definiere hover"
+
+#: admin/help/hover.php:27
+msgid "To customize the popup content for geojsons see %sgeojson options%s."
+msgstr "Zum Anpassen des Popup-Inhalts für geojsons siehe %sOptionen für geojson%s."
+
+#: admin/choropleth.php:30 admin/elevation/elevation.php:149
+#: admin/elevation/multielevation.php:123
+#: admin/elevation/multielevation.php:160
+#: admin/elevation/multielevation.php:178
+#: admin/elevation/multielevation.php:202 admin/marker/extramarker.php:102
+#: admin/marker/markercluster.php:126 admin/marker/placementstrategies.php:118
+msgid "Options"
+msgstr "Optionen"
+
+#: admin/marker/markercluster.php:119
+msgid "Create cluster"
+msgstr "Erstelle das Cluster"
+
+#: admin/marker/markercluster.php:114
+msgid "and/or with leaflet-gpx and/or leaflet-geojson"
+msgstr "und/oder mit leaflet-gpx und/oder leaflet-geojson"
+
+#: admin/marker/markercluster.php:107
+msgid "and markers with leaflet-marker"
+msgstr "und Marker mit leaflet-marker"
+
+#: admin/help/hover.php:13 admin/marker/markercluster.php:104
+msgid "Create Map"
+msgstr "Erstelle die Karte"
+
+#: php/multielevation.php:23
+msgid "Valid for %s: Only elevation profile with or without summary line will be displayed."
+msgstr "Gilt für %s: Es werden nur Höhenprofile mit oder ohne Zusammenfassung angezeigt."
+
+#: admin/elevation/elevation.php:228 php/multielevation.php:22
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+#: php/multielevation.php:15
+msgid "Use filename (without extension) as name of the point and track."
+msgstr "Verwende den Dateinamen (ohne Erweiterung) als Name vom Track und des Startpunktes."
+
+#: php/gesture.php:23
+msgid "Site Language or Browser Language"
+msgstr "Sprache der Seite oder des Browsers"
+
+#: php/gesture.php:13
+msgid "valid for whole site or only for one map"
+msgstr "gilt für die gesamte Seite oder nur für eine Karte"
+
+#: php/elevation.php:435
+msgid "Due to a bug in MacOS and iOS, see %shere%s, it is automatically set to false in Safari."
+msgstr "Aufgrund eines Fehlers in MacOS und iOS, siehe %shier%s, wird es in Safari automatisch auf false gesetzt."
+
+#: php/elevation.php:402
+msgid "miles or kilometers"
+msgstr "Meilen oder Kilometer"
+
+#: admin/tiles/providers.php:92
+msgid "I did not tested all, I have only checked the Javascript code. If something is not working, please let me know."
+msgstr "Ich habe nicht alle getestet, ich habe nur den Javascript-Code überprüft. Wenn etwas nicht funktioniert, lass es mich bitte wissen."
+
+#: admin/tiles/providers.php:86
+msgid "For a list of providers see"
+msgstr "Für eine Liste der Anbieter siehe"
+
+#: admin/tiles/providers.php:84
+msgid "You can use the parameter <code>tiles</code> also."
+msgstr "Du kannst zusätzlich den Parameter <code>tiles</code> verwenden."
+
+#: admin/tiles/main.php:20
+msgid "Leaflet-providers"
+msgstr "Leaflet-providers"
+
+#: admin.php:172 admin/tiles/main.php:16
+msgid "Tile Server"
+msgstr "Kachelserver"
+
+#: admin/tiles/layerswitch.php:116
+msgid "You can select your defined Tile Server with parameter <code>tiles</code> as comma separated list in the shortcode:"
+msgstr "Du kannst Deine definierten Kachelserver als kommagetrennte Liste im Parameter <code>tiles</code> angeben:"
+
+#: admin/tiles/layerswitch.php:107
+msgid "Here you can define your Tile servers. Additionally you can specify if opacity should be regulated."
+msgstr "Hier kannst Du Deine Kachelserver konfigurieren. Außerdem kannst Du angeben, ob ein Regler für die Transparenz erscheinen soll."
+
+#: admin/elevation/waypoints.php:65 admin/tiles/layerswitch.php:58
+msgid "The syntax is not checked!"
+msgstr "Die Syntax wird nicht überprüft!"
+
+#: admin/tiles/layerswitch.php:11 admin/tiles/main.php:24
+msgid "Extra Tile Server"
+msgstr "Zusätzliche Kachelserver"
+
+#: admin/tiles/help.php:67
+msgid "with %s you can specify the mapids and/or providers for which opacity should be regulated."
+msgstr "Mit %s kannst du die mapids und/oder providers angeben, für die die Transparenz geregelt werden soll."
+
+#: admin/tiles/help.php:64
+msgid "with %s and/or %s you can specify which tiles should be used."
+msgstr "mit %s und/oder %s kannst du angeben, welche Kachelserver verwendet werden sollen."
+
+#: admin/tiles/help.php:61
+msgid "without any parameter: All defined %stile servers%s are used."
+msgstr "ohne jeden Parameter: Alle definierten %sKachelserver%s werden verwendet."
+
+#: admin/tiles/help.php:57
+msgid "optional: mapid - This appears in the switching control."
+msgstr "optional: mapid - Dies erscheint im Umschalt-Menü."
+
+#: admin/tiles/help.php:56
+msgid "see Leaflet Map documentation"
+msgstr "siehe die Dokumentation von Leaflet Map"
+
+#: admin/tiles/help.php:43
+msgid "Default Max Zoom"
+msgstr "Standard für maximalen Zoom"
+
+#: admin/tiles/help.php:42
+msgid "Default Min Zoom"
+msgstr "Standard für minimalen Zoom"
+
+#: admin/tiles/help.php:41
+msgid "Default Attribution"
+msgstr "Standard Namensnennung"
+
+#: admin/tiles/help.php:40
+msgid "Map Tile URL Subdomains"
+msgstr "Kartenkachel-URL-Subdomains"
+
+#: admin/tiles/help.php:39
+msgid "Map Tile URL"
+msgstr "Kartenkachel-URL"
+
+#: admin/tiles/help.php:38
+msgid "Tile Id"
+msgstr "Kachel-ID"
+
+#: admin/tiles/help.php:37
+msgid "Current Settings"
+msgstr "Aktuelle Einstellungen"
+
+#: admin/tiles/help.php:28
+msgid "Additionally you can use some predefined Tile Providers with %s or you can define %syour Tile Servers%s."
+msgstr "Zusätzlich kannst du einige vordefinierte Kachelanbieter mit %s verwenden oder du kannst selbst %sKachelserver%s definieren."
+
+#: admin/tiles/help.php:12
+msgid "The default Map Tiles are defined in the Leaflet Map Settings."
+msgstr "Die Standard-Kartenkacheln werden in den Einstellungen von Leaflet Map definiert."
+
+#: admin/tiles/help.php:8
+msgid "The default Map Tiles are defined in the %s Settings%s."
+msgstr "Die Standard-Kartenkacheln werden in den %s Einstellungen%s definiert."
+
+#: admin/tiles/help.php:7
+msgid "About Tile servers"
+msgstr "Über Kachelserver"
+
+#: admin/help.php:84
+msgid "You may be interested in"
+msgstr "Dich interessiert vielleicht"
+
+#: admin/help.php:80
+msgid "Migration from"
+msgstr "Migration von"
+
+#: admin/help.php:27 admin/help.php:28
+msgid "Function"
+msgstr "Funktion"
+
+#: admin/elevation/multielevation.php:186
+msgid "The name of a %strack%s is determined as described above."
+msgstr "Der Name vom %sTrack%s wird wie oben beschrieben bestimmt."
+
+#: admin/elevation/multielevation.php:180
+msgid "If you use %s, you can use these options like in %sElevation Profile%s"
+msgstr "Wenn du %s verwendest, kannst du folgende Optionen wie beim %sHöhenprofil%s verwenden"
+
+#: admin/elevation/multielevation.php:172
+msgid "If it is false, an attempt is made to read the trackname from the file."
+msgstr "Ist er false, wird versucht, den Tracknamen aus der Datei auszulesen."
+
+#: admin/elevation/multielevation.php:169
+msgid "If %s (in options below or in shortcode) is true, the filename (without extension) is used."
+msgstr "Wenn %s true ist (in den Optionen weiter unten oder im Shortcode), wird der Dateiname (ohne Erweiterung) verwendet."
+
+#: admin/elevation/multielevation.php:165
+msgid "The name of a %strack%s is determined in this order:"
+msgstr "Der Name vom %sTrack%s wird wie folgt bestimmt:"
+
+#: admin/elevation/multielevation.php:162
+msgid "If you use %s, you get an elevation profile only with or without a summary line."
+msgstr "Wenn du %s verwendest, wird nur ein Höhenprofil mit oder ohne Zusammenfassung angezeigt."
+
+#: admin/elevation/multielevation.php:156
+msgid "Use either %s or %s as last instruction."
+msgstr "Verwende entweder %s oder %s als letzte Anweisung."
+
+#: admin/elevation/multielevation.php:153
+#: admin/elevation/multielevation.php:174
+msgid "If this is not available, the filename (without extension) is used."
+msgstr "Ist das nicht möglich, wird der Dateiname (ohne Erweiterung) verwendet."
+
+#: admin/elevation/multielevation.php:151
+msgid "If not, an attempt is made to read the trackname from the file."
+msgstr "Wenn nicht, wird versucht den Tracknamen aus der Datei auszulesen."
+
+#: admin/elevation/multielevation.php:148
+msgid "If %s is specified, it is used."
+msgstr "Wenn %s angegeben ist, wird dieser verwendet."
+
+#: admin/elevation/multielevation.php:143
+msgid "If %s (in options below or in shortcode) is true, the filename (without extension) is used, no matter how %s is."
+msgstr "Wenn %s true ist (in den Optionen weiter unten oder im Shortcode), wird der Dateiname (ohne Erweiterung) verwendet, unabhängig davon, wie %s ist."
+
+#: admin/elevation/multielevation.php:138
+msgid "The name of the %sstart point%s is determined in this order:"
+msgstr "Der Name vom %sStartpunkt%s wird wie folgt bestimmt:"
+
+#: admin/elevation/multielevation.php:134
+msgid "If %s and %s are not specified, they are read from the file."
+msgstr "Wenn %s und %s nicht angegeben sind, werden sie aus der Datei ausgelesen."
+
+#: admin/elevation/multielevation.php:127
+msgid "%s, %s and %s describe the %sstart point%s and are optional."
+msgstr "%s, %s und %s beschreiben den %sStartpunkt%s und sind optional."
+
+#: admin/elevation/multielevation.php:125
+msgid "%s is the url of the trackfile."
+msgstr "%s ist die URL des Trackfiles."
+
+#: admin/elevation/multielevation.php:38
+msgid "You can change it with"
+msgstr "Du kannst es ändern mit"
+
+#: admin/help/zoomhome.php:119
+msgid "sometimes to first zoom"
+msgstr "manchmal zum ersten Zoom"
+
+#: admin/help/zoomhome.php:118
+msgid "means"
+msgstr "bedeutet"
+
+#: admin/help/zoomhome.php:114 admin/help/zoomhome.php:115
+msgid "map like defined"
+msgstr "Karte wie definiert"
+
+#: admin/help/zoomhome.php:23 admin/help/zoomhome.php:65
+#: admin/help/zoomhome.php:93
+msgid "initial state of the map"
+msgstr "Ausgangszustand der Karte"
+
+#: admin/help/zoomhome.php:16
+msgid "You can set following and the Home button works as shown in the table."
+msgstr "Du kannst folgende Einstellungen vornehmen und der Home Button funktioniert wie in der Tabelle angegeben."
+
+#: php/sgpx.php:183
+msgid "You are using the sgpx shortcode from plugin wp-gpx-maps. But the script cannot detect how to handle it. Please ask in the forum."
+msgstr "Du verwendest den Shortcode sgpx vom Plugin wp-gpx-maps. Aber das Skript kann nicht erkennen, was zu tun ist. Bitte frage im Forum."
+
+#: php/sgpx.php:145
+msgid "No / Yes / Only, when %s is used, e.g. for testing."
+msgstr "Nein / Ja / Nur wenn %s verwendet wird, z.B. zum Testen."
+
+#: php/sgpx.php:144
+msgid "Replace <code>sgpx</code> (wp-gpx-maps) with <code>elevation</code>."
+msgstr "Ersetze <code>sgpx</code> (wp-gpx-maps) mit <code>elevation</code>."
+
+#: admin/elevation/sgpx.php:136
+msgid "You can delete all settings on this page."
+msgstr "Du kannst alle Einstellungen auf dieser Seite löschen."
+
+#: admin/elevation/sgpx.php:134
+msgid "You have wp-gpx-maps uninstalled, but some of its options exist in the database. You should delete them."
+msgstr "Du hast wp-gpx-maps deinstalliert, aber einige seiner Optionen sind in der Datenbank noch vorhanden. Du solltest sie löschen."
+
+#: admin/elevation/sgpx.php:132
+msgid "%s is not active, %s parameters will interpreted with %s."
+msgstr "%s ist nicht aktiv, die Parameter von %s werden durch %s interpretiert."
+
+#: admin/elevation/sgpx.php:129
+msgid "If you have deactivated the plugin, call this page again."
+msgstr "Wenn du das Plugin deaktiviert hast, rufe diese Seite erneut auf."
+
+#: admin/elevation/sgpx.php:126
+msgid "If you are happy with it and if you don't use its track management, you can deactivate and delete the plugin %s."
+msgstr "Wenn du nun damit zufrieden bist und die Track-Verwaltung nicht nutzt, kannst du das Plugin %s deaktivieren und löschen."
+
+#: admin/elevation/sgpx.php:124
+msgid "If you want to test it first: select %s and write in your test page / post %s."
+msgstr "Wenn du es zuerst testen möchtest: Wähle %s und schreibe in deine Testseite / deinen Testbeitrag %s."
+
+#: admin/elevation/sgpx.php:120
+msgid "Select %s to interpret the %s parameters as %s."
+msgstr "Wähle %s, um die %s-Parameter als %s zu interpretieren."
+
+#: admin/elevation/sgpx.php:118
+msgid "Configure your default %s settings."
+msgstr "Konfiguriere deine Standardeinstellungen für %s."
+
+#: admin/elevation/sgpx.php:110
+msgid "See documentation and examples in %shere%s."
+msgstr "Siehe %sDokumentation und Beispiele%s."
+
+#: admin/elevation/sgpx.php:107
+msgid "This page helps you to migrate from %s to %s."
+msgstr "Diese Seite hilft dir, von %s zu %s zu migrieren."
+
+#: admin/elevation/sgpx.php:106
+msgid "Migration"
+msgstr "Migration"
+
+#: admin/elevation/sgpx.php:101
+msgid "Many thanks to %s for his %sexcellent plugin%s, which I used myself for a long time. Unfortunately it needed some rework, especially to make wp-gpx-maps and leaflet-map work together. At some point it didn't work for me at all. So some of its features are included in the shortcode %s. Since version 2.2. it interprets the shortcode %s."
+msgstr "Vielen Dank an %s für sein %sexzellentes Plugin%s, das ich selbst lange Zeit benutzt habe. Leider musste einiges angepasst werden, vor allem damit wp-gpx-maps mit leaflet-map zusammen arbeitet. Irgendwann funktionierte es bei mir überhaupt nicht mehr. Einige seiner Funktionen sind in dem Shortcode %s enthalten. Seit Version 2.2. interpretiert dieser den Shortcode %s."
+
+#: admin/elevation/main.php:140
+msgid "wp-gpx-maps is not installed and nothing is configured."
+msgstr "wp-gpx-maps ist nicht installiert und es ist nichts konfiguriert."
+
+#: admin/elevation/main.php:136
+msgid "I don't need this anymore. sgpx is always interpreted as elevation."
+msgstr "Ich brauche es nicht mehr, sgpx wird immer wie elevation interpretiert."
+
+#: admin/elevation/main.php:130 admin/elevation/sgpx.php:87
+msgid "Delete all settings from wp-gpx-maps!"
+msgstr "Lösche alle Einstellungen von wp-gpx-maps!"
+
+#: admin/elevation/main.php:40
+msgid "Migrate from wp-gpx-maps"
+msgstr "Migration von wp-gpx-maps"
+
+#: php/elevation.php:99
+msgid "show always the chart / show the chart and toggle %s to hide / hide the chart and toggle %s to show"
+msgstr "immer das Diagramm anzeigen / das Diagramm anzeigen und %s ausblenden / das Diagramm ausblenden und %s einblenden"
+
+#: php/elevation.php:271
+msgid "show time data in graph and summary / show time data in summary only / nothing"
+msgstr "Zeit in Diagramm und Zusammenfassung anzeigen / Zeit nur in Zusammenfassung anzeigen / nichts anzeigen"
+
+#: php/elevation.php:294
+msgid "some predefined settings / summary on one line / summary on multiple lines / without summary"
+msgstr "vordefinierte Einstellungen / Zusammenfassung in einer Zeile / Zusammenfassung in mehreren Zeilen / keine Zusammenfassung"
+
+#: php/elevation.php:58
+msgid "nothing"
+msgstr "nichts"
+
+#: admin/elevation/elevation.php:144
+msgid "The elevation shortcode has many configuration options. Some things are not trivial. If you can't configure something, ask in the forum."
+msgstr "Der Shortcode elevation hat viele Konfigurationsmöglichkeiten. Einige Dinge sind nicht trivial. Wenn etwas nicht klappt wie es soll, frage im Forum."
+
+#: admin/elevation/elevation.php:139
+msgid "The %s parameter is called %s, but it works with gpx, kml, geojson and tcx files."
+msgstr "Der %s-Parameter heißt %s, aber es können gpx-, kml-, geojson und tcx-Dateien sein."
+
+#: admin/elevation/elevation.php:133
+msgid "If you want to display a track only, use %s functions. If you want to display a track with an elevation profile use %s."
+msgstr "Wenn du nur einen Track anzeigen möchtest, verwende die %s Funktionen. Wenn du einen Track mit einem Höhenprofil anzeigen möchtest, verwende %s."
+
+#: php/placementstrategies.php:15
+msgid "Strategy for placing markers in cluster"
+msgstr "Strategie der Platzierung von Markern im Markercluster"
+
+#: php/markercluster.php:36
+msgid "If set, at this zoom level and below, markers will not be clustered. If 0, it is disabled."
+msgstr "Ab dieser Zoomstufe und darunter werden die Marker nicht geclustert. Wenn der Wert 0 ist, ist es nicht aktiv (disabled)."
+
+#: php/markercluster.php:25
+msgid "Clusters and markers too far from the viewport are removed from the map for performance."
+msgstr "Cluster und Marker, die zu weit vom Viewport entfernt sind, werden aus Leistungsgründen aus der Karte entfernt."
+
+#: php/markercluster.php:19
+msgid "When you click a cluster we zoom to its bounds."
+msgstr "Wenn man auf ein Markercluster klickt, wird die Karte zu dessen Grenzen gezoomt."
+
+#: php/markercluster.php:16
+msgid "When you mouse over a cluster it shows the bounds of its markers."
+msgstr "Wenn man mit der Maus über ein Cluster fährt, wird die Grenze seiner Marker angezeigt."
+
+#: php/elevation.php:209
+msgid "Display track waypoints"
+msgstr "Zeige Wegpunkte"
+
+#: admin/help/hover.php:46
+msgid "This is a very special case. I would like to exclude some leaflet-geojson with a specific string in the src url from changing its style on hovering. If the url to the geojson file is e.g. %s, url-substring should be %s."
+msgstr "Das ist ein Spezialfall. Ich möchte ein bestimmtes leaflet-geojson davon ausschließen, seinen Stil beim Hovern zu ändern. Wenn die URL zur Geojson-Datei z.B. %s ist, sollte url-substring %s sein."
+
+#: admin/elevation/elevation.php:131 admin/marker/clustergroup.php:16
+#: admin/marker/clustergroup.php:25
+msgid "Note"
+msgstr "Hinweis"
+
+#: admin/marker/placementstrategies.php:120
+msgid "The parameter maxZoom has been removed, please use %s instead."
+msgstr "Der Parameter maxZoom wurde entfernt, bitte nutze stattdessen %s."
+
+#: admin/marker/placementstrategies.php:49
+msgid "\"default\" means: one-circle strategy up to 8 elements, else spiral strategy"
+msgstr "\"default\" bedeutet: Kreis-Strategie (one-circle) bis zu 8 Elementen, sonst Spiralstrategie (spiral)"
+
+#: admin/marker/markercluster.php:148
+msgid "Before you click the submit button, please compare your settings with the new ones and change them if they are different."
+msgstr "Bevor du die Änderungen speicherst, vergleiche bitte deine Einstellungen mit den neuen und ändere sie, falls sie unterschiedlich sind."
+
+#: admin/marker/markercluster.php:146
+msgid "The parameters zoom, radius and spiderfy have been renamed to disableClusteringAtZoom, maxClusterRadius and spiderfyOnMaxZoom, but they are still valid. Your settings:"
+msgstr "Die Parameter zoom, radius und spiderfy wurden umbenannt in disableClusteringAtZoom, maxClusterRadius und spiderfyOnMaxZoom, sind aber weiterhin gültig. Deine Einstellungen:"
+
+#: admin/marker/markercluster.php:129
+msgid "Please see the %s page for options. If you want to change other ones, please post it to the forum."
+msgstr "Sieh dir die Seite von %s für Optionen an. Wenn du weitere ändern möchte, poste es ins Forum."
+
+#: admin/marker/clustergroup.php:129
+msgid "The parameter and settings for %s are valid too."
+msgstr "Die Parameter und Einstellungen für %s sind ebenfalls gültig."
+
+#: admin/featuregroup.php:151 admin/marker/clustergroup.php:43
+#: admin/marker/clustergroup.php:93
+msgid "The number of %s and %s must match."
+msgstr "Die Anzahl von %s und %s muss übereinstimmen."
+
+#: php/placementstrategies.php:39
+msgid "Switch drawing helping circles on"
+msgstr "Zeige Kreis-Hilfsmarkierungen"
+
+#: php/placementstrategies.php:35
+msgid "Value to be added to each new circle distance value"
+msgstr "Wert, der zu jedem neuen Kreisabstandswert addiert wird"
+
+#: php/placementstrategies.php:31
+msgid "Multiplicator of elements number for the next circle"
+msgstr "Multiplikator der Markeranzahl für den nächsten Kreis"
+
+#: php/placementstrategies.php:27
+msgid "Number of elements in the first circle"
+msgstr "Anzahl der Marker im ersten Kreis"
+
+#: php/placementstrategies.php:21
+msgid "Type of marker"
+msgstr "Markertyp"
+
+#: admin/help.php:54
+msgid "hide markers"
+msgstr "Verstecke Marker"
+
+#: admin/help.php:78
+msgid "Hovering and Tooltips"
+msgstr "Hovering und Tooltipps"
+
+#: admin/help.php:68
+msgid "gesture handling"
+msgstr "Gestensteuerung"
+
+#: admin/help.php:66
+msgid "fullscreen"
+msgstr "Vollbildmodus"
+
+#: admin/help.php:64
+msgid "reset the map"
+msgstr "Karte zurücksetzen"
+
+#: admin/help.php:50
+msgid "styling markercluster"
+msgstr "Styling Markercluster"
+
+#: admin/help.php:48
+msgid "clustering and grouping of markers"
+msgstr "Marker clustern und gruppieren"
+
+#: admin/help.php:46
+msgid "marker clustering"
+msgstr "Markercluster"
+
+#: admin/help.php:62
+msgid "switching tile servers"
+msgstr "Umschalten von Tilelayers"
+
+#: admin/help.php:40
+msgid "multiple tracks with elevation profiles"
+msgstr "Mehrere Tracks mit Höhenprofil"
+
+#: admin/help.php:35
+msgid "track with an elevation profile"
+msgstr "Track mit einem Höhenprofil"
+
+#: admin/marker/placementstrategies.php:103
+msgid "Not all parameters are implemented in the plugin."
+msgstr "Nicht alle Parameter sind im Plugin implementiert."
+
+#: admin/marker/placementstrategies.php:102
+msgid "Demo and Documentation"
+msgstr "Demo und Dokumentation"
+
+#: admin.php:201
+msgid "Other functions"
+msgstr "Weitere Funktionen"
+
+#: php/elevation.php:56
+msgid "position/height indicator marker drawn onto the map"
+msgstr "Positions-/Höhenmarkierung auf der Karte"
+
+#: admin/help.php:14
+msgid "Detailed documentation and examples in %sGerman%s and %sEnglish%s"
+msgstr "Ausführliche Dokumentation und Beispiele in %sDeutsch%s und %sEnglisch%s"
+
+#: admin/help.php:12
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: admin/elevation/multielevation.php:195
+#: admin/elevation/multielevation.php:199
+msgid "Elevation Theme"
+msgstr "Theme des Höhenprofils"
+
+#: admin/elevation/waypoints.php:199
+msgid "More options see"
+msgstr "Weitere Optionen siehe die"
+
+#: admin/elevation/main.php:20 admin/help.php:33
+msgid "Elevation Profile"
+msgstr "Höhenprofil"
+
+#: php/elevation.php:434
+msgid "Render chart profiles as Canvas or SVG Paths."
+msgstr "Diagramme als Canvas oder SVG rendern."
+
+#: php/elevation.php:198 php/multielevation.php:59
+msgid "Toggle \"leaflet-distance-markers\" integration"
+msgstr "Anzeige von Entfernungsmarkern"
+
+#: php/elevation.php:68
+msgid "Toggle chart legend filter."
+msgstr "Diagrammumschalter anzeigen."
+
+#: php/elevation.php:165
+msgid "Download Link"
+msgstr "Download-Link"
+
+#: php/elevation.php:292
+msgid "Summary track info style"
+msgstr "Art der Zusammenfassung"
+
+#: php/elevation.php:257
+msgid "Display distance info"
+msgstr "Anzeige der Entfernungen"
+
+#: admin/elevation/owncolors.php:58 php/elevation.php:345
+msgid "Speed chart profile"
+msgstr "Geschwindigkeitsdiagramm"
+
+#: admin/elevation/owncolors.php:70 php/elevation.php:333
+msgid "Slope chart profile"
+msgstr "Steigungsdiagramm"
+
+#: admin/elevation/owncolors.php:64 php/elevation.php:321
+msgid "Acceleration chart profile"
+msgstr "Beschleunigungsdiagramm"
+
+#: php/elevation.php:412
+msgid "[Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])"
+msgstr "[Lat, Long] vs [Long, Lat] Koordinaten. (leaflet Standard: [Lat, Long])"
+
+#: php/elevation.php:401
+msgid "Chart distance/elevation units."
+msgstr "Imperiales oder metrisches System für Längen- und Höhenangaben."
+
+#: php/elevation.php:390
+msgid "Autoupdate map bounds on chart update."
+msgstr "Automatische Aktualisierung der Kartengrenzen bei Aktualisierung des Diagramms."
+
+#: php/elevation.php:369
+msgid "Autoupdate map center on chart mouseover."
+msgstr "Automatisches Zentrieren der Karte beim Überfahren des Diagramms mit der Maus."
+
+#: php/elevation.php:36
+msgid "Polyline weight"
+msgstr "Linienstärke"
+
+#: php/elevation.php:18
+msgid "Theme Colors"
+msgstr "Farben der Themes"
+
+#: admin/marker/markercluster.php:131
+msgid "To reset all values to their defaults, simply click the Reset button"
+msgstr "Um alle Werte auf ihre Standardwerte zurückzusetzen, drücke einfach \"Zurücksetzen\""
+
+#: admin/elevation/elevation.php:151 admin/elevation/multielevation.php:204
+#: admin/marker/markercluster.php:135
+msgid "For boolean values applies"
+msgstr "Für boolesche Werte gilt"
+
+#: admin/elevation/elevation.php:46 admin/elevation/elevation.php:68
+#: admin/elevation/multielevation.php:45 admin/elevation/sgpx.php:51
+#: admin/gesture.php:55 admin/marker/markercluster.php:71
+#: admin/marker/placementstrategies.php:73
+msgid "Plugins Default:"
+msgstr "Plugins Standard:"
+
+#: admin/elevation/elevation.php:35 admin/marker/markercluster.php:50
+#: admin/marker/placementstrategies.php:52
+msgid "You can change it for each map with"
+msgstr "Du kannst es für jede Karte ändern mit"
+
+#: admin/elevation/owntheme.php:146
+msgid "Please reset these settings, if you are not using an own theme!"
+msgstr "Bitte setze diese Einstellungen zurück, wenn du kein eigenes Theme verwendest!"
+
+#: admin/elevation/owntheme.php:143
+msgid "Please change this only, if you want to use your own theme."
+msgstr "Bitte ändere diese Einstellung nur, wenn du dein eigenes Theme verwendest."
+
+#: admin/elevation/main.php:32
+msgid "Multiple hoverable tracks"
+msgstr "Mehrere Tracks mit Höhenprofil"
+
+#: admin/canvas.php:72 admin/elevation/main.php:71 admin/elevation/main.php:98
+#: admin/elevation/main.php:111 admin/elevation/main.php:153
+#: admin/elevation/main.php:167 admin/filemgr/filemgr.php:205
+#: admin/filemgr/main.php:56 admin/marker/markercluster.php:19
+#: admin/marker/placementstrategies.php:19 admin/tiles/main.php:66
+#: admin/tiles/providers.php:117
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: admin.php:193 admin/gesture.php:11
+msgid "Gesture Handling"
+msgstr "Gestensteuerung"
+
+#: admin.php:189
+msgid "Hovering"
+msgstr "Hovering"
+
+#: admin/elevation/multielevation.php:192
+msgid "The theme is the same as the"
+msgstr "Das Theme ist das selbe wie das"
+
+#: admin/elevation/owntheme.php:134
+msgid "In your elevation.css put the styles like the theme styles in"
+msgstr "Definiere die Styles in deinem elevation.css. Nimm als Vorlage das Original CSS von"
+
+#: admin.php:142
+msgid "Elevation Profiles"
+msgstr "Höhenprofile"
+
+#: php/multielevation.php:289
+msgid "move mouse over a track or select one in control panel ..."
+msgstr "Bewege die Maus über einen Track oder wähle einen im Control Panel aus ..."
+
+#: admin/canvas.php:17 admin/elevation/waypoints.php:214
+#: admin/filemgr/filemgr-settings.php:38 admin/tiles/layerswitch.php:123
+#: admin/tiles/providers.php:100 extensions-leaflet-map.php:72
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: admin/marker/clustergroup.php:61 admin/marker/clustergroup.php:110
+msgid "or"
+msgstr "oder"
+
+#: admin/featuregroup.php:148 admin/marker/clustergroup.php:41
+#: admin/marker/clustergroup.php:91
+msgid "comma separated labels appear in the selection menu"
+msgstr "durch Komma getrennte Beschriftungen werden im Auswahlmenü angezeigt"
+
+#: admin/marker/clustergroup.php:38
+msgid "comma separated strings to distinguish the markers, e.g. an unique string in %s or %s"
+msgstr "durch Komma getrennte Zeichenketten zur Unterscheidung der Marker, z. B. eine eindeutige Zeichenkette in %s oder %s"
+
+#: admin/marker/clustergroup.php:36 admin/marker/clustergroup.php:68
+msgid "possible meaningful values"
+msgstr "mögliche sinnvolle Werte"
+
+#: admin/marker/clustergroup.php:14
+msgid "Dynamically add/remove groups of markers from Marker Cluster"
+msgstr "Dynamisches Hinzufügen/Entfernen von Markergruppen aus Marker Cluster"
+
+#: admin/marker/markercluster.php:101
+msgid "Many markers on a map become confusing. That is why they are clustered"
+msgstr "Viele Marker auf einer Karte werden unübersichtlich. Deshalb werden sie geclustert"
+
+#: php/markercluster.php:22 php/placementstrategies.php:49
+msgid "When you click a cluster at the bottom zoom level we spiderfy it so you can see all of its markers."
+msgstr "Wenn man ein Cluster in der untersten Zoomstufe anklickt, wird es gespidert, so dass man alle seine Marker sehen kann."
+
+#: admin/choropleth.php:35 admin/elevation/waypoints.php:44
+#: admin/marker/extramarker.php:107
+msgid "Default"
+msgstr "Standard"
+
+#: php/markercluster.php:40 php/placementstrategies.php:53
+msgid "The maximum radius that a cluster will cover from the central marker (in pixels). Decreasing will make more, smaller clusters."
+msgstr "Der maximale Radius, den ein Cluster vom zentralen Marker aus abdeckt (in Pixel). Je kleiner er ist, desto mehr und kleinere Cluster werden gebildet."
+
+#: admin/elevation/elevation.php:53 admin/elevation/multielevation.php:65
+#: admin/elevation/multielevation.php:81 admin/elevation/sgpx.php:35
+#: admin/filemgr/filemgr-settings.php:80 admin/gesture.php:40
+#: admin/marker/markercluster.php:55 admin/marker/placementstrategies.php:57
+msgid "Plugins Default"
+msgstr "Plugins Standard"
+
+#: admin/choropleth.php:37 admin/elevation/waypoints.php:191
+msgid "Example"
+msgstr "Beispiel"
+
+#: admin/elevation/owntheme.php:110
+msgid "If you want use an own style, select \"other\" theme and give it a name. Put in your functions.php following code:"
+msgstr "Wenn du ein anderes Thema als die vorgegebenen verwenden möchtest, wähle das Thema „other“ und benenne es. Trage in die functions.php folgenden Code ein:"
+
+#: admin/elevation/owntheme.php:77
+msgid "must end with"
+msgstr "muss enden mit"
+
+#: admin/tiles/layerswitch.php:126
+msgid "appears in the switching control. To delete a server simply clear the field mapid."
+msgstr "erscheint im Menü. Um einen Kachelserver zu löschen, lösche den Text im Feld mapid."
+
+#: admin/tiles/layerswitch.php:125
+msgid "Configure a mapid, attribution and a tile url for each tile server."
+msgstr "Definiere ein mapid, das Copyright und die URL für jeden Kachelserver."
+
+#: admin/help/hidemarkers.php:6
+msgid "If a GPX track contains waypoints that you do not want to display"
+msgstr "Falls ein GPX-Track Wegpunkte enthält, die man nicht anzeigen lassen möchte"
+
+#: admin/help/zoomhome.php:8
+msgid "It resets the view to all markers (leaflet-marker), lines (leaflet-line), circles (leaflet-circle), geojsons (leaflet-geojson, leaflet-gpx, leaflet-kml) and a track (elevation)."
+msgstr "Er setzt die Kartenansicht auf alle Marker (leaflet-marker), Linien (leaflet-line), Kreise (leaflet-circle), Geojsons (leaflet-geojson, leaflet-gpx, leaflet-kml) und einen Track (elevation) zurück."
+
+#: admin/help/zoomhome.php:7
+msgid "button to reset the view. A must for clustering markers"
+msgstr "Button um die Ansicht zurückzusetzen. Ein Muss für Markercluster"
+
+#: admin/help.php:9
+msgid "Post it to the support forum"
+msgstr "Besuche das Support Forum"
+
+#: admin.php:136
+msgid "Help"
+msgstr "Hilfe"
+
+#. Author of the plugin
+msgid "hupe13"
+msgstr "hupe13"
+
+#. Description of the plugin
+msgid "Extensions for the WordPress plugin Leaflet Map"
+msgstr "Erweiterungen für das WordPress Plugin Leaflet Map"
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/extensions-leaflet-map"
+msgstr "https://wordpress.org/plugins/extensions-leaflet-map"
+
+#. Plugin Name of the plugin
+msgid "Extensions for Leaflet Map"
+msgstr "Extensions for Leaflet Map"
