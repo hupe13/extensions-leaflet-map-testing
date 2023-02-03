@@ -24,6 +24,6 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <code>[leaflet-search propertyname=....]</code>
 
-<code>propertyname</code> similar to property in <code>leaflet-featuregroup</code> and for markers like  option in <code>leaflet-optiongroup</code>
+See help in admin backend.
 
 <p><a href="https://leafext.de/extra/leaflet-search/">Examples</a></p>

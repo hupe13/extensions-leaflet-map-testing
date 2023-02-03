@@ -20,8 +20,9 @@ function leafext_search_params() {
       'desc' => sprintf(__('a option / property for marker or a %s for geojson layer, must be unique',"extensions-leaflet-map"),
       'feature.property'),
       'default' => 'title',
-      'values' => sprintf(__('%s for marker, %s depending on geojson layer',"extensions-leaflet-map"),
+      'values' => sprintf(__('for example %s for marker, additional for example %s for extramarkers; %s depending on geojson layer',"extensions-leaflet-map"),
       'title, iconclass, popupContent',
+      'number',
       'feature.property'),
     ),
     // | formatData	  | null	 | callback for reformat all data from source to indexed data object |
@@ -29,6 +30,12 @@ function leafext_search_params() {
     // | moveToLocation  | null	 | callback run on location found, params: latlng, title, map |
     // | buildTip		  | null	 | function to return row tip html node(or html string), receive text tooltip in first param |
     // | container		  | ''	     | container id to insert Search Control		 |
+    array(
+      'param' => 'container',
+      'desc' => __('container id to insert Search Control',"extensions-leaflet-map"),
+      'default' => '',
+      'values' => '',
+    ),
     // | zoom		      | null	 | default zoom level for move to location |
     array(
       'param' => 'zoom',
@@ -123,6 +130,11 @@ function leafext_leafletsearch_function($atts,$content,$shortcode) {
     $atts1=leafext_case(array_keys($defaults),leafext_clear_params($atts));
   	$options = shortcode_atts($defaults, $atts1);
     if ($options['marker'] == '') unset($options['marker']);
+    if ($options['container'] == '') {
+      unset($options['container']);
+    } else {
+      $options['collapsed'] = false;
+    }
     if (strpos($options['textPlaceholder'],'"') !== false) {
       $options['textPlaceholder'] = str_replace('"','\"',$options['textPlaceholder']);
     }
