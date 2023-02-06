@@ -1,13 +1,11 @@
-if (typeof durchlauf == "undefined" ) {
+if (typeof maps == "undefined" ) {
   maps=[];
-  durchlauf=[];
   searchcontrol = [];
 }
 var map = window.WPLeafletMapPlugin.getCurrentMap();
 var map_id = map._leaflet_id;
-if (typeof durchlauf[map_id] == "undefined" ) {
+if (typeof maps[map_id] == "undefined" ) {
   maps[map_id] = map;
-  durchlauf[map_id] = 0;
   searchcontrol[map_id] = [];
 }
 if (typeof searchcontrol[map_id][att_property] == "undefined") {
@@ -18,6 +16,7 @@ if (typeof searchcontrol[map_id][att_property] == "undefined") {
   if ( WPLeafletMapPlugin.markers.length > 0 ) {
     //console.log("markers "+WPLeafletMapPlugin.markers.length);
     var markersLayer = new L.LayerGroup();	//layer contain searched elements
+    let duplicates = {};
     for (var i = 0; i < WPLeafletMapPlugin.markers.length; i++) {
       if ( WPLeafletMapPlugin.markers[i]._map !== null ) {
         if (map_id == WPLeafletMapPlugin.markers[i]._map._leaflet_id) {
@@ -48,7 +47,14 @@ if (typeof searchcontrol[map_id][att_property] == "undefined") {
           }
 
           if (a.options.hasOwnProperty(att_property)) {
-            //console.log("added");
+            //console.log("added "+i);
+            let search = a.options[att_property];
+            if (typeof duplicates[search] == "undefined" ) {
+              duplicates[search] = 1;
+            } else {
+              duplicates[search] = duplicates[search] + 1;
+            }
+            a.options["searchindex"] = i;
             markersLayer.addLayer(a);
           }
           //map.removeLayer(a);
@@ -61,20 +67,29 @@ if (typeof searchcontrol[map_id][att_property] == "undefined") {
     if (Object.keys(markersLayer._layers).length > 0) {
       if (searchcontrol[map_id][att_property] == "found") {
         searchcontrol[map_id][att_property] = "added";
+
+        markersLayer.eachLayer(function(layer) {
+          let search = layer.options[att_property];
+          if (duplicates[search] > 1) {
+            layer.options[att_property] = layer.options[att_property] + " | "+ layer.options["searchindex"];
+          }
+        });
+
         map.addLayer(markersLayer);
         var markerSearchControl = new L.Control.Search({
           layer: markersLayer,
           <?php echo $jsoptions;?>
-          initial: false
+          initial: false,
+          moveToLocation: function(latlng, title, map) {
+            //console.log( title);
+            map.fitBounds(L.latLngBounds([latlng.layer.getLatLng()]));
+            map.setZoom(att_zoom);
+          }
         }
       );
       map.addControl( markerSearchControl );
       markerSearchControl.on("search:locationfound", function(e) {
-        //console.log("search:locationfound" );
-        //console.log(e);
-        console.log(e.layer.getPopup());
         if (typeof e.layer.getPopup() != "undefined") e.layer.openPopup();
-        //if (e.layer._popup) e.layer.openPopup();
       });
     }
   } else {
@@ -88,8 +103,38 @@ var geocount = geojsons.length;
 if (geocount > 0) {
   //console.log(geojsons);
   var geojsonLayers = new L.layerGroup();
+
   for (var j = 0, len = geocount; j < len; j++) {
     if (map_id == geojsons[j]._map._leaflet_id) {
+      //if (att_property == "popupContent") {
+        geojsons[j].on("ready", function (e) {
+          let duplicates = {};
+          j = 0;
+          e.target.eachLayer(function(layer) {
+            if (att_property == "popupContent") {
+              if (typeof layer.getPopup() != "undefined") {
+                layer.feature.properties['popupContent'] = layer.getPopup().getContent();
+              }
+            }
+            let search = layer.feature.properties[att_property];
+            if (typeof duplicates[search] == "undefined" ) {
+              duplicates[search] = 1;
+            } else {
+              duplicates[search] = duplicates[search] + 1;
+            }
+            layer.feature.properties["searchindex"] = j;
+            j++;
+          });
+          //console.log(duplicates);
+          e.target.eachLayer(function(layer) {
+            let search = layer.feature.properties[att_property];
+            if (duplicates[search] > 1) {
+              layer.feature.properties[att_property] = layer.feature.properties[att_property] + " | "+ layer.feature.properties["searchindex"];
+              //console.log(layer.feature.properties);
+            }
+          });
+        })
+      //}
       geojsons[j].addTo(geojsonLayers);
     }
   }
@@ -107,7 +152,9 @@ if (geocount > 0) {
           //console.log(latlng.layer);
           //console.log(latlng.layer.feature.geometry.type);
           if (latlng.layer.feature.geometry.type == "Point") {
-            map.setView(latlng, att_zoom); // access the zoom
+            map.fitBounds(L.latLngBounds([latlng]));
+            map.setZoom(att_zoom);
+            //map.setView(latlng, att_zoom); // access the zoom
           } else {
             map.fitBounds( latlng.layer.getBounds() );
             var zoom = map.getBoundsZoom(latlng.layer.getBounds());
@@ -120,8 +167,6 @@ if (geocount > 0) {
         //console.log("search:locationfound" );
         if(e.layer._popup) e.layer.openPopup([e.latlng.lat, e.latlng.lng]);
       });
-    } else if (att_property == "geojsonPopup") {
-      //
     } else {
       console.log("Nothing to search in Geojsons");
     }

@@ -2,6 +2,9 @@
 /**
 * Functions for leaflet-search shortcode
 * extensions-leaflet-map
+* leaflet-search knows: L.Marker L.CircleMarker L.LayerGroup L.Path L.Polyline L.Polygon L.LayerGroup, GeoJson
+* implemented: L.Marker, GeoJson
+* Leaflet-Map knows CircleMarker only in leaflet-geojson
 */
 // Direktzugriff auf diese Datei verhindern:
 defined( 'ABSPATH' ) or die();
@@ -179,7 +182,6 @@ function leafext_leafletsearch_help(){
       'param' => $option['param'],
       'desc' => $option['desc'],
       'default' => (gettype($option['default']) == "boolean") ? ($option['default'] ? "true" : "false") : $option['default'],
-      //'values' => ($option['values'] != "") ? json_encode($option['values']) : "",
       'values' => $option['values'],
     );
   }
