@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Extensions for Leaflet Map - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-02 20:27+0000\n"
+"PO-Revision-Date: 2023-02-07 17:22+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,10 +19,10 @@ msgstr ""
 
 #: php/leaflet-search.php:23
 #, php-format
-msgid "%s for marker, %s depending on geojson layer"
-msgstr "%s für Marker, %s abhängig von der Geojson-Layer"
+msgid "a option / property for marker or a %s for geojson layer"
+msgstr "eine Option/Eigenschaft für Marker oder ein %s für eine Geojson-Layer"
 
-#: php/leaflet-search.php:20
+#: php/leaflet-search2.php:23 php/leaflet-search3.php:23
 #, php-format
 msgid ""
 "a option / property for marker or a %s for geojson layer, must be unique"
@@ -30,21 +30,47 @@ msgstr ""
 "eine Option/Eigenschaft für Marker oder ein %s für eine Geojson-Layer, muss "
 "eindeutig sein"
 
-#: php/leaflet-search.php:162
+#: php/leaflet-search2.php:38 php/leaflet-search.php:39
+#: php/leaflet-search3.php:38
+msgid "container id to insert Search Control"
+msgstr "Container-ID zum Einfügen in Search Control"
+
+#: php/leaflet-search2.php:203 php/leaflet-search.php:345
+#: php/leaflet-search3.php:176
 msgid "Default"
 msgstr "Standard"
 
-#: php/leaflet-search.php:161
+#: php/leaflet-search2.php:202 php/leaflet-search.php:344
+#: php/leaflet-search3.php:175
 msgid "Description"
 msgstr "Beschreibung"
 
-#: php/leaflet-search.php:54
+#: php/leaflet-search2.php:64 php/leaflet-search.php:65
+#: php/leaflet-search3.php:64
 msgid "error message"
 msgstr "Fehlernachricht"
 
 #. Name of the plugin
 msgid "extensions-leaflet-map-testing"
 msgstr ""
+
+#: php/leaflet-search2.php:26 php/leaflet-search3.php:26
+#, php-format
+msgid ""
+"for example %s for marker, additional for example %s for extramarkers; %s "
+"depending on geojson layer"
+msgstr ""
+"z. B. %s für Marker, zusätzlich z.B. %s für Extra-Marker, %s abhängig von "
+"der Geojson-Layer"
+
+#: php/leaflet-search.php:26
+#, php-format
+msgid ""
+"for example %s for marker, additional for example %s for extramarkers; %s "
+"depending on geojson layer; %s for all"
+msgstr ""
+"z. B. %s für Marker, zusätzlich z.B. %s für Extra-Marker, %s abhängig von "
+"der Geojson-Layer, %s für alle"
 
 #. URI of the plugin
 msgid "https://github.com/hupe13/extensions-leaflet-map-testing"
@@ -54,11 +80,13 @@ msgstr ""
 msgid "hupe13"
 msgstr "hupe13"
 
-#: php/leaflet-search.php:55
+#: php/leaflet-search2.php:65 php/leaflet-search.php:66
+#: php/leaflet-search3.php:65
 msgid "Location not found"
 msgstr "Standort nicht gefunden"
 
-#: php/leaflet-search.php:85
+#: php/leaflet-search2.php:95 php/leaflet-search.php:96
+#: php/leaflet-search3.php:95
 #, php-format
 msgid ""
 "not specified for default (red circle), %s for no marker, or a definition "
@@ -67,27 +95,33 @@ msgstr ""
 "nicht angegeben für Standard (roter Kreis), %s für keinen Marker, oder eine "
 "Definition wie %s"
 
-#: php/leaflet-search.php:62
+#: php/leaflet-search2.php:72 php/leaflet-search.php:73
+#: php/leaflet-search3.php:72
 msgid "placeholder value"
 msgstr "Platzhalter"
 
-#: php/leaflet-search.php:76
+#: php/leaflet-search2.php:86 php/leaflet-search.php:87
+#: php/leaflet-search3.php:86
 msgid "position in the map"
 msgstr "Position in der Karte"
 
-#: php/leaflet-search.php:166
+#: php/leaflet-search2.php:207 php/leaflet-search.php:349
+#: php/leaflet-search3.php:180
 msgid "red circle"
 msgstr "roter Kreis"
 
-#: php/leaflet-search.php:69
+#: php/leaflet-search2.php:79 php/leaflet-search.php:80
+#: php/leaflet-search3.php:79
 msgid "remove circle and marker on search control collapsed"
 msgstr "entferne Kreismarker beim Schließen des Kontrollfeldes"
 
-#: php/leaflet-search.php:63
+#: php/leaflet-search2.php:73 php/leaflet-search.php:74
+#: php/leaflet-search3.php:73
 msgid "Search..."
 msgstr "Suche..."
 
-#: php/leaflet-search.php:83
+#: php/leaflet-search2.php:93 php/leaflet-search.php:94
+#: php/leaflet-search3.php:93
 msgid "show or hide marker at the position found"
 msgstr "Zeige Marker an der gefundenen Position oder nicht"
 
@@ -95,10 +129,12 @@ msgstr "Zeige Marker an der gefundenen Position oder nicht"
 msgid "Tests for leaflet-map / extensions-leaflet-map"
 msgstr ""
 
-#: php/leaflet-search.php:163
+#: php/leaflet-search2.php:204 php/leaflet-search.php:346
+#: php/leaflet-search3.php:177
 msgid "Values"
 msgstr "Werte"
 
-#: php/leaflet-search.php:35
+#: php/leaflet-search2.php:45 php/leaflet-search.php:46
+#: php/leaflet-search3.php:45
 msgid "zoom level for move to location for searching markers"
 msgstr "Zoomlevel wenn der gefundene Standort angezeigt wird"
