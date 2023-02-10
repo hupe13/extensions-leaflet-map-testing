@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Extensions for Leaflet Map - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-07 17:22+0000\n"
+"PO-Revision-Date: 2023-02-10 06:40+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,6 +16,11 @@ msgstr ""
 "POT-Creation-Date: 2023-02-02 19:42+0000\n"
 "Last-Translator: \n"
 "X-Loco-Version: 2.6.3; wp-6.1.1"
+
+#: php/leaflet-search.php:370
+#, php-format
+msgid "%s must be before %s."
+msgstr "%s muss vor %s angegeben werden"
 
 #: php/leaflet-search.php:23
 #, php-format
@@ -33,14 +38,14 @@ msgstr ""
 #: php/leaflet-search2.php:38 php/leaflet-search.php:39
 #: php/leaflet-search3.php:38
 msgid "container id to insert Search Control"
-msgstr "Container-ID zum Einfügen in Search Control"
+msgstr "Container-ID zum Einfügen des Kontrollfeldes"
 
-#: php/leaflet-search2.php:203 php/leaflet-search.php:345
+#: php/leaflet-search2.php:203 php/leaflet-search.php:357
 #: php/leaflet-search3.php:176
 msgid "Default"
 msgstr "Standard"
 
-#: php/leaflet-search2.php:202 php/leaflet-search.php:344
+#: php/leaflet-search2.php:202 php/leaflet-search.php:356
 #: php/leaflet-search3.php:175
 msgid "Description"
 msgstr "Beschreibung"
@@ -105,15 +110,20 @@ msgstr "Platzhalter"
 msgid "position in the map"
 msgstr "Position in der Karte"
 
-#: php/leaflet-search2.php:207 php/leaflet-search.php:349
+#: php/leaflet-search2.php:207 php/leaflet-search.php:361
 #: php/leaflet-search3.php:180
 msgid "red circle"
 msgstr "roter Kreis"
 
-#: php/leaflet-search2.php:79 php/leaflet-search.php:80
-#: php/leaflet-search3.php:79
+#: php/leaflet-search2.php:79 php/leaflet-search3.php:79
 msgid "remove circle and marker on search control collapsed"
 msgstr "entferne Kreismarker beim Schließen des Kontrollfeldes"
+
+#: php/leaflet-search.php:80
+msgid "remove circle and marker on search control collapsed or search canceled"
+msgstr ""
+"entferne Kreismarker beim Schließen des Kontrollfeldes oder wenn die Suche "
+"abgebrochen wird"
 
 #: php/leaflet-search2.php:73 php/leaflet-search.php:74
 #: php/leaflet-search3.php:73
@@ -129,7 +139,7 @@ msgstr "Zeige Marker an der gefundenen Position oder nicht"
 msgid "Tests for leaflet-map / extensions-leaflet-map"
 msgstr ""
 
-#: php/leaflet-search2.php:204 php/leaflet-search.php:346
+#: php/leaflet-search2.php:204 php/leaflet-search.php:358
 #: php/leaflet-search3.php:177
 msgid "Values"
 msgstr "Werte"

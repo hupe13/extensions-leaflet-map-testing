@@ -77,7 +77,7 @@ function leafext_search_params() {
     // // | hideMarkerOnCollapse		 | false	 | remove circle and marker on search control collapsed		 |
     array(
       'param' => 'hideMarkerOnCollapse',
-      'desc' => __('remove circle and marker on search control collapsed',"extensions-leaflet-map"),
+      'desc' => __('remove circle and marker on search control collapsed or search canceled',"extensions-leaflet-map"),
       'default' => false,
       'values' => "true, false",
     ),
@@ -246,6 +246,12 @@ function leafext_leafletsearch_script($options,$jsoptions){
           markerSearchControl.on("search:locationfound", function(e) {
             if (typeof e.layer.getPopup() != "undefined") e.layer.openPopup();
           });
+          markerSearchControl.on("search:cancel", function(e) {
+            //console.log(e);
+            if (e.target.options.hideMarkerOnCollapse) {
+              e.target._map.removeLayer(this._markerSearch);
+            }
+          });
         }
       } else {
         console.log("Nothing to search in Markers");
@@ -319,6 +325,12 @@ function leafext_leafletsearch_script($options,$jsoptions){
           geojsonSearchControl.on("search:locationfound", function(e) {
             //console.log("search:locationfound" );
             if(e.layer._popup) e.layer.openPopup([e.latlng.lat, e.latlng.lng]);
+          });
+          geojsonSearchControl.on("search:cancel", function(e) {
+            //console.log(e);
+            if (e.target.options.hideMarkerOnCollapse) {
+              e.target._map.removeLayer(this._markerSearch);
+            }
           });
         } else {
           console.log("Nothing to search in Geojsons");
