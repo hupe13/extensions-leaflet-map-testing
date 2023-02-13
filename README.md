@@ -22,6 +22,8 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 [Leaflet Control Search](https://github.com/stefanocudini/leaflet-search)
 
+It is now included in [Extensions for Leaflet Map Github Version](https://github.com/hupe13/extensions-leaflet-map-github).
+
 <code>[leaflet-search propertyname=....]</code>
 
 See help in admin backend.
