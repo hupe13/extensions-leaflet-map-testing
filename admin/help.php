@@ -5,5 +5,5 @@ $text = file_get_contents( TESTLEAFEXT_PLUGIN_DIR . "/README.md" );
 $Parsedown = new Parsedown();
 echo $Parsedown->text($text);
 
-include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-search.php';
-leafext_leafletsearch_help();
+//include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-search.php';
+//leafext_leafletsearch_help();

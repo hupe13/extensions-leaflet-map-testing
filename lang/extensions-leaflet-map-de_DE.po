@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Extensions for Leaflet Map - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-10 06:40+0000\n"
+"PO-Revision-Date: 2023-02-10 21:11+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Last-Translator: \n"
 "X-Loco-Version: 2.6.3; wp-6.1.1"
 
-#: php/leaflet-search.php:370
+#: php/leaflet-search.php:377
 #, php-format
 msgid "%s must be before %s."
 msgstr "%s muss vor %s angegeben werden"
@@ -40,12 +40,12 @@ msgstr ""
 msgid "container id to insert Search Control"
 msgstr "Container-ID zum Einfügen des Kontrollfeldes"
 
-#: php/leaflet-search2.php:203 php/leaflet-search.php:357
+#: php/leaflet-search2.php:203 php/leaflet-search.php:356
 #: php/leaflet-search3.php:176
 msgid "Default"
 msgstr "Standard"
 
-#: php/leaflet-search2.php:202 php/leaflet-search.php:356
+#: php/leaflet-search2.php:202 php/leaflet-search.php:355
 #: php/leaflet-search3.php:175
 msgid "Description"
 msgstr "Beschreibung"
@@ -54,6 +54,10 @@ msgstr "Beschreibung"
 #: php/leaflet-search3.php:64
 msgid "error message"
 msgstr "Fehlernachricht"
+
+#: php/leaflet-search.php:370
+msgid "Examples for"
+msgstr "Beispiele für"
 
 #. Name of the plugin
 msgid "extensions-leaflet-map-testing"
@@ -90,8 +94,7 @@ msgstr "hupe13"
 msgid "Location not found"
 msgstr "Standort nicht gefunden"
 
-#: php/leaflet-search2.php:95 php/leaflet-search.php:96
-#: php/leaflet-search3.php:95
+#: php/leaflet-search2.php:95 php/leaflet-search3.php:95
 #, php-format
 msgid ""
 "not specified for default (red circle), %s for no marker, or a definition "
@@ -99,6 +102,19 @@ msgid ""
 msgstr ""
 "nicht angegeben für Standard (roter Kreis), %s für keinen Marker, oder eine "
 "Definition wie %s"
+
+#: php/leaflet-search.php:96
+#, php-format
+msgid ""
+"not specified for default (red circle), %s for no marker, or a definition "
+"like below"
+msgstr ""
+"nicht angegeben für Standard (roter Kreis), %s für keinen Marker, oder eine "
+"Definition wie unten"
+
+#: php/leaflet-search.php:376
+msgid "Note"
+msgstr "Hinweis"
 
 #: php/leaflet-search2.php:72 php/leaflet-search.php:73
 #: php/leaflet-search3.php:72
@@ -110,7 +126,7 @@ msgstr "Platzhalter"
 msgid "position in the map"
 msgstr "Position in der Karte"
 
-#: php/leaflet-search2.php:207 php/leaflet-search.php:361
+#: php/leaflet-search2.php:207 php/leaflet-search.php:360
 #: php/leaflet-search3.php:180
 msgid "red circle"
 msgstr "roter Kreis"
@@ -139,7 +155,7 @@ msgstr "Zeige Marker an der gefundenen Position oder nicht"
 msgid "Tests for leaflet-map / extensions-leaflet-map"
 msgstr ""
 
-#: php/leaflet-search2.php:204 php/leaflet-search.php:358
+#: php/leaflet-search2.php:204 php/leaflet-search.php:357
 #: php/leaflet-search3.php:177
 msgid "Values"
 msgstr "Werte"
