@@ -64,5 +64,3 @@ if (is_admin()) {
 //include_once TESTLEAFEXT_PLUGIN_DIR . '/php/attachment-on-fly.php';
 //include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
 //include_once TESTLEAFEXT_PLUGIN_DIR . '/php/routing-machine.php';
-//include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-search.php';
-include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-fuse.php';
