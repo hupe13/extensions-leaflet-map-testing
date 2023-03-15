@@ -20,12 +20,4 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Testing</h2>
 
-[Leaflet Control Search](https://github.com/stefanocudini/leaflet-search)
-
-It is now included in [Extensions for Leaflet Map Github Version](https://github.com/hupe13/extensions-leaflet-map-github).
-
-<code>[leaflet-search propertyname=....]</code>
-
-See help in admin backend.
-
-<p><a href="https://leafext.de/extra/leaflet-search/">Examples</a></p>
+Nothing
