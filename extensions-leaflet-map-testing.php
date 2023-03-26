@@ -5,7 +5,7 @@
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-testing
  * Primary Branch:    main
  * Description:       Tests for leaflet-map / extensions-leaflet-map
- * Version:           230315
+ * Version:           230326
  * Requires PHP:      7.4
  * Author:            hupe13
  * License:           GPL v2 or later
@@ -45,9 +45,8 @@ if ( count ( $leafext_active ) == 0 ) {
     </div><?php
   }
   add_action('admin_notices','leafext_require_leafext_plugin');
-  register_activation_hook(__FILE__, 'leafext_require_leafext_plugin');
+  //register_activation_hook(__FILE__, 'leafext_require_leafext_plugin');
 }
-$leafextdir = explode('/',reset($leafext_active));
 
 // Add settings to plugin page
 function testleafext_add_action_links ( $actions ) {
