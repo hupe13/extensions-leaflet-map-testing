@@ -5,7 +5,7 @@
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-testing
  * Primary Branch:    main
  * Description:       Tests for leaflet-map / extensions-leaflet-map
- * Version:           230326
+ * Version:           230920
  * Requires PHP:      7.4
  * Author:            hupe13
  * License:           GPL v2 or later
@@ -34,7 +34,7 @@ if ( ! function_exists( 'is_plugin_active' ) )
      load_plugin_textdomain( 'extensions-leaflet-map', null, WP_CONTENT_DIR . '/languages/plugins/extensions-leaflet-map-de_DE.mo' );
    }
  }
- add_action( 'init', 'leafext_load_textdomain' );
+ //add_action( 'init', 'leafext_load_textdomain' );
 
 $leafext_active = preg_grep('/extensions-leaflet-map.php/', get_option('active_plugins'));
 if ( count ( $leafext_active ) == 0 ) {
@@ -60,6 +60,5 @@ if (is_admin()) {
   include_once TESTLEAFEXT_PLUGIN_DIR . 'admin.php';
 }
 
-//include_once TESTLEAFEXT_PLUGIN_DIR . '/php/attachment-on-fly.php';
 //include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
-//include_once TESTLEAFEXT_PLUGIN_DIR . '/php/routing-machine.php';
+include_once TESTLEAFEXT_PLUGIN_DIR . '/php/elevation-proxy.php';
