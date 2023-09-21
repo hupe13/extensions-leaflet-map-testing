@@ -2,7 +2,7 @@
 
 Contributors: hupe13    
 Tags: leaflet
-Tested up to: 6.1  
+Tested up to: 6.3  
 Requires at least: 5.5.3     
 Requires PHP: 7.4     
 License: GPLv2 or later  
@@ -20,4 +20,11 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Testing</h2>
 
-Nothing
+* elevation-proxy
+
+Change the url in elevation-proxy.php to "your very secret directory" with the gpx file.
+
+** Shortcode:
+
+[leaflet-map fitbounds]
+[leafext-elevation-getgpx url="your very secret directory" gpx="track.gpx"]
