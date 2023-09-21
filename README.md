@@ -20,11 +20,13 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Testing</h2>
 
-* elevation-proxy
+# elevation-proxy
 
 Change the url in elevation-proxy.php to "your very secret directory" with the gpx file.
 
-** Shortcode:
+## Shortcode:
 
+`
 [leaflet-map fitbounds]
 [leafext-elevation-getgpx url="your very secret directory" gpx="track.gpx"]
+`
