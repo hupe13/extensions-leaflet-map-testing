@@ -4,7 +4,7 @@ function leafext_elevation_proxy() {
   if ( isset( $_GET['nonce_name'] ) && isset( $_GET['nonce_value'] ) ) {
     $result = WPSimpleNonce::checkNonce($_GET['nonce_name'],$_GET['nonce_value']);
     if ($result) {
-      $url='https://leafext.de/wp-content/uploads/sites/17/tracks/'.$_GET['gpx'];
+      $url='https://how-to-handle-this/'.$_GET['gpx'];
       $gpxcontent = file_get_contents($url);
       ob_start();
       header("X-Robots-Tag: noindex, nofollow", true);
