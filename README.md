@@ -26,7 +26,7 @@ Change the url in elevation-proxy.php to "your very secret directory" with the g
 
 ## Shortcode:
 
-`
+```
 [leaflet-map fitbounds]
 [leafext-elevation-getgpx url="your very secret directory" gpx="track.gpx"]
-`
+```
