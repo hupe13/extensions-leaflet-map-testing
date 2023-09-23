@@ -1,7 +1,7 @@
 # Extensions Leaflet Map Testing
 
 Contributors: hupe13    
-Tags: leaflet
+Tags: leaflet  
 Tested up to: 6.3  
 Requires at least: 5.5.3     
 Requires PHP: 7.4     
