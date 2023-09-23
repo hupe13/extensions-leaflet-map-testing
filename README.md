@@ -25,6 +25,7 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 - Attempt to obfuscate the URL to the gpx file and its data
 - The url to the gpx file is valid only once (for shortcode elevation)
 - The data are crypt with Base64. It is very simple to decrypt.
+- The interaction with admin-ajax is not correct yet.
 - Who can help me, please contact me.
 
 Change the url in elevation-proxy.php to "your very secret directory" with the gpx file.
