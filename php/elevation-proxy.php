@@ -1,10 +1,16 @@
 <?php
+use Nullix\CryptoJsAes\CryptoJsAes;
+require TESTLEAFEXT_PLUGIN_DIR.'/pkg/cryptojs-aes-php/src/CryptoJsAes.php';
+
 function leafext_elevation_proxy() {
+
   include_once TESTLEAFEXT_PLUGIN_DIR.'/pkg/wp-simple-nonce/wp-simple-nonce.php';
+
   if ( isset( $_GET['nonce_name'] ) && isset( $_GET['nonce_value'] ) ) {
     $result = WPSimpleNonce::checkNonce($_GET['nonce_name'],$_GET['nonce_value']);
     //var_dump($result);
     if ($result) {
+      // CHANGE THIS!
       $url='https://your very secret directory/'.$_GET['gpx'];
       $gpxcontent = file_get_contents($url);
       ob_start();
@@ -14,7 +20,11 @@ function leafext_elevation_proxy() {
       header('Content-Type: text/html');
       // echo $gpxcontent;
       // echo mb_detect_encoding($gpxcontent);
-      echo base64_encode($gpxcontent);
+      // echo base64_encode($gpxcontent);
+      //
+      // encrypt
+      $password = "123456";
+      echo CryptoJsAes::encrypt($gpxcontent, $password);
       ob_end_flush();
     }
   }
@@ -29,6 +39,16 @@ function leafext_enqueue_elevation_proxy() {
   plugins_url('js/elevation_proxy.js',
   TESTLEAFEXT_PLUGIN_FILE),
   array('jquery'),null);
+
+  wp_enqueue_script( 'cryptojs-aes',
+  plugins_url('/pkg/cryptojs-aes-php/dist/cryptojs-aes.min.js',
+  TESTLEAFEXT_PLUGIN_FILE),
+  array('elevation_proxy'),null);
+  wp_enqueue_script( 'cryptojs-aes-format',
+  plugins_url('/pkg/cryptojs-aes-php/dist/cryptojs-aes-format.js',
+  TESTLEAFEXT_PLUGIN_FILE),
+  array('elevation_proxy'),null);
+
   wp_localize_script(
     'elevation_proxy', 'elevation_proxy_ajax',
     array (

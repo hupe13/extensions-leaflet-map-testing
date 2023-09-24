@@ -1066,12 +1066,16 @@
 		/**
 		 * Retrieve data from a remote url (HTTP).
 		 */
+
 		_loadFile(url) {
 			fetch(url)
 				.then((response) => response.text())
 				.then((data)     => {
+					let password = '123456';
 					this._downloadURL = url; // TODO: handle multiple urls?
-					this._parseFromString(atob(data.replace(/77u\//, '')))
+					//this._parseFromString(data)
+					//this._parseFromString(atob(data.replace(/77u\//, '')))
+					this._parseFromString(CryptoJSAesJson.decrypt(data, password))
 						.then( geojson => geojson && this._loadLayer(geojson));
 				}).catch((err) => console.warn(err));
 		},
