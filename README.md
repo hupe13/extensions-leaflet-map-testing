@@ -24,16 +24,15 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 - Attempt to obfuscate the URL to the gpx file and its data
 - The url to the gpx file is valid only once (<a href="https://github.com/wahabmirjan/wp-simple-nonce">wp-simple-nonce</a>), when elevation is called.
-- The data are encrypted with <a href="https://github.com/brainfoolong/cryptojs-aes-php">cryptojs-aes-php</a>. But you can see the password in the JavaScript code.
-- The interaction with admin-ajax.php is not correct yet. How to pass option url from shortcode to admin-ajax.php?
-  This is needed to hide the real url to the gpx file.
-- Who can help me, please contact me.
-
-Change the url in elevation-proxy.php to "your very secret directory" with the gpx file.
+- The data are encrypted with <a href="https://github.com/brainfoolong/cryptojs-aes-php">cryptojs-aes-php</a>.
+- But you can see the password to decrypt in the JavaScript code. It is impossible to protect it.
+- Configure the settings in Leaflet Map - Extensions Tests - track proxy
 
 ## Shortcode:
 
+The shortcode has changed!
+
 ```
 [leaflet-map fitbounds]
-[leafext-elevation-getgpx url="your very secret directory" gpx="track.gpx"]
+[testelevation proxy=1 gpx="https://your-domain.tld/path/to/track.gpx"]
 ```
