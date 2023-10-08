@@ -36,3 +36,6 @@ The shortcode has changed!
 [leaflet-map fitbounds]
 [testelevation proxy=1 gpx="https://your-domain.tld/path/to/track.gpx"]
 ```
+# tile proxy and caching
+
+- configure in Leaflet Map settings tileurl: https://your-domain.tld/wp-admin/admin-ajax.php?action=leafext_tileproxy&tile=https://tile.openstreetmap.org/{z}/{x}/{y}.png
