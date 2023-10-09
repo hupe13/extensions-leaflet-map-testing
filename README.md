@@ -34,9 +34,22 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 [leaflet-map fitbounds]
 [testelevation proxy=1 gpx="https://your-domain.tld/path/to/track.gpx"]
 ```
+
 # tile proxy and caching
 
 - Don't use this on production or mission-critical websites.
 - It is still in development.
-- Cached tiles are stored in the upload_dir/tiles/
-- Configure in Leaflet Map settings tileurl: https://your-domain.tld/wp-admin/admin-ajax.php?action=leafext_tileproxy&tile=https://tile.openstreetmap.org/{z}/{x}/{y}.png
+- Cached tiles are stored in the upload_dir/tiles/tileserver/...
+
+## Shortcode:
+
+Options like leaflet-map
+
+Without caching
+```
+[leaflet-map-tileproxy]
+```
+With caching (works useful only without subdomains)
+```
+[leaflet-map-tileproxy cache]
+```

@@ -5,7 +5,7 @@
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-testing
  * Primary Branch:    main
  * Description:       Tests for leaflet-map / extensions-leaflet-map
- * Version:           231008
+ * Version:           231009
  * Requires PHP:      7.4
  * Author:            hupe13
  * License:           GPL v2 or later
