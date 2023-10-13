@@ -7,6 +7,9 @@
 defined( 'ABSPATH' ) or die();
 
 function leafext_tileproxy() {
+  // Set SHORTINIT to true
+  if (!defined('SHORTINIT')) define( 'SHORTINIT', true );
+  require_once WP_CONTENT_DIR . "/../wp-includes/functions.php";
   if ( isset( $_GET['tile'] )) {
     $tile = $_GET['tile'];
     //validate it using esc_url_raw($url) === $url , and if it fails validation, reject it
@@ -43,10 +46,24 @@ function leafext_tileproxy() {
           );
           $response = wp_remote_get($tile, $args);
           if ( is_array( $response ) && ! is_wp_error( $response ) ) {
-            header('Location: '.$tileurl);
-            exit;
+            $args = array (
+              //'user-agent'          => apply_filters( 'http_headers_useragent', 'WordPress/' . get_bloginfo( 'version' ) . '; ' . get_bloginfo( 'url' ), $url ),
+              'stream'              => false,
+              //'filename'            => $tilefile,
+            );
+            $response2 = wp_remote_get($tile,$args);
+            if ( is_array( $response2 ) && ! is_wp_error( $response2 ) ) {
+              // header('Location: '.$tileurl);
+              // exit;
+              ob_start();
+              header('cache-control: max-age=47600, stale-while-revalidate=604800, stale-if-error=604800');
+              header('Content-Type: image/png');
+              echo wp_remote_retrieve_body($response2);
+              ob_end_flush();
+            }
           }
         } else {
+          // Kommt theoretisch nicht vor.
           header('Location: '.$tileurl);
           exit;
         }
@@ -89,17 +106,32 @@ function leafext_tileproxy_function( $atts,$content,$shortcode) {
     return $text;
   } else {
     $options = leafext_clear_params($atts);
-    if (isset($options['cache']) && $options['cache'] == 1 ) {
-      $cache = '&cache=1';
-    } else {
-      $cache = '';
-    }
+    if (!is_array($atts)) $atts = array();
     if (isset($atts["tileurl"])) {
       $tileurl = $atts["tileurl"];
     } else {
       $tileurl = get_option('leaflet_map_tile_url', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png');
     }
-    $atts["tileurl"] = admin_url('admin-ajax.php').'?action=leafext_tileproxy&tile='.$tileurl.$cache;
+
+    if (isset($options['cache']) && $options['cache'] == 1 ) {
+      $upload_dir  = wp_get_upload_dir();
+      //$upload_path = $upload_dir['basedir'];
+      $upload_url  = $upload_dir['baseurl'];
+      $tile_parse = wp_parse_url($tileurl);
+      // array(4) {
+      //   ["scheme"]=> string(5) "https"
+      //   ["host"]=> string(22) "tile.openstreetmap.org"
+      //   ["path"]=> string(17) "/14/8840/5490.png"
+      //   ["query"]=> string(7) "key=bla"
+      // }
+      $tilelocalurl  =  $upload_url.'/tiles/'.$tile_parse['host'].$tile_parse['path'];
+      $atts["tileurl"] = $tilelocalurl;
+
+    } else {
+      $ajaxtileurl = admin_url('admin-ajax.php').'?action=leafext_tileproxy&tile='.$tileurl.'&cache=0';
+      $atts["tileurl"] = $ajaxtileurl;
+    }
+
     $text = '[leaflet-map ';
     if (is_array($atts)){
       foreach ($atts as $key=>$item){
@@ -111,7 +143,42 @@ function leafext_tileproxy_function( $atts,$content,$shortcode) {
       }
     }
     $text = $text. ']';
-    return do_shortcode($text);
+    $map = do_shortcode($text);
+    if (isset($options['cache']) && $options['cache'] == 1 ) {
+      $ajaxtileurl = admin_url('admin-ajax.php').'?action=leafext_tileproxy&tile='.$tileurl.'&cache=1';
+      $map = $map.leafext_tileproxy_script($ajaxtileurl);
+    }
+    return $map;
   }
 }
 add_shortcode('leaflet-map-tileproxy', 'leafext_tileproxy_function');
+
+function leafext_tileproxy_script($tileurl) {
+  $text = '<script><!--';
+  ob_start();
+  ?>/*<script>*/
+  window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
+  window.WPLeafletMapPlugin.push(function () {
+    var map = window.WPLeafletMapPlugin.getCurrentMap();
+    map.eachLayer(function(layer) {
+      if( layer instanceof L.TileLayer ) {
+        layer.on('tileerror', function(e) {
+          //console.log(e);
+          if (e.tile._hasError) return;
+          var tileSrc = "<?php echo $tileurl;?>";
+          tileSrc = tileSrc.replace(/{x}/g, e.coords.x);
+          tileSrc = tileSrc.replace(/{y}/g, e.coords.y);
+          tileSrc = tileSrc.replace(/{z}/g, e.coords.z);
+          e.tile._hasError = true;
+          e.tile.src = tileSrc;
+          //console.log(tileSrc);
+        });
+      }
+    });
+  });
+  <?php
+  $javascript = ob_get_clean();
+  $text = $text . $javascript . '//-->'."\n".'</script>';
+//  $text = \JShrink\Minifier::minify($text);
+  return "\n".$text."\n";
+}

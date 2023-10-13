@@ -15,7 +15,7 @@ This code is changed from time to time and may (or may not) be published in the 
 
 <h2>Installation</h2>
 
-Download the zip file and <a href="https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin">upload it via WordPress Admin</a>.
+Clone it or download the <a href="https://github.com/hupe13/extensions-leaflet-map-testing/archive/refs/heads/main.zip">zip file</a> and <a href="https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin">upload it via WordPress Admin</a>.
 Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions Leaflet Map</a>.
 
 <h2>Testing</h2>
@@ -31,7 +31,7 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 ## Shortcode:
 
 ```
-[leaflet-map fitbounds]
+[ leaflet-map fitbounds]
 [testelevation proxy=1 gpx="https://your-domain.tld/path/to/track.gpx"]
 ```
 
