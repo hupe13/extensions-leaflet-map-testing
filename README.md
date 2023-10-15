@@ -40,6 +40,10 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 - Don't use this on production or mission-critical websites.
 - It is still in development.
 - Cached tiles are stored in the upload_dir/tiles/tileserver/...
+- Why? DSGVO, GDPR.
+- If you cache, you need space on your server and the first call of a tile takes more time as normal.
+- Maybe slower as the original servers (depends).
+- If you don't cache, it is slower.
 
 ## Shortcode:
 
@@ -49,7 +53,7 @@ Without caching
 ```
 [leaflet-map-tileproxy]
 ```
-With caching (works useful only without subdomains)
+With caching
 ```
 [leaflet-map-tileproxy cache]
 ```

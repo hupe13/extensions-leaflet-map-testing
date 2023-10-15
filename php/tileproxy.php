@@ -14,7 +14,7 @@ function leafext_tileproxy() {
     $tile = $_GET['tile'];
     //validate it using esc_url_raw($url) === $url , and if it fails validation, reject it
     if (esc_url_raw($tile) === $tile) {
-      if (isset( $_GET['cache'] ) && $_GET['cache'] == '1') {
+      if (isset( $_GET['c'] ) && $_GET['c'] == '1') {
         $upload_dir  = wp_get_upload_dir();
         $upload_path = $upload_dir['basedir'];
         $upload_url  = $upload_dir['baseurl'];
@@ -26,8 +26,15 @@ function leafext_tileproxy() {
         //   ["path"]=> string(17) "/14/8840/5490.png"
         //   ["query"]=> string(7) "key=bla"
         // }
-        $tiledir  = $upload_path.'/tiles/'.$tile_parse['host'].dirname($tile_parse['path']);
-        $tilefile = $upload_path.'/tiles/'.$tile_parse['host'].$tile_parse['path'];
+        $host=$tile_parse['host'];
+        if (isset( $_GET['s'] ) && $_GET['s'] != '') {
+          $hostparts = explode('.',$host);
+          unset($hostparts[0]);
+          $host = implode('.',$hostparts);
+        }
+        //echo $host; die();
+        $tiledir  = $upload_path.'/tiles/'.$host.dirname($tile_parse['path']);
+        $tilefile = $upload_path.'/tiles/'.$host.$tile_parse['path'];
         $tileurl  =  $upload_url.'/tiles/'.$tile_parse['host'].$tile_parse['path'];
 
         wp_mkdir_p($tiledir);
@@ -53,8 +60,6 @@ function leafext_tileproxy() {
             );
             $response2 = wp_remote_get($tile,$args);
             if ( is_array( $response2 ) && ! is_wp_error( $response2 ) ) {
-              // header('Location: '.$tileurl);
-              // exit;
               ob_start();
               header('cache-control: max-age=47600, stale-while-revalidate=604800, stale-if-error=604800');
               header('Content-Type: image/png');
@@ -73,7 +78,7 @@ function leafext_tileproxy() {
           ob_start();
           header('cache-control: max-age=47600, stale-while-revalidate=604800, stale-if-error=604800');
           header('Content-Type: image/png');
-          echo $response['body'];
+          echo wp_remote_retrieve_body($response);
           ob_end_flush();
         }
       }
@@ -105,34 +110,40 @@ function leafext_tileproxy_function( $atts,$content,$shortcode) {
   if ( $text != "" ) {
     return $text;
   } else {
-    $options = leafext_clear_params($atts);
     if (!is_array($atts)) $atts = array();
-    if (isset($atts["tileurl"])) {
-      $tileurl = $atts["tileurl"];
-    } else {
-      $tileurl = get_option('leaflet_map_tile_url', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png');
-    }
+    $defaults = array(
+      "tileurl"    => get_option('leaflet_map_tile_url', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
+      "subdomains" => get_option('leaflet_map_tile_url_subdomains', 'abc'),
+      "cache"      => false,
+    );
+    $options = shortcode_atts($defaults, leafext_clear_params($atts));
+    $sub = strpos($options['tileurl'],'{s}') === false ? '' : '&s='.$options['subdomains'];
 
-    if (isset($options['cache']) && $options['cache'] == 1 ) {
+    if ( $options['cache'] ) {
       $upload_dir  = wp_get_upload_dir();
-      //$upload_path = $upload_dir['basedir'];
       $upload_url  = $upload_dir['baseurl'];
-      $tile_parse = wp_parse_url($tileurl);
+      $tile_parse = wp_parse_url($options['tileurl']);
       // array(4) {
       //   ["scheme"]=> string(5) "https"
       //   ["host"]=> string(22) "tile.openstreetmap.org"
       //   ["path"]=> string(17) "/14/8840/5490.png"
       //   ["query"]=> string(7) "key=bla"
       // }
-      $tilelocalurl  =  $upload_url.'/tiles/'.$tile_parse['host'].$tile_parse['path'];
+      $host = $tile_parse['host'];
+      if ( $sub != '' ) {
+        $hostparts = explode('.',$host);
+        unset($hostparts[0]);
+        $host = implode('.',$hostparts);
+      }
+      $tilelocalurl  =  $upload_url.'/tiles/'.$host.$tile_parse['path'];
       $atts["tileurl"] = $tilelocalurl;
 
     } else {
-      $ajaxtileurl = admin_url('admin-ajax.php').'?action=leafext_tileproxy&tile='.$tileurl.'&cache=0';
+      $ajaxtileurl = admin_url('admin-ajax.php').'?action=leafext_tileproxy&tile='.$options['tileurl'].'&c=0';
       $atts["tileurl"] = $ajaxtileurl;
     }
 
-    $text = '[leaflet-map ';
+    $text = $text.'[leaflet-map ';
     if (is_array($atts)){
       foreach ($atts as $key=>$item){
         if (is_int($key)) {
@@ -144,16 +155,16 @@ function leafext_tileproxy_function( $atts,$content,$shortcode) {
     }
     $text = $text. ']';
     $map = do_shortcode($text);
-    if (isset($options['cache']) && $options['cache'] == 1 ) {
-      $ajaxtileurl = admin_url('admin-ajax.php').'?action=leafext_tileproxy&tile='.$tileurl.'&cache=1';
-      $map = $map.leafext_tileproxy_script($ajaxtileurl);
+    if ( $options['cache'] ) {
+      $ajaxtileurl = admin_url('admin-ajax.php').'?action=leafext_tileproxy&tile='.$options['tileurl'].'&c=1'.$sub;
+      $map = $map.leafext_tileproxy_script($ajaxtileurl,$options['subdomains']);
     }
     return $map;
   }
 }
 add_shortcode('leaflet-map-tileproxy', 'leafext_tileproxy_function');
 
-function leafext_tileproxy_script($tileurl) {
+function leafext_tileproxy_script($tileurl,$subdomains) {
   $text = '<script><!--';
   ob_start();
   ?>/*<script>*/
@@ -163,15 +174,18 @@ function leafext_tileproxy_script($tileurl) {
     map.eachLayer(function(layer) {
       if( layer instanceof L.TileLayer ) {
         layer.on('tileerror', function(e) {
-          //console.log(e);
+          // https://gis.stackexchange.com/questions/347646/specify-an-alternative-url-for-a-tilelayer-to-use-in-leaflet
+          // Edit
           if (e.tile._hasError) return;
-          var tileSrc = "<?php echo $tileurl;?>";
+          var tileSrc = atob('<?php echo base64_encode(filter_var($tileurl, FILTER_SANITIZE_URL)); ?>');
+          var subdomains =  "<?php echo $subdomains;?>";
+          var si = Math.floor((Math.random() * 3));
+          tileSrc = tileSrc.replace(/{s}/g, subdomains.substring(si, si + 1));
           tileSrc = tileSrc.replace(/{x}/g, e.coords.x);
           tileSrc = tileSrc.replace(/{y}/g, e.coords.y);
           tileSrc = tileSrc.replace(/{z}/g, e.coords.z);
           e.tile._hasError = true;
           e.tile.src = tileSrc;
-          //console.log(tileSrc);
         });
       }
     });
