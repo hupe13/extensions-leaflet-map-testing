@@ -40,20 +40,22 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 - Don't use this on production or mission-critical websites.
 - It is still in development.
 - Cached tiles are stored in the upload_dir/tiles/tileserver/...
-- Why? DSGVO, GDPR.
-- If you cache, you need space on your server and the first call of a tile takes more time as normal.
+- Why? DSGVO, GDPR, ...
+- use ajax-admin.php or Rest API
+- If you use Rest API and you have disable these, you need enable the endpoint '/wp-json/leafext-tileproxy/v1/tiles'
+- The plugin enables this for [Disable WP REST API](https://wordpress.org/plugins/disable-wp-rest-api/)
+- If you cache, you need space on your server and the first calls of a tile take more time as normal.
+- If you cache, 404 errors are okay, it can take several calls until they are gone, the cause is the various server caches.
 - Maybe slower as the original servers (depends).
 - If you don't cache, it is slower.
 
 ## Shortcode:
 
-Options like leaflet-map
-
-Without caching
 ```
 [leaflet-map-tileproxy]
 ```
-With caching
-```
-[leaflet-map-tileproxy cache]
-```
+
+Options:
+- see leaflet-map
+- cache - cache tiles on your server
+- restapi - use Rest API, default is admin-ajax.php
