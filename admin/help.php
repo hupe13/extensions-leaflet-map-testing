@@ -1,9 +1,19 @@
 <?php
-include_once TESTLEAFEXT_PLUGIN_DIR . "/pkg/parsedown-1.7.4/Parsedown.php";
-$text = file_get_contents( TESTLEAFEXT_PLUGIN_DIR . "/README.md" );
+/**
+ * Documentation HELP
+ *
+ * @package Extensions for Leaflet Map
+ */
 
-$Parsedown = new Parsedown();
-echo $Parsedown->text($text);
+// Direktzugriff auf diese Datei verhindern.
+defined( 'ABSPATH' ) || die();
 
-//include_once TESTLEAFEXT_PLUGIN_DIR . '/php/leaflet-search.php';
-//leafext_leafletsearch_help();
+require_once TESTLEAFEXT_PLUGIN_DIR . '/pkg/parsedown-1.7.4/Parsedown.php';
+
+require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
+$filesystem = new WP_Filesystem_Direct( true );
+$text       = $filesystem->get_contents( TESTLEAFEXT_PLUGIN_DIR . '/readme.md' );
+
+$parsedown = new Parsedown();
+echo $parsedown->text( $text );

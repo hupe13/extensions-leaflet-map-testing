@@ -1,11 +1,11 @@
 # Extensions Leaflet Map Testing
 
 Contributors: hupe13    
-Tags: leaflet  
-Tested up to: 6.3  
+Tags: leaflet, Leaflet Plugins   
+Tested up to: 6.4  
 Requires at least: 5.5.3     
-Requires PHP: 7.4     
-License: GPLv2 or later  
+Requires PHP: 7.4  
+License: GPLv2 or later
 
 ## Description
 
