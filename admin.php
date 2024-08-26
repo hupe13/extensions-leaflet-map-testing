@@ -2,7 +2,7 @@
 /**
  * File admin.php
  *
- * @package Extensions for Leaflet Map
+ * @package Extensions for Leaflet Map Testing
  */
 
 // Direktzugriff auf diese Datei verhindern.
@@ -10,8 +10,6 @@ defined( 'ABSPATH' ) || die();
 
 add_action( 'admin_init', 'testleafext_init' );
 add_action( 'admin_menu', 'testleafext_add_page', 99 );
-
-require TESTLEAFEXT_PLUGIN_DIR . '/admin/proxy.php';
 
 // Init plugin options to white list our options
 function testleafext_init() {
@@ -32,6 +30,7 @@ function testleafext_add_page() {
 
 // Draw the menu page itself
 function testleafext_do_page() {
+	//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- no form
 	$get                 = map_deep( wp_unslash( $_GET ), 'sanitize_text_field' );
 	$active_tab          = isset( $get['tab'] ) ? $get['tab'] : 'help';
 	$leafext_plugin_name = basename( __DIR__ );
@@ -40,15 +39,11 @@ function testleafext_do_page() {
 	echo '</div>';
 	echo '<h3 class="nav-tab-wrapper">';
 
-	echo '<a href="?page=' . $leafext_plugin_name . '&tab=help" class="nav-tab';
-	echo $active_tab == 'help' ? ' nav-tab-active' : '';
+	echo '<a href="?page=' . esc_html( $leafext_plugin_name ) . '&tab=help" class="nav-tab';
+	echo $active_tab === 'help' ? ' nav-tab-active' : '';
 	echo '">Hilfe!</a>';
 
 	$tabs = array(
-		array(
-			'tab'   => 'proxy',
-			'title' => 'track proxy',
-		),
 		// array (
 		// 'tab' => '',
 		// 'title' => '',
@@ -56,27 +51,27 @@ function testleafext_do_page() {
 	);
 
 	foreach ( $tabs as $tab ) {
-		echo '<a href="?page=' . $leafext_plugin_name . '&tab=' . $tab['tab'] . '" class="nav-tab';
-		$active = ( $active_tab == $tab['tab'] ) ? ' nav-tab-active' : '';
-		echo $active;
-		echo '">' . $tab['title'] . '</a>' . "\n";
+		echo '<a href="?page=' . esc_html( $leafext_plugin_name ) . '&tab=' . esc_html( $tab['tab'] ) . '" class="nav-tab';
+		$active = ( $active_tab === $tab['tab'] ) ? ' nav-tab-active' : '';
+		echo esc_html( $active );
+		echo '">' . esc_html( $tab['title'] ) . '</a>' . "\n";
 	}
 
 	echo '</h3>';
 
 	echo '<div class="wrap">';
 
-	if ( $active_tab == 'help' ) {
+	if ( $active_tab === 'help' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
-	} elseif ( $active_tab == 'proxy' ) {
-		leafext_proxy_help_text();
-		leafext_admin_proxy();
+	// } elseif ( $active_tab === 'abc' ) {
+	  //
 	}
 
 	echo '</div>';
 }
 
-function testleafext_admin_style() {
+if ( defined( 'LEAFEXT_PLUGIN_FILE' ) ) {
+	function testleafext_admin_style() {
 		wp_enqueue_style(
 			'leafext_admin_css',
 			plugins_url(
@@ -84,5 +79,6 @@ function testleafext_admin_style() {
 				LEAFEXT_PLUGIN_FILE
 			)
 		);
+	}
+	add_action( 'admin_enqueue_scripts', 'testleafext_admin_style' );
 }
-add_action( 'admin_enqueue_scripts', 'testleafext_admin_style' );

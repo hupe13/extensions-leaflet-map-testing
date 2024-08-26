@@ -7,10 +7,12 @@
  * Description:       Tests for leaflet-map / extensions-leaflet-map
  * Version:           240104
  * Requires PHP:      7.4
- * Author:      hupe13
- * License:     GPL v2 or later
- * Text Domain: extensions-leaflet-map
- * Domain Path: /lang/
+ * Author:            hupe13
+ * License:           GPL v2 or later
+ * Text Domain:       extensions-leaflet-map
+ * Domain Path:       /lang/
+ *
+ * @package Extensions for Leaflet Map Testing
  **/
 
 // Direktzugriff auf diese Datei verhindern:
@@ -30,15 +32,15 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
  * Load plugin textdomain.
  */
 function leafext_load_textdomain() {
-	if ( get_locale() == 'de_DE' ) {
+	if ( get_locale() === 'de_DE' ) {
 		load_textdomain( 'extensions-leaflet-map', TESTLEAFEXT_PLUGIN_DIR . '/lang/extensions-leaflet-map-de_DE.mo' );
 		load_plugin_textdomain( 'extensions-leaflet-map', false, WP_CONTENT_DIR . '/languages/plugins/extensions-leaflet-map-de_DE.mo' );
 	}
 }
 // add_action( 'init', 'leafext_load_textdomain' );
 
-$leafext_active = preg_grep( '/extensions-leaflet-map.php/', get_option( 'active_plugins' ) );
-if ( count( $leafext_active ) == 0 ) {
+$testleafext_active = preg_grep( '/extensions-leaflet-map.php/', get_option( 'active_plugins' ) );
+if ( count( $testleafext_active ) === 0 ) {
 	function leafext_require_leafext_plugin() {
 		?>
 	<div class="notice notice-error" >
@@ -64,7 +66,4 @@ if ( is_admin() ) {
 }
 
 // include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
-require_once TESTLEAFEXT_PLUGIN_DIR . '/php/proxy.php';
-require_once TESTLEAFEXT_PLUGIN_DIR . '/php/elevation.php';
-
 require_once TESTLEAFEXT_PLUGIN_DIR . '/php/tileproxy/tileproxy.php';

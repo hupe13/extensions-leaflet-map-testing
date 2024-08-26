@@ -14,7 +14,7 @@ function leafext_ajax_tileproxy() {
 		define( 'SHORTINIT', true );
 	}
 	require_once WP_CONTENT_DIR . '/../wp-includes/functions.php';
-	$get                 = map_deep( wp_unslash( $_GET ), 'sanitize_text_field' );
+	$get = map_deep( wp_unslash( $_GET ), 'sanitize_text_field' );
 	if ( isset( $get['tile'] ) ) {
 		$tile = $get['tile'];
 		// validate it using esc_url_raw($url) === $url , and if it fails validation, reject it

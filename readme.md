@@ -20,21 +20,6 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Testing</h2>
 
-# elevation-proxy (shortcode elevation)
-
-- Attempt to obfuscate the URL to the gpx file and its data
-- The url to the gpx file is valid only once (<a href="https://github.com/wahabmirjan/wp-simple-nonce">wp-simple-nonce</a>), when elevation is called.
-- The data are encrypted with <a href="https://github.com/brainfoolong/cryptojs-aes-php">cryptojs-aes-php</a>.
-- But you can see the password to decrypt in the JavaScript code. It is impossible to protect it.
-- Configure the settings in Leaflet Map - Extensions Tests - track proxy
-
-## Shortcode:
-
-```
-[ leaflet-map fitbounds]
-[testelevation proxy=1 gpx="https://your-domain.tld/path/to/track.gpx"]
-```
-
 # tile proxy and caching
 
 - Don't use this on production or mission-critical websites.
