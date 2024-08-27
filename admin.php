@@ -8,30 +8,30 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-add_action( 'admin_init', 'testleafext_init' );
-add_action( 'admin_menu', 'testleafext_add_page', 99 );
+add_action( 'admin_init', 'testleafext_ele_init' );
+add_action( 'admin_menu', 'testleafext_ele_add_page', 99 );
 
 require TESTLEAFEXT_PLUGIN_DIR . '/admin/proxy.php';
 
 // Init plugin options to white list our options
-function testleafext_init() {
+function testleafext_ele_init() {
 	register_setting( 'testleafext_options', 'testleafext_maps', 'testleafext_validate' );
 }
 
 // Add menu page
-function testleafext_add_page() {
+function testleafext_ele_add_page() {
 	add_submenu_page(
 		'leaflet-map',
 		'Extensions Test Options',
 		'Extensions Tests',
 		'manage_options',
 		'extensions-leaflet-map-testing',
-		'testleafext_do_page'
+		'testleafext_ele_do_page'
 	);
 }
 
 // Draw the menu page itself
-function testleafext_do_page() {
+function testleafext_ele_do_page() {
 	$get                 = map_deep( wp_unslash( $_GET ), 'sanitize_text_field' );
 	$active_tab          = isset( $get['tab'] ) ? $get['tab'] : 'help';
 	$leafext_plugin_name = basename( __DIR__ );
@@ -75,14 +75,3 @@ function testleafext_do_page() {
 
 	echo '</div>';
 }
-
-function testleafext_admin_style() {
-		wp_enqueue_style(
-			'leafext_admin_css',
-			plugins_url(
-				'css/leafext-admin.css',
-				LEAFEXT_PLUGIN_FILE
-			)
-		);
-}
-add_action( 'admin_enqueue_scripts', 'testleafext_admin_style' );

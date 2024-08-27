@@ -26,17 +26,6 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 	require_once ABSPATH . '/wp-admin/includes/plugin.php';
 }
 
-/**
- * Load plugin textdomain.
- */
-function leafext_load_textdomain() {
-	if ( get_locale() == 'de_DE' ) {
-		load_textdomain( 'extensions-leaflet-map', TESTLEAFEXT_PLUGIN_DIR . '/lang/extensions-leaflet-map-de_DE.mo' );
-		load_plugin_textdomain( 'extensions-leaflet-map', false, WP_CONTENT_DIR . '/languages/plugins/extensions-leaflet-map-de_DE.mo' );
-	}
-}
-// add_action( 'init', 'leafext_load_textdomain' );
-
 $leafext_active = preg_grep( '/extensions-leaflet-map.php/', get_option( 'active_plugins' ) );
 if ( count( $leafext_active ) == 0 ) {
 	function leafext_require_leafext_plugin() {
@@ -52,12 +41,12 @@ if ( count( $leafext_active ) == 0 ) {
 }
 
 // Add settings to plugin page
-function testleafext_add_action_links( $actions ) {
+function testleafext_ele_add_action_links( $actions ) {
 	$actions[] = '<a href="' . esc_url( get_admin_url( null, 'admin.php?page=' . TESTLEAFEXT_PLUGIN_SETTINGS ) ) . '">' .
 	esc_html__( 'Settings' ) . '</a>';
 	return $actions;
 }
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'testleafext_add_action_links' );
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'testleafext_ele_add_action_links' );
 
 if ( is_admin() ) {
 	include_once TESTLEAFEXT_PLUGIN_DIR . 'admin.php';
