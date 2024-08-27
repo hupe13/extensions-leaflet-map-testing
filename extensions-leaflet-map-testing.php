@@ -66,5 +66,3 @@ if ( is_admin() ) {
 // include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
 require_once TESTLEAFEXT_PLUGIN_DIR . '/php/proxy.php';
 require_once TESTLEAFEXT_PLUGIN_DIR . '/php/elevation.php';
-
-require_once TESTLEAFEXT_PLUGIN_DIR . '/php/tileproxy/tileproxy.php';
