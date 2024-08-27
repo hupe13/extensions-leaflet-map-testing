@@ -15,7 +15,7 @@ Secondly, the repository cryptojs-aes-php has been archived.
 
 ## Installation
 
-Download the <a href="https://github.com/hupe13/extensions-leaflet-map-testing/blob/elevation-proxy/elevation-proxy.zip">zip file</a> and <a href="https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin">upload it via WordPress Admin</a>.
+Download the <a href="https://github.com/hupe13/extensions-leaflet-map-testing/raw/elevation-proxy/elevation-proxy.zip">zip file</a> and <a href="https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin">upload it via WordPress Admin</a>.
 Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions Leaflet Map</a>.
 
 ## elevation-proxy (shortcode elevation)
