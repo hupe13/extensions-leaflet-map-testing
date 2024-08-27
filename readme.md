@@ -44,3 +44,7 @@ Options:
 - see leaflet-map
 - cache - cache tiles on your server
 - restapi - use Rest API, default is admin-ajax.php
+
+# elevation proxy
+
+<a href="https://github.com/hupe13/extensions-leaflet-map-testing/tree/elevation-proxy">Archive</a>
