@@ -9,7 +9,7 @@ License: GPLv2 or later
 
 ## Description
 
-This is the backup from elevation-proxy.
+This is the archive from elevation-proxy.
 I will no longer test and further develop these. Firstly, the goal of encrypting the url is not achieved.
 Secondly, the repository cryptojs-aes-php has been archived.
 
