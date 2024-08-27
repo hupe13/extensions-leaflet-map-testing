@@ -9,8 +9,8 @@
 defined( 'ABSPATH' ) || die();
 
 use Nullix\CryptoJsAes\CryptoJsAes;
-require TESTLEAFEXT_PLUGIN_DIR . '/pkg/cryptojs-aes-php/src/CryptoJsAes.php';
-require_once TESTLEAFEXT_PLUGIN_DIR . '/pkg/wp-simple-nonce/wp-simple-nonce.php';
+require TESTLEAFEXT_ELE_PLUGIN_DIR . '/pkg/cryptojs-aes-php/src/CryptoJsAes.php';
+require_once TESTLEAFEXT_ELE_PLUGIN_DIR . '/pkg/wp-simple-nonce/wp-simple-nonce.php';
 
 function leafext_proxy() {
 	$get = map_deep( wp_unslash( $_GET ), 'sanitize_text_field' );
@@ -49,7 +49,7 @@ function leafext_enqueue_proxy() {
 		'leafext_proxy',
 		plugins_url(
 			'js/proxy.js',
-			TESTLEAFEXT_PLUGIN_FILE
+			TESTLEAFEXT_ELE_PLUGIN_FILE
 		),
 		array( 'jquery' ),
 		null,
@@ -60,7 +60,7 @@ function leafext_enqueue_proxy() {
 		'cryptojs-aes',
 		plugins_url(
 			'/pkg/cryptojs-aes-php/dist/cryptojs-aes.min.js',
-			TESTLEAFEXT_PLUGIN_FILE
+			TESTLEAFEXT_ELE_PLUGIN_FILE
 		),
 		array( 'leafext_proxy' ),
 		null,
@@ -70,7 +70,7 @@ function leafext_enqueue_proxy() {
 		'cryptojs-aes-format',
 		plugins_url(
 			'/pkg/cryptojs-aes-php/dist/cryptojs-aes-format.js',
-			TESTLEAFEXT_PLUGIN_FILE
+			TESTLEAFEXT_ELE_PLUGIN_FILE
 		),
 		array( 'leafext_proxy' ),
 		null,

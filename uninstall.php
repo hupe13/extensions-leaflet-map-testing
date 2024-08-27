@@ -12,7 +12,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 global $wpdb;
 // phpcs:ignore
-$option_names = $wpdb->get_results( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE 'testleafext_%' " );
+$option_names = $wpdb->get_results( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE 'leafext_proxy' " );
 foreach ( $option_names as $key => $value ) {
 	delete_option( $value->option_name );
 	// for site options in Multisite

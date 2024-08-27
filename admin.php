@@ -11,11 +11,11 @@ defined( 'ABSPATH' ) || die();
 add_action( 'admin_init', 'testleafext_ele_init' );
 add_action( 'admin_menu', 'testleafext_ele_add_page', 99 );
 
-require TESTLEAFEXT_PLUGIN_DIR . '/admin/proxy.php';
+require TESTLEAFEXT_ELE_PLUGIN_DIR . '/admin/proxy.php';
 
 // Init plugin options to white list our options
 function testleafext_ele_init() {
-	register_setting( 'testleafext_options', 'testleafext_maps', 'testleafext_validate' );
+	register_setting( 'testleafext_ele_options', 'testleafext_ele_maps', 'testleafext_ele_validate' );
 }
 
 // Add menu page
@@ -23,9 +23,9 @@ function testleafext_ele_add_page() {
 	add_submenu_page(
 		'leaflet-map',
 		'Extensions Test Options',
-		'Extensions Tests',
+		'Tests - ele proxy',
 		'manage_options',
-		'extensions-leaflet-map-testing',
+		'elevation-proxy',
 		'testleafext_ele_do_page'
 	);
 }
@@ -36,7 +36,7 @@ function testleafext_ele_do_page() {
 	$active_tab          = isset( $get['tab'] ) ? $get['tab'] : 'help';
 	$leafext_plugin_name = basename( __DIR__ );
 	echo '<div class="wrap nothickbox">
-	<h2>Extensions Tests Options</h2>';
+	<h2>Elevation proxy Options</h2>';
 	echo '</div>';
 	echo '<h3 class="nav-tab-wrapper">';
 
@@ -67,10 +67,10 @@ function testleafext_ele_do_page() {
 	echo '<div class="wrap">';
 
 	if ( $active_tab == 'help' ) {
-		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
+		include TESTLEAFEXT_ELE_PLUGIN_DIR . '/admin/help.php';
 	} elseif ( $active_tab == 'proxy' ) {
 		leafext_proxy_help_text();
-		leafext_admin_proxy();
+		leafext_ele_admin_proxy();
 	}
 
 	echo '</div>';

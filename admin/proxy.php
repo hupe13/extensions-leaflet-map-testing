@@ -15,7 +15,7 @@ function leafext_proxy_init() {
 }
 add_action( 'admin_init', 'leafext_proxy_init' );
 
-function leafext_admin_proxy() {
+function leafext_ele_admin_proxy() {
 	if ( current_user_can( 'manage_options' ) ) {
 		echo '<form method="post" action="options.php">';
 	} else {
