@@ -2,7 +2,7 @@
 
 Contributors: hupe13    
 Tags: leaflet, Leaflet Plugins   
-Tested up to: 6.4  
+Tested up to: 6.6  
 Requires at least: 5.5.3     
 Requires PHP: 7.4  
 License: GPLv2 or later
@@ -44,6 +44,21 @@ Options:
 - see leaflet-map
 - cache - cache tiles on your server
 - restapi - use Rest API, default is admin-ajax.php
+
+# leaflet-list-markers
+
+- Fork from [leaflet-list-markers](https://github.com/stefanocudini/leaflet-list-markers)
+
+```
+[leaflet-map fitbounds]
+[leaflet-marker lat=... lng=... title=...]Popup Content[/leaflet-marker]
+... many any ...
+[listmarkertest overiconurl=.... collapse=]
+```
+
+Options:
+- <code>overiconurl</code> - url to the icon when it hover or clicked. Default: red icon
+- <code>collapse</code> - true or false
 
 # elevation proxy
 

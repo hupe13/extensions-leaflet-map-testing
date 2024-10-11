@@ -63,8 +63,8 @@ function testleafext_do_page() {
 
 	if ( $active_tab === 'help' ) {
 		include TESTLEAFEXT_PLUGIN_DIR . '/admin/help.php';
-	// } elseif ( $active_tab === 'abc' ) {
-	  //
+		// } elseif ( $active_tab === 'abc' ) {
+		//
 	}
 
 	echo '</div>';
