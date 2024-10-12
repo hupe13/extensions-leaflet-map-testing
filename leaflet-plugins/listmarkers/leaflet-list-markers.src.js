@@ -28,7 +28,8 @@
 				itemIcon: L.Icon.Default.imagePath + '/marker-icon.png',
 				itemArrow: '&#10148;',	//visit: https://character-code.com/arrows-html-codes.php
 				maxZoom: 9,
-				position: 'bottomleft'
+				position: 'bottomleft',
+				update: true
 				//TODO autocollapse
 			},
 
@@ -115,11 +116,17 @@
 				this._layer.eachLayer(
 					function (layer) {
 						if (layer instanceof L.Marker) {
-							if ( that._map.getBounds().contains( layer.getLatLng() ) ) {
-								if (++n < that.options.maxItems) {
-									that._list.appendChild( that._createItem( layer ) );
-								}
-							}
+              if ( that.options.update ) {
+                if ( that._map.getBounds().contains( layer.getLatLng() ) ) {
+                  if (++n < that.options.maxItems) {
+                    that._list.appendChild( that._createItem( layer ) );
+                  }
+                }
+              } else {
+                if (++n < that.options.maxItems) {
+                  that._list.appendChild( that._createItem( layer ) );
+                }
+              }
 						}
 					}
 				);

@@ -44,23 +44,31 @@ L.Control.ListMarkers = L.Control.extend({
 
 		this._map = map;
 
-		var container = this._container = L.DomUtil.create('div', 'list-markers-x-y list-markers');
-
-		this._list = L.DomUtil.create('ul', 'list-markers-ul', container);
-
-		this._initToggle();
-
-		map.on('moveend', this._updateList, this);
-
 		var s = map.getSize();
+		// container.style.height = (s.y)*0.7+'px';
+		// container.style.maxWidth = (s.x/2)+'px';
 
 		var style = document.createElement('style');
 		style.type = 'text/css';
 		style.innerHTML = '.list-markers-x-y { height: '+(s.y)*0.7+'px; maxWidth = '+(s.x/2)+'px;}';
-		document.getElementsByTagName('head')[0].appendChild(style);
+		//document.getElementsByTagName('head')[0].appendChild(style);
+
+		var link = this._container = L.DomUtil.create('a', 'leaflet-control-layers-toggle');
+		link.href = '#';
+		link.title = 'Layers';
+		link.role = "button";
+		//this._container.appendChild(link);
+
+		var container = this._container = L.DomUtil.create('div', 'list-markers list-markers-x-y');
+		//<a class="leaflet-control-layers-toggle" href="#" title="Layers" role="button"></a>
+		this._initToggle();
+
+		this._list = L.DomUtil.create('ul', 'list-markers-ul', container);
+
+		map.on('moveend', this._updateList, this);
 
 		this._updateList();
-
+		console.log (container);
 		return container;
 	},
 
@@ -140,21 +148,18 @@ L.Control.ListMarkers = L.Control.extend({
 			L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
 		}
 
+		console.log("collapse?",this.options.collapsed);
 		if (this.options.collapsed)
 		{
+			console.log("collapsed");
 			this._collapse();
 
-			// if (!L.Browser.android) {
-			// 	L.DomEvent
-			// 		.on(container, 'mouseover', this._expand, this)
-			// 		.on(container, 'mouseout', this._collapse, this);
-			// }
-
-			L.DomEvent
-					.on(container, 'click', this._expand, this)
-					.on(container, 'click', this._collapse, this);
-
-			var link = this._button = L.DomUtil.create('a', 'leaflet-control-layers-toggle', container);
+			if (!L.Browser.android) {
+				L.DomEvent
+					.on(container, 'mouseover', this._expand, this)
+					.on(container, 'mouseout', this._collapse, this);
+			}
+			var link = this._button = L.DomUtil.create('a', 'list-markers-toggle', container);
 			link.href = '#';
 			link.title = 'List Markers';
 
@@ -173,13 +178,40 @@ L.Control.ListMarkers = L.Control.extend({
 	},
 
 	_expand: function () {
-		this._container.className = this._container.className.replace(' list-markers-collapsed', '');
-		L.DomUtil.addClass(this._container, 'list-markers-x-y');
+		console.log("expand vorher",this._container.className);
+		// original
+		// this._container.className = this._container.className.replace(' list-markers-collapsed', '');
+
+		this._container.className = this._container.className.replace(' list-markers-collapsed', ' list-markers-x-y');
+
+		//this._container.className = this._container.className.replace(' list-markers-collapsed list_collapsed ', 'list-markers ');
+		//this._container.className = this._container.className.replace(' leaflet-control-layers-toggle leaflet-control', ' list-markers-x-y');
+		// list-markers-toggle
+		// L.DomUtil.addClass(this._container, 'leaflet-control-layers-toggle');
+
+		//L.DomUtil.addClass(this._container, 'list-markers-x-y');
+		//L.DomUtil.addClass(this._container, 'list-markers');
+		//L.DomUtil.removeClass(this._container, 'list-markers-collapsed');
+		//L.DomUtil.removeClass(this._container, 'list_collapsed');
+		console.log("expand danach",this._container.className);
 	},
 
 	_collapse: function () {
+		console.log("collapse vorher",this._container.className);
+		// original
 		L.DomUtil.addClass(this._container, 'list-markers-collapsed');
-		this._container.className = this._container.className.replace('list-markers-x-y ', '');
+
+		//this._container.className = this._container.className.replace(' list-markers-x-y', ' list-markers-collapsed');
+		//L.DomUtil.addClass(this._container, 'list-markers-collapsed');
+		//this._container.className = this._container.className.replace('list-markers', 'list-markers-collapsed list_collapsed');
+		//this._container.className = this._container.className.replace(' list-markers-x-y', ' leaflet-control-layers-toggle leaflet-control');
+		//this._container.className = this._container.className.replace(' list-markers-x-y ', '');
+		// L.DomUtil.removeClass(this._container, 'leaflet-control-layers-toggle');
+		L.DomUtil.removeClass(this._container, 'list-markers-x-y');
+		//L.DomUtil.removeClass(this._container, 'list-markers');
+		//L.DomUtil.addClass(this._container, 'list-markers-collapsed');
+		//L.DomUtil.addClass(this._container, 'list_collapsed');
+		console.log("collapse danach",this._container.className);
 	},
 
     _moveTo: function(latlng) {

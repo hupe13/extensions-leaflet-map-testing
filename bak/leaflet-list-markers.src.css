@@ -31,6 +31,7 @@
 
 	min-width:26px;
 	min-height:26px;
+  overflow-y:scroll;
 }
 
 .leaflet-control.list-markers .list-markers-toggle {
@@ -38,6 +39,9 @@
 }
 .leaflet-control.list-markers.list-markers-collapsed .list-markers-toggle {
 	display: block;
+}
+.list-markers.list-markers-collapsed.leaflet-control{
+	display: none;
 }
 .list-markers-ul {
 /*	border: 1px solid blue;*/
@@ -87,22 +91,42 @@
 .leaflet-control.list-markers .list-markers-ul {
 	display: block;
 }
-.leaflet-control.list-markers.list-markers-collapsed .list-markers-ul {
+/* .leaflet-control.list-markers.list-markers-collapsed .list-markers-ul { */
+.leaflet-control.list-markers-collapsed > * {
 	display: none;
 }
+/* .leaflet-control.list_collapsed {
+	background-image: url("https://unpkg.com/leaflet@1.9.4/dist/images/layers.png");
+	/* background-image: url(images/layers.png); */
+	/* background-repeat: no-repeat;
+	width: 36px;
+	height: 36px !important; */
+/* } */ */
 
 .list-markers .list-markers-toggle {
 	display:block;
 	float:left;
 	width:26px;
 	height:26px;
-	background: url('../images/list-icon.png') no-repeat 2px 2px;
+	/* background: url('../images/list-icon.png') no-repeat 2px 2px; */
 	border-radius:4px;
 }
-.list-markers .list-markers-toggle:hover,
-.list-markers .list-markers-toggle.active:hover {
-	background: url('../images/list-icon.png') no-repeat 2px -24px #fff;
-}
-.list-markers .list-markers-toggle.active {
-	background: url('../images/list-icon.png') no-repeat 2px -50px #fff;
-}
+
+/* .list-markers-toggle {
+	/* background-image: url(images/layers.png); */
+	/* background-image: url("https://unpkg.com/leaflet@1.9.4/dist/images/layers.png");
+	width: 36px;
+	height: 36px;
+	} */ */
+/* .leaflet-retina .list-markers-toggle {
+	background-image: url("https://unpkg.com/leaflet@1.9.4/dist/images/layers-2x.png");
+	background-size: 26px 26px;
+	} */
+/* .leaflet-touch .list-markers-toggle {
+	width: 44px;
+	height: 44px;
+	} */
+/* .leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .list-markers-toggle {
+	display: none;
+	} */

@@ -20,6 +20,22 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 <h2>Testing</h2>
 
+# leaflet-list-markers
+
+- Fork from [leaflet-list-markers](https://github.com/stefanocudini/leaflet-list-markers)
+
+```
+[leaflet-map fitbounds]
+[leaflet-marker lat=... lng=... title=...]Popup Content[/leaflet-marker]
+... many any ...
+[listmarkertest overiconurl=.... collapse=... update=...]
+```
+
+Options:
+- <code>overiconurl</code> - url to the icon when it hover or clicked. Default: red icon
+- <code>collapse</code> - true or false
+- <code>update</code> - true or false - show only visible marker in list / show all marker in list
+
 # tile proxy and caching
 
 - Don't use this on production or mission-critical websites.
@@ -44,21 +60,6 @@ Options:
 - see leaflet-map
 - cache - cache tiles on your server
 - restapi - use Rest API, default is admin-ajax.php
-
-# leaflet-list-markers
-
-- Fork from [leaflet-list-markers](https://github.com/stefanocudini/leaflet-list-markers)
-
-```
-[leaflet-map fitbounds]
-[leaflet-marker lat=... lng=... title=...]Popup Content[/leaflet-marker]
-... many any ...
-[listmarkertest overiconurl=.... collapse=]
-```
-
-Options:
-- <code>overiconurl</code> - url to the icon when it hover or clicked. Default: red icon
-- <code>collapse</code> - true or false
 
 # elevation proxy
 

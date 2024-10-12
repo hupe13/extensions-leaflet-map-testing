@@ -1,9 +1,9 @@
 <?php
 /**
- * Functions for listmarker
- *
- * @package Extensions for Leaflet Map
- */
+* Functions for listmarker
+*
+* @package Extensions for Leaflet Map
+*/
 
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
@@ -34,30 +34,26 @@ function leafext_enqueue_listmarker_test() {
 	);
 }
 
-function leafext_listmarker_script_test( $options ) {
+function leafext_listmarker_script_test() {
 	$text = '<script><!--';
 	ob_start();
 	?>/*<script>*/
 	window.WPLeafletMapPlugin = window.WPLeafletMapPlugin || [];
 	window.WPLeafletMapPlugin.push(function () {
-		let overiconurl = <?php echo wp_json_encode( $options['overiconurl'] ); ?>;
-		let collapse = <?php echo wp_json_encode( $options['collapse'] ); ?>;
-		let update = <?php echo wp_json_encode( $options['update'] ); ?>;
-		console.log("update",update);
 		var map = window.WPLeafletMapPlugin.getCurrentMap();
 		if ( WPLeafletMapPlugin.markers.length > 0 ) {
 
 			map.on("update-end", function(e) {
-				//console.log("update-end");
+				console.log("update-end");
 				if (leafext_map_popups( map ) )  {
 					for (var i = 0; i < WPLeafletMapPlugin.markers.length; i++) {
 						let thismarker = WPLeafletMapPlugin.markers[i];
 						if (thismarker.getPopup()) {
 							if (thismarker.getPopup().isOpen()) {
 								let thistitle=thismarker.options.listtitle+" ";
-								//console.log("map update",thistitle);
-								// leafext_set_list_background (map, thistitle, "red", false, "map-update");
-								leafext_set_list_background (map, thistitle, "rgba(255, 255, 255, 0.8)", false, "map-update");
+								console.log("map update",thistitle);
+								leafext_set_list_background (map, thistitle, "red", false, "map-update");
+								// leafext_set_list_background ("rgba(255, 255, 255, 0.8)", thistitle, false, map, "map-update");
 							} else {
 								leafext_set_origicon ( thismarker );
 							}
@@ -78,7 +74,7 @@ function leafext_listmarker_script_test( $options ) {
 					options: markeroptions,
 				});
 				overicon = new markericon({
-					iconUrl: overiconurl,
+					iconUrl: "/wp-content/uploads/sites/17/leaflet-color-markers/img/marker-icon-orange.png",
 				});
 				thismarker.overicon = overicon;
 				thismarker.options.listtitle = thismarker.options.title;
@@ -91,7 +87,7 @@ function leafext_listmarker_script_test( $options ) {
 					function (e) {
 						if (leafext_map_popups( map ) == false)  {
 							let thistitle=e.sourceTarget.options.listtitle+" ";
-							//console.log("mouseover: "+thistitle);
+							// console.log("mouseover: "+thistitle);
 							leafext_set_list_background (map, thistitle, "rgba(255, 255, 255, 0.8)", true, "mouseover");
 							leafext_set_overicon ( e.sourceTarget, false, true );
 						}
@@ -102,7 +98,7 @@ function leafext_listmarker_script_test( $options ) {
 					function (e) {
 						if (leafext_map_popups( map ) == false)  {
 							let thistitle=e.sourceTarget.options.listtitle+" ";
-							//console.log("marker mouseout: "+thistitle);
+							// console.log("marker mouseout: "+thistitle);
 							leafext_set_list_background (map, thistitle, "", false, "mouseout");
 							leafext_set_origicon ( e.sourceTarget );
 						}
@@ -112,20 +108,20 @@ function leafext_listmarker_script_test( $options ) {
 					"click",
 					function (e) {
 						let thistitle=e.sourceTarget.options.listtitle+" ";
-						//console.log("marker click",thistitle);
+						// console.log("marker click",thistitle);
 						leafext_set_overicon ( e.sourceTarget, true, false );
-						// leafext_set_list_background (map, thistitle, "green", true, map, "click");
-						leafext_set_list_background (map, thistitle, "rgba(255, 255, 255, 0.8)", true, map, "click");
+						//leafext_set_list_background ("rgba(255, 255, 255, 0.8)", thistitle, true, map, "click");
+						leafext_set_list_background (map, thistitle, "green", true, map, "click");
 					}
 				);
 				thismarker.on("popupopen", function(e) {
 					let thistitle=e.sourceTarget.options.listtitle;
-					//console.log("popupopen",thistitle);
+					// console.log("popupopen",thistitle);
 					leafext_unbind_all_tooltips();
 				});
 				thismarker.on("popupclose", function(e) {
 					let thistitle=e.sourceTarget.options.listtitle+" ";
-					//console.log("popupclose",thistitle);
+					// console.log("popupclose",thistitle);
 					leafext_set_list_background (map, thistitle, "", false, "popupclose");
 					leafext_set_origicon ( e.sourceTarget );
 				});
@@ -133,7 +129,6 @@ function leafext_listmarker_script_test( $options ) {
 				map.removeLayer( thismarker );
 				markersLayer.addLayer(thismarker);
 			}
-			// console.log(markersLayer);
 			map.addLayer(markersLayer);
 
 			//inizialize Leaflet List Markers
@@ -141,9 +136,8 @@ function leafext_listmarker_script_test( $options ) {
 				layer: markersLayer,
 				itemIcon: null,
 				maxItems: WPLeafletMapPlugin.markers.length+1,
-				collapsed: collapse,
-				label: 'listtitle',
-				update: update
+				collapsed: true,
+				label: 'listtitle'
 			});
 			list.on("item-mouseover", function(e) {
 				if (leafext_map_popups( map ) == false)  {
@@ -151,16 +145,17 @@ function leafext_listmarker_script_test( $options ) {
 				}
 			});
 			list.on("item-mouseout", function(e) {
+				// console.log("item-mouseout");
 				if (leafext_map_popups( map ) == false) {
+					// console.log("fire mouseout");
 					e.layer.fire("mouseout");
 				}
 			});
 			list.on("item-click", function(e) {
 				let thistitle=e.layer.options.listtitle+" ";
-				//console.log("item-click",thistitle);
+				// console.log("item-click",thistitle);
 				//leafext_set_list_background ("rgba(255, 255, 255, 0.8)", thistitle, false, map, "item-click");
 				leafext_set_list_background (map, thistitle, "yellow", true, "item-click");
-				//e.layer.setIcon(e.layer.overicon);
 				leafext_set_overicon ( e.layer, false, false );
 				thismapbounds = [];
 				leafext_target_latlng_marker_do( map,e.layer.getLatLng().lat,e.layer.getLatLng().lng,e.layer.getPopup(),map.getZoom(),true );
@@ -195,6 +190,7 @@ function leafext_listmarker_script_test( $options ) {
 			let a = lis[i];
 			if (a.text.includes(thistitle)) {
 				if ( scroll ) {
+					console.log("scroll", thistitle, farbe, debug);
 					//a.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
 					a.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'end' });
 				}
@@ -224,22 +220,8 @@ function leafext_listmarker_script_test( $options ) {
 	return "\n" . $text . "\n";
 }
 
-function leafext_listmarker_function_test( $atts, $content, $shortcode ) {
-	$text = leafext_should_interpret_shortcode( $shortcode, $atts );
-	if ( $text !== '' ) {
-		return $text;
-	} else {
-		if ( ! is_array( $atts ) ) {
-			$atts = array();
-		}
-		$defaults = array(
-			'overiconurl' => TESTLEAFEXT_PLUGIN_URL . '/icons/marker-icon-red.png',
-			'collapse'    => false,
-			'update'      => true,
-		);
-		$options  = shortcode_atts( $defaults, leafext_clear_params( $atts ) );
-		leafext_enqueue_listmarker_test();
-		return leafext_listmarker_script_test( $options );
-	}
+function leafext_listmarker_function_test() {
+	leafext_enqueue_listmarker_test();
+	return leafext_listmarker_script_test();
 }
 add_shortcode( 'listmarkertest', 'leafext_listmarker_function_test' );
