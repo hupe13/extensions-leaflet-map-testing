@@ -28,13 +28,15 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 [leaflet-map fitbounds]
 [leaflet-marker lat=... lng=... title=...]Popup Content[/leaflet-marker]
 ... many any ...
-[listmarkertest overiconurl=.... collapse=... update=...]
+[listmarkertest overiconurl=.... collapse=... update=... hover=... maxitems=... ]
 ```
 
 Options:
 - <code>overiconurl</code> - url to the icon when it hover or clicked. Default: red icon
-- <code>collapse</code> - true or false
-- <code>update</code> - true or false - show only visible marker in list / show all marker in list
+- <code>collapse</code> - true or false (default false)
+- <code>update</code> - true or false - show only visible marker in list / show all marker in list (default true)
+- <code>hover</code> - true or false - show marker in list when hover (default false)
+- <code>maxitems</code> - maximum number of list items (todo which items?)
 
 # tile proxy and caching
 

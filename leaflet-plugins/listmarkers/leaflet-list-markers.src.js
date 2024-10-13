@@ -99,8 +99,8 @@
 				//console.log('_createItem',layer.options);
 
 				if ( layer.options.hasOwnProperty( this.options.label ) ) {
-					a.innerHTML = icon + '<span>' + layer.options[this.options.label] + '</span> <b>' + this.options.itemArrow + '</b>';
-					//TODO use related marker icon!
+          a.innerHTML = icon + '<span>' + layer.options[this.options.label] + '</span> <b>' + this.options.itemArrow + '</b>';
+          //TODO use related marker icon!
 					//TODO use template for item
 				} else {
 					console.log( "propertyName '" + this.options.label + "' not found in marker" );
@@ -116,17 +116,17 @@
 				this._layer.eachLayer(
 					function (layer) {
 						if (layer instanceof L.Marker) {
-              if ( that.options.update ) {
-                if ( that._map.getBounds().contains( layer.getLatLng() ) ) {
-                  if (++n < that.options.maxItems) {
-                    that._list.appendChild( that._createItem( layer ) );
-                  }
-                }
-              } else {
-                if (++n < that.options.maxItems) {
-                  that._list.appendChild( that._createItem( layer ) );
-                }
-              }
+							if ( that.options.update == true ) {
+								if ( that._map.getBounds().contains( layer.getLatLng() ) ) {
+									if (++n < that.options.maxItems) {
+													that._list.appendChild( that._createItem( layer ) );
+									}
+								}
+							} else {
+								if (++n < that.options.maxItems) {
+									that._list.appendChild( that._createItem( layer ) );
+								}
+							}
 						}
 					}
 				);
