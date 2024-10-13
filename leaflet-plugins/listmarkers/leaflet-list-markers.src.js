@@ -28,8 +28,7 @@
 				itemIcon: L.Icon.Default.imagePath + '/marker-icon.png',
 				itemArrow: '&#10148;',	//visit: https://character-code.com/arrows-html-codes.php
 				maxZoom: 9,
-				position: 'bottomleft',
-				update: true
+				position: 'bottomleft'
 				//TODO autocollapse
 			},
 
@@ -49,7 +48,7 @@
 				var s           = map.getSize();
 				var style       = document.createElement( 'style' );
 				style.type      = 'text/css';
-				style.innerHTML = '.list-markers-x-y { max-height: ' + (s.y) * 0.7 + 'px; max-width: ' + (s.x / 2) + 'px;}';
+				style.innerHTML = '.list-markers-x-y { max-height: ' + (s.y) * map.options.listmaxheight + 'px; max-width: ' + (s.x * map.options.listmaxwidth) + 'px;}';
 				document.getElementsByTagName( 'head' )[0].appendChild( style );
 				this._updateList();
 				return container;
@@ -99,8 +98,8 @@
 				//console.log('_createItem',layer.options);
 
 				if ( layer.options.hasOwnProperty( this.options.label ) ) {
-          a.innerHTML = icon + '<span>' + layer.options[this.options.label] + '</span> <b>' + this.options.itemArrow + '</b>';
-          //TODO use related marker icon!
+					a.innerHTML = icon + '<span>' + layer.options[this.options.label] + '</span> <b>' + this.options.itemArrow + '</b>';
+					//TODO use related marker icon!
 					//TODO use template for item
 				} else {
 					console.log( "propertyName '" + this.options.label + "' not found in marker" );
@@ -116,7 +115,7 @@
 				this._layer.eachLayer(
 					function (layer) {
 						if (layer instanceof L.Marker) {
-							if ( that.options.update == true ) {
+							if ( that.options.update ) {
 								if ( that._map.getBounds().contains( layer.getLatLng() ) ) {
 									if (++n < that.options.maxItems) {
 													that._list.appendChild( that._createItem( layer ) );

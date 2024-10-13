@@ -51,6 +51,8 @@ function leafext_listmarker_script_test( $options ) {
 			if ( maxItems == 0 ) {
 				maxItems = WPLeafletMapPlugin.markers.length + 1;
 			}
+			map.options.listmaxheight = <?php echo wp_json_encode( $options['maxheight'] ); ?>;
+			map.options.listmaxwidth = <?php echo wp_json_encode( $options['maxwidth'] ); ?>;
 			map.on("update-end", function(e) {
 				//console.log("update-end");
 				if (leafext_map_popups( map ) )  {
@@ -247,8 +249,11 @@ function leafext_listmarker_function_test( $atts, $content, $shortcode ) {
 			'update'      => true,
 			'maxitems'    => 0,
 			'hover'       => false,
+			'maxheight'   => 0.7,
+			'maxwidth'    => 0.5,
 		);
 		$options  = shortcode_atts( $defaults, leafext_clear_params( $atts ) );
+		$options['collapse'] = filter_var($options['collapse'], FILTER_VALIDATE_BOOLEAN);
 		leafext_enqueue_listmarker_test();
 		return leafext_listmarker_script_test( $options );
 	}

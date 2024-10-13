@@ -28,7 +28,7 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 [leaflet-map fitbounds]
 [leaflet-marker lat=... lng=... title=...]Popup Content[/leaflet-marker]
 ... many any ...
-[listmarkertest overiconurl=.... collapse=... update=... hover=... maxitems=... ]
+[listmarkertest overiconurl=.... collapse=... update=... hover=... maxitems=... maxheight=... maxwidth= ...]
 ```
 
 Options:
@@ -37,6 +37,8 @@ Options:
 - <code>update</code> - true or false - show only visible marker in list / show all marker in list (default true)
 - <code>hover</code> - true or false - show marker in list when hover (default false)
 - <code>maxitems</code> - maximum number of list items (todo which items?)
+- <code>maxheight</code> - maximum height of list in relation to the height of the map (default 0.7)
+- <code>maxwidth</code> - maximum width of list in relation to the width of the map (default 0.5)
 
 # tile proxy and caching
 
