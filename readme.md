@@ -24,21 +24,31 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 
 - Fork from [leaflet-list-markers](https://github.com/stefanocudini/leaflet-list-markers)
 
+##A Leaflet Control for listing markers in the map
+
 ```
 [leaflet-map fitbounds]
+// title is mandandory!
 [leaflet-marker lat=... lng=... title=...]Popup Content[/leaflet-marker]
 ... many any ...
-[listmarkertest overiconurl=.... collapse=... update=... hover=... maxitems=... maxheight=... maxwidth= ...]
+[listmarkertest options ...]
+// optional - must be after listmarker shortcode!
+[cluster]
 ```
 
 Options:
-- <code>overiconurl</code> - url to the icon when it hover or clicked. Default: red icon
-- <code>collapse</code> - true or false (default false)
-- <code>update</code> - true or false - show only visible marker in list / show all marker in list (default true)
-- <code>hover</code> - true or false - show marker in list when hover (default false)
-- <code>maxitems</code> - maximum number of list items (todo which items?)
+
 - <code>maxheight</code> - maximum height of list in relation to the height of the map (default 0.7)
 - <code>maxwidth</code> - maximum width of list in relation to the width of the map (default 0.5)
+
+- <code>collapse</code> - true or false - the list is collapsed or not (default)
+
+- <code>hover</code> - true or false - show marker in list when hover (default false)
+- <code>overiconurl</code> - url to the icon when it hover or clicked. If it is an empty string, the icon does not change. Default: red icon
+
+- <code>update</code> - true or false - show only visible marker in list (default) / show all marker in list
+
+- <code>maxitems</code> - maximum number of list items (todo which items?)
 
 # tile proxy and caching
 

@@ -1,19 +1,3 @@
-/**
- * Leaflet List Markers v0.1.0 - 2017-11-26
- *
- * Copyright 2017 Stefano Cudini
- * stefano.cudini@gmail.com
- * https://opengeo.tech/
- *
- * Licensed under the MIT license.
- *
- * Demo:
- * https://opengeo.tech/maps/leaflet-list-markers/
- *
- * Source:
- * git@github.com:stefanocudini/leaflet-list-markers.git
- */
-
 (function () {
 
 	L.Control.ListMarkers = L.Control.extend(
@@ -28,7 +12,10 @@
 				itemIcon: L.Icon.Default.imagePath + '/marker-icon.png',
 				itemArrow: '&#10148;',	//visit: https://character-code.com/arrows-html-codes.php
 				maxZoom: 9,
-				position: 'bottomleft'
+				position: 'bottomleft',
+				update: true,
+				maxheight: 0.7,
+				maxwidth: 0.5
 				//TODO autocollapse
 			},
 
@@ -37,9 +24,36 @@
 				this._container = null;
 				this._list      = null;
 				this._layer     = this.options.layer || new L.LayerGroup();
+				this._greatest  = 0;
 			},
 
 			onAdd: function (map) {
+
+				map.options._collapse = this.options.collapsed;
+				map.options._greatest = 0;
+				map.on(
+					"update-end",
+					function (e) {
+						// console.log("update-end", map.options._collapse);
+						if ( ! map.options._collapse ) {
+							let greatest_before = map.options._greatest;
+							// console.log("greatest_before",greatest_before);
+							const createdlist = document.getElementsByClassName( 'list-markers-li' );
+							let length        = createdlist.length;
+							for (let i = 0; i < length; i++) {
+								let rectwidth = createdlist[i].childNodes[0].childNodes[0].offsetWidth;
+								if ( rectwidth > map.options._greatest) {
+									map.options._greatest = rectwidth;
+								}
+							}
+							for (let i = 0; i < length; i++) {
+								createdlist[i].childNodes[0].style.width = map.options._greatest + 30 + "px";
+							}
+							// console.log("greatest_new",map.options._greatest);
+						}
+					}
+				);
+
 				this._map     = map;
 				var container = this._container = L.DomUtil.create( 'div', 'list-markers-x-y list-markers' );
 				this._list    = L.DomUtil.create( 'ul', 'list-markers-ul', container );
@@ -48,9 +62,10 @@
 				var s           = map.getSize();
 				var style       = document.createElement( 'style' );
 				style.type      = 'text/css';
-				style.innerHTML = '.list-markers-x-y { max-height: ' + (s.y) * map.options.listmaxheight + 'px; max-width: ' + (s.x * map.options.listmaxwidth) + 'px;}';
+				style.innerHTML = '.list-markers-x-y { max-height: ' + (s.y) * this.options.maxheight + 'px; max-width: ' + (s.x * this.options.maxwidth) + 'px;}';
 				document.getElementsByTagName( 'head' )[0].appendChild( style );
 				this._updateList();
+
 				return container;
 			},
 
@@ -96,9 +111,22 @@
 				);
 
 				//console.log('_createItem',layer.options);
-
 				if ( layer.options.hasOwnProperty( this.options.label ) ) {
-					a.innerHTML = icon + '<span>' + layer.options[this.options.label] + '</span> <b>' + this.options.itemArrow + '</b>';
+					//a.innerHTML = icon + '<span>' + layer.options[this.options.label] + '</span> <b>' + this.options.itemArrow + '</b>';
+					a.innerHTML    = '<span>' + layer.options[this.options.label] + '</span> <b>' + this.options.itemArrow + '</b>';
+					let thislength = layer.options[this.options.label].length;
+					// console.log(thislength);
+					if ( thislength > this._greatest ) {
+						this._greatest = thislength;
+						// console.log("li",this._greatest);
+							itemstyle           = document.createElement( 'style' );
+						itemstyle.type          = 'text/css';
+						thislength              = 10 * thislength;
+							itemstyle.innerHTML = '.list-markers-li a { width: ' + thislength + 'px; }';
+						// console.log(itemstyle);
+						document.getElementsByTagName( 'head' )[0].appendChild( itemstyle );
+					}
+
 					//TODO use related marker icon!
 					//TODO use template for item
 				} else {
@@ -109,6 +137,7 @@
 			},
 
 			_updateList: function () {
+				// console.log("_updateList");
 				var that             = this,
 				n                    = 0;
 				this._list.innerHTML = '';
@@ -129,7 +158,7 @@
 						}
 					}
 				);
-				that._map.fire( 'update-end' );
+				this._map.fire( 'update-end' );
 			},
 
 			_initToggle: function () {
@@ -164,11 +193,14 @@
 			_expand: function () {
 				this._container.className = this._container.className.replace( ' list-markers-collapsed', '' );
 				L.DomUtil.addClass( this._container, 'list-markers-x-y' );
+				this._map.options._collapse = false;
+				this._map.fire( 'update-end' );
 			},
 
 			_collapse: function () {
 				L.DomUtil.addClass( this._container, 'list-markers-collapsed' );
-				this._container.className = this._container.className.replace( 'list-markers-x-y ', '' );
+				this._container.className   = this._container.className.replace( 'list-markers-x-y ', '' );
+				this._map.options._collapse = true;
 			},
 
 			_moveTo: function (latlng) {
