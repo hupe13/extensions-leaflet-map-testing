@@ -67,4 +67,3 @@ if ( is_admin() ) {
 
 // include_once TESTLEAFEXT_PLUGIN_DIR . '/php/enqueue-leafletplugins.php';
 require_once TESTLEAFEXT_PLUGIN_DIR . '/php/tileproxy/tileproxy.php';
-require_once TESTLEAFEXT_PLUGIN_DIR . '/php/listmarker.php';
