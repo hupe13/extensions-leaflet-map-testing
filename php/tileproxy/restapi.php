@@ -135,7 +135,7 @@ function leafext_restapi_image( $served, $result ) {
 	// details (via "return true").
 	if ( $is_image && is_string( $image_data ) ) {
 		echo $image_data;
-		return true; 
+		return true;
 	}
 	return $served;
 }
@@ -143,7 +143,7 @@ function leafext_restapi_image( $served, $result ) {
 // https://perishablepress.com/contact-form-7-disable-wp-rest-api/
 if ( count( preg_grep( '/disable-wp-rest-api.php/', get_option( 'active_plugins' ) ) ) > 0 ) {
 	function leafext_enable_restapi_tileproxy() {
-		$api_path = wp_parse_url(get_rest_url())["path"].'leafext-tileproxy/v1/tiles/';
+		$api_path = wp_parse_url( get_rest_url() )['path'] . 'leafext-tileproxy/v1/tiles/';
 		return array(
 			$api_path,
 		);
