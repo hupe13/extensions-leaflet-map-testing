@@ -144,7 +144,7 @@ function leafext_restapi_image( $served, $result ) {
 if ( count( preg_grep( '/disable-wp-rest-api.php/', get_option( 'active_plugins' ) ) ) > 0 ) {
 	function leafext_enable_restapi_tileproxy() {
 		return array(
-			'/wp-json/leafext-tileproxy/v1/tiles',
+			'/wp-json/leafext-tileproxy/v1/tiles/',
 		);
 	}
 	add_filter( 'disable_wp_rest_api_server_var', 'leafext_enable_restapi_tileproxy' );
