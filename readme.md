@@ -28,7 +28,7 @@ Activate the plugin. Prerequisites are <a href="https://wordpress.org/plugins/le
 - Why? DSGVO, GDPR, ...
 - use ajax-admin.php or Rest API
 - If you use Rest API and you have disable these, you need enable the endpoint '/wp-json/leafext-tileproxy/v1/tiles'
-- The plugin enables this for [Disable WP REST API](https://wordpress.org/plugins/disable-wp-rest-api/)
+- <del>The plugin enables this for [Disable WP REST API](https://wordpress.org/plugins/disable-wp-rest-api/)</del> - Does not work at the moment.
 - If you cache, you need space on your server and the first calls of a tile take more time as normal.
 - If you cache, 404 errors are okay, it can take several calls until they are gone, the cause is the various server caches.
 - Maybe slower as the original servers (depends).
